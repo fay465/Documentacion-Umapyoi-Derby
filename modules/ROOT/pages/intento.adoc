@@ -1,10 +1,645 @@
+= Documentación API Gestión de Devoluciones Retail
+:toc:
+:toclevels: 4
+:sectnums:
+
+== CONTEXTO
+
+=== Problema del Negocio
+
+[role="lead"]
+*Problema Principal*: El proceso actual de devoluciones en la cadena de retail maneja:
+
+* *Tiempo de procesamiento*: 3-5 días hábiles por devolución
+* *Costo operacional*: $15-20 USD por devolución manual  
+* *Tasa de error*: 12% en procesamiento manual
+* *Insatisfacción cliente*: 35% de clientes reportan mala experiencia en devoluciones
+* *Pérdida por fraudes*: 8% del total de devoluciones son fraudulentas no detectadas
+
+*Necesidad crítica*: Automatización que reduzca costos operacionales en 60% y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.
+
+== HIPÓTESIS Y SUPUESTOS
+
+=== Qué SÍ es el proyecto:
+
+* *Sistema transaccional* de alta velocidad para gestión de devoluciones
+* *Motor de reglas* para validación automática de políticas
+* *Integrador* con sistemas de inventario, POS y financieros
+* *Generador de analytics* en tiempo real para toma de decisiones
+
+=== Qué NO es el proyecto:
+
+* ❌ No es un sistema de ventas POS
+* ❌ No es un ERP completo  
+* ❌ No maneja logística inversa física
+* ❌ No reemplaza sistemas contables existentes
+
+=== Supuestos técnicos validados:
+
+. *Volumen*: 10M transacciones/día = ~116 transacciones/segundo (peak)
+. *Disponibilidad*: Requerimiento 99.99% = ~52 minutos downtime/año máximo
+. *Latencia*: <200ms para 95% de las transacciones
+. *Consistencia*: ACID required para transacciones financieras
+
+== OBJETIVOS
+
+=== Objetivos Cuantitativos
+
+[cols="1,1,1,1"]
+|===
+| Objetivo | Métrica Actual | Meta | Timeline
+
+| Reducción tiempo procesamiento
+| 72-120 horas
+| <24 horas
+| 3 meses
+
+| Costo por devolución
+| $18 USD
+| $7 USD
+| 6 meses
+
+| Detección fraudes
+| 65%
+| 90%
+| 4 meses
+
+| Satisfacción cliente
+| 65%
+| 85%
+| 3 meses
+|===
+
+=== Beneficios Esperados
+
+* *Anual*: $45M USD en reducción de costos operacionales
+* *ROI*: 3.2x en primer año
+* *Recuperación*: 15% de ventas perdidas por mala experiencia
+
+== MÉTRICAS E IMPACTO
+
+=== KPIs Principales
+
+[source,sql]
+----
+-- KPIs de Performance
+SELECT 
+  COUNT(*) as total_returns,
+  AVG(processing_time) as avg_processing_time,
+  SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as auto_approval_rate,
+  SUM(CASE WHEN fraud_detected = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as fraud_detection_rate
+FROM returns 
+WHERE created_at >= CURRENT_DATE - INTERVAL '30 days';
+----
+
+=== DND Metrics (Do Not Disturb)
+
+[cols="1,1,1"]
+|===
+| Métrica | Límite | Monitoreo
+
+| Latencia sistemas POS
+| <100ms
+| Datadog + New Relic
+
+| Disponibilidad inventario
+| 99.95%
+| Pingdom + Custom checks
+
+| Tiempo respuesta financiero
+| <500ms
+| APM integrado
+
+| Error rate existente
+| <0.1%
+| Log aggregation
+|===
+
+== USUARIOS Y CLIENTES
+
+=== User Personas
+
+==== Persona 1: Cliente Final (María, 35 años)
+
+[source,yaml]
+----
+Comportamiento:
+  - Dispositivo principal: Mobile (85%)
+  - Horario pico: 18:00-21:00 hrs
+  - Expectativa: Devolución en 1 click
+  - Frustración: Procesos burocráticos
+
+Storyboard:
+  1. Escanea código producto → 2. Selecciona motivo → 3. Toma foto recibo → 
+  4. Recibe código QR → 5. Entrega en tienda → 6. Recibe notificación confirmación
+----
+
+==== Persona 2: Supervisor Tienda (Carlos, 42 años)
+
+[source,yaml]
+----
+Comportamiento:
+  - Dispositivo: Tablet corporativa
+  - Necesidad: Dashboard tiempo real
+  - Métrica clave: Devoluciones procesadas/hora
+
+User Story:
+  "Como supervisor, necesito ver el estado de todas las devoluciones 
+   pendientes en mi tienda para asignar recursos eficientemente"
+----
+
+=== Flujos de Negocio Críticos
+
+==== Flujo Devolución Estándar
+
 [plantuml]
+---
+title Flujo Devolución Estándar
+---
+
+start
+:Cliente solicita devolución;
+if (Validación automática) then (Aprobado)
+  :Generar código QR;
+  :Cliente lleva a tienda;
+  :Escaneo QR;
+  if (Validación física) then (OK)
+    :Procesar reembolso;
+    :Actualizar inventario;
+    :Notificar cliente;
+  else (Rechazado)
+    :Escalar a supervisor;
+  endif
+else (Rechazado)
+  :Notificar con motivo;
+endif
+stop
+---
+
+=== Reglas de Negocio
+
+[source,javascript]
 ----
-@startuml
-	Class01 <|-- Class02
-	Class03 *-- Class03
-	Class05 o-- Class06
-	Class07 .. Class08
-	Class09 -- Class10
-@enduml
+// Políticas de devolución por categoría
+const returnPolicies = {
+  electronics: {
+    window_days: 30,
+    requires_box: true,
+    restocking_fee: 0.15,
+    condition_check: ['sealed', 'like_new']
+  },
+  clothing: {
+    window_days: 90,
+    requires_tags: true,
+    condition_check: ['unworn', 'tags_attached']
+  }
+};
+
+// Reglas de fraude
+const fraudRules = {
+  max_returns_per_month: 3,
+  amount_threshold: 500.00,
+  high_risk_products: ['electronics', 'jewelry']
+};
 ----
+
+== SOLUCIÓN TÉCNICA
+
+=== Requisitos Funcionales Detallados
+
+==== RF-001: Gestión de Ciclo de Vida
+
+[source,yaml]
+----
+Estados:
+  - submitted: Solicitud creada
+  - validation_pending: En validación
+  - approved: Aprobada
+  - rejected: Rechazada
+  - in_transit: En tránsito a tienda
+  - received: Recibida en tienda
+  - refund_processed: Reembolsado
+  - completed: Finalizada
+
+Transiciones:
+  submitted → validation_pending: Automático
+  validation_pending → approved: Motor reglas
+  approved → rejected: Supervisor override
+----
+
+==== RF-002: Motor de Validación
+
+[source,python]
+----
+def validate_return(sale_data, product_data, customer_history):
+    # Regla 1: Ventana de tiempo
+    if not within_return_window(sale_data.sale_date, product_data.category):
+        return False, "Fuera de ventana de devolución"
+    
+    # Regla 2: Historial cliente
+    if exceeds_monthly_limit(customer_history):
+        return False, "Límite mensual excedido"
+    
+    # Regla 3: Política específica producto
+    if not meets_product_policy(product_data, sale_data.condition):
+        return False, "No cumple política del producto"
+    
+    return True, "Aprobado"
+----
+
+=== Restricciones y Dependencias
+
+==== Dependencias Técnicas Críticas
+
+[source,yaml]
+----
+external_apis:
+  payment_gateway:
+    provider: "Stripe/PayPal"
+    sla: "99.95%"
+    rate_limit: "1000 req/seg"
+    
+  inventory_system:
+    endpoint: "SOAP/REST"
+    sync_interval: "5 minutos"
+    fallback: "Async queue"
+    
+  crm_system:
+    data: "Historial cliente"
+    real_time: "Sí"
+    compliance: "GDPR"
+----
+
+==== Restricciones Legales
+
+[source,yaml]
+----
+compliance:
+  - Ley del Consumidor: "30 días mínimo devoluciones"
+  - Protección Datos: "GDPR/LGPD"
+  - Financiero: "Normativa antifraude"
+  - Fiscal: "Facturación electrónica"
+----
+
+=== Criterios de Aceptación (UAT)
+
+==== Escenarios de Prueba Críticos
+
+[source,gherkin]
+----
+Scenario: Devolución exitosa producto electrónico
+  Given producto comprado hace 15 días
+  And cliente con menos de 3 devoluciones mensuales
+  When solicita devolución con recibo válido
+  Then sistema aprueba automáticamente
+  And genera código QR
+  And notifica al cliente
+
+Scenario: Detección de fraude
+  Given cliente con 5 devoluciones este mes
+  And producto de alta gama (>$1000)
+  When intenta devolución
+  Then sistema rechaza automáticamente
+  And notifica al equipo de fraudes
+----
+
+== ESTRATEGIA DE LANZAMIENTO
+
+=== Plan de Release por Fases
+
+[plantuml]
+---
+title Plan de Implementación
+---
+
+projectscale quarterly
+[Fase 1 - MVP] lasts from 2024-01-15 to 2024-02-29
+[Core API] lasts from 2024-01-15 to 2024-02-15
+[Integración POS] lasts from 2024-01-15 to 2024-02-29
+[Dashboard básico] lasts from 2024-02-01 to 2024-03-02
+
+[Fase 2 - Escalabilidad] lasts from 2024-03-01 to 2024-04-15
+[Auto-scaling] lasts from 2024-03-01 to 2024-03-31
+[Cache Redis] lasts from 2024-03-15 to 2024-04-05
+[Monitoring] lasts from 2024-03-20 to 2024-04-15
+
+[Fase 3 - Optimización] lasts from 2024-04-15 to 2024-06-15
+[Machine Learning] lasts from 2024-04-15 to 2024-05-30
+[Mobile PWA] lasts from 2024-05-01 to 2024-05-31
+[Analytics avanzado] lasts from 2024-05-15 to 2024-06-15
+---
+
+=== Áreas Impactadas - Matriz RACI
+
+[cols="1,1,1,1,1"]
+|===
+| Área | Responsable | Aprobador | Consultado | Informado
+
+| Operaciones TI
+| R
+| A
+| C
+| I
+
+| Tiendas
+| C
+| A
+| R
+| I
+
+| Finanzas
+| C
+| A
+| R
+| I
+
+| Legal
+| C
+| A
+| R
+| I
+
+| CRM
+| C
+| I
+| R
+| A
+|===
+
+== PREGUNTAS Y RESPUESTAS
+
+=== Preguntas Abiertas Críticas
+
+. *Integración legacy*: ¿Cómo manejar tiendas con sistemas POS antiguos sin API?
++
+*Respuesta pendiente: Evaluar middleware o terminales intermedias*
+
+. *Data migration*: ¿Migración histórica de devoluciones o solo datos nuevos?
++
+*Respuesta: Solo datos nuevos inicialmente, históricos en fase 2*
+
+. *Disponibilidad*: ¿Plan de contingencia para caídas de sistemas dependientes?
++
+*Respuesta pendiente: Definir circuit breakers y colas de retry*
+
+=== FAQ - Preguntas Frecuentes
+
+*Q: ¿Qué pasa si el sistema de inventario está caído?*  
+**R**: Modo degradado con cola de sincronización y validación manual temporal.
+
+*Q: ¿Cómo se manejan devoluciones sin recibo físico?*  
+**R**: Búsqueda por email/teléfono + validación con datos de pago.
+
+*Q: ¿Límite de devoluciones por cliente?*  
+**R**: Sí, 3 devoluciones/mes para clientes regulares, 1 para nuevos.
+
+*Q: ¿Tiempo de reembolso?*  
+**R**: 24-48 horas para tarjetas, 5-7 días para transferencias.
+
+*Q: ¿Productos no elegibles?*  
+**R**: Ropa interior, productos personalizados, software abierto.
+
+== CONTINGENCIAS Y RIESGOS
+
+=== Plan de Mitigación
+
+[cols="1,1,1,2"]
+|===
+| Riesgo | Probabilidad | Impacto | Mitigación
+
+| Caída sistema POS
+| Media
+| Alto
+| Cache local + sync async
+
+| Pico de transacciones
+| Alta
+| Medio
+| Auto-scaling + rate limiting
+
+| Error en motor reglas
+| Baja
+| Alto
+| Audit trail + rollback manual
+
+| Brecha seguridad
+| Media
+| Alto
+| Encryption + pentesting regular
+|===
+
+== DIAGRAMA C4
+
+=== Nivel 1 - Contexto del Sistema
+
+[plantuml]
+---
+title Contexto del Sistema - Nivel 1
+---
+
+left to right direction
+actor "Cliente" as client
+rectangle "Sistema Devoluciones" as returns
+rectangle "Sistema Retail" as retail
+rectangle "Proveedor Pago" as payment
+
+client --> returns
+returns --> retail
+returns --> payment
+---
+
+=== Nivel 2 - Contenedores
+
+[plantuml]
+---
+title Contenedores - Nivel 2
+---
+
+node "Sistema Gestión Devoluciones" {
+  [API Gateway\nKong] as gateway
+  [Service Mesh\nIstio] as mesh
+  [Message Queue\nKafka] as queue
+  
+  [Microservicio\nDevoluciones] as returns_ms
+  [Microservicio\nValidación] as validation_ms
+  [Cache Layer\nRedis Cluster] as cache
+  
+  [Database\nPostgreSQL] as db
+  [Data Warehouse\nBigQuery] as dw
+  [Monitoring\nPrometheus] as monitoring
+  
+  gateway --> returns_ms
+  mesh --> validation_ms
+  queue --> cache
+  returns_ms --> db
+  validation_ms --> dw
+  monitoring --> returns_ms
+}
+---
+
+== DIAGRAMA ENTIDAD-RELACIÓN
+
+[source,sql]
+----
+-- Tabla principal de devoluciones
+CREATE TABLE returns (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    sale_id UUID NOT NULL,
+    customer_id UUID NOT NULL,
+    status VARCHAR(50) NOT NULL CHECK (status IN ('pending', 'approved', 'rejected', 'processed')),
+    return_reason VARCHAR(200) NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    processed_by UUID,
+    notes TEXT
+);
+
+-- Items de devolución
+CREATE TABLE return_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    return_id UUID REFERENCES returns(id) ON DELETE CASCADE,
+    product_id UUID NOT NULL,
+    quantity INTEGER NOT NULL CHECK (quantity > 0),
+    unit_price DECIMAL(10,2) NOT NULL,
+    reason VARCHAR(100) NOT NULL,
+    condition VARCHAR(50) CHECK (condition IN ('new', 'opened', 'damaged'))
+);
+
+-- Tabla de políticas de devolución
+CREATE TABLE return_policies (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_category VARCHAR(100) NOT NULL,
+    return_window_days INTEGER NOT NULL,
+    restocking_fee DECIMAL(5,2) DEFAULT 0,
+    requires_receipt BOOLEAN DEFAULT true,
+    active BOOLEAN DEFAULT true
+);
+
+-- Índices para performance
+CREATE INDEX CONCURRENTLY idx_returns_sale_id ON returns(sale_id);
+CREATE INDEX CONCURRENTLY idx_returns_customer_id ON returns(customer_id);
+CREATE INDEX CONCURRENTLY idx_returns_status ON returns(status);
+CREATE INDEX CONCURRENTLY idx_returns_created_at ON returns(created_at);
+----
+
+== ARCHITECTURE DECISION RECORDS (ADR)
+
+=== ADR 001: Microservicios vs Monolito
+
+*Fecha*: 2024-01-15  
+*Estado*: Aceptado  
+*Contexto*: Necesidad de manejar 10M transacciones diarias con alta disponibilidad  
+*Decisión*: Arquitectura de microservicios  
+*Consecuencias*:
+
+* ✅ Mejor escalabilidad horizontal
+* ✅ Deployment independiente por equipo
+* ✅ Resiliencia mejorada
+* ⚠️ Mayor complejidad operacional
+* ⚠️ Overhead de comunicación entre servicios
+
+=== ADR 002: Estrategia de Base de Datos
+
+*Fecha*: 2024-01-15  
+*Estado*: Aceptado  
+*Contexto*: Alto volumen transaccional con requerimientos de consistencia  
+*Decisión*: PostgreSQL con particionamiento + Redis para cache  
+*Consecuencias*:
+
+* ✅ ACID compliance para transacciones financieras
+* ✅ Particionamiento por fecha para performance
+* ✅ Redis para queries frecuentes
+* ⚠️ Complejidad de mantenimiento
+* ⚠️ Costo de infraestructura mayor
+
+== ESPECIFICACIÓN DE ENDPOINTS
+
+=== Crear Devolución
+
+[source,http]
+----
+POST /api/v1/returns
+Content-Type: application/json
+Authorization: Bearer {token}
+
+{
+  "sale_id": "uuid",
+  "items": [
+    {
+      "product_id": "uuid",
+      "quantity": 1,
+      "reason": "defective"
+    }
+  ],
+  "customer_notes": "string"
+}
+----
+
+=== Consultar Estado
+
+[source,http]
+----
+GET /api/v1/returns/{return_id}
+Authorization: Bearer {token}
+----
+
+=== Procesar Devolución
+
+[source,http]
+----
+PATCH /api/v1/returns/{return_id}/process
+Authorization: Bearer {token}
+
+{
+  "action": "approve|reject",
+  "admin_notes": "string"
+}
+----
+
+== ESTRATEGIA DE IMPLEMENTACIÓN
+
+=== Fase 1 (MVP - 6 semanas)
+
+* [ ] Core API devoluciones
+* [ ] Integración básica con sistema de ventas
+* [ ] Dashboard administrativo básico
+
+=== Fase 2 (8 semanas)
+
+* [ ] Sistema de notificaciones
+* [ ] Analytics y reporting
+* [ ] Optimizaciones de performance
+
+=== Fase 3 (6 semanas)
+
+* [ ] Mobile PWA
+* [ ] Integraciones avanzadas
+* [ ] Auto-scaling configuration
+
+== STACK TECNOLÓGICO
+
+=== Backend
+
+* *API Gateway*: Kong
+* *Microservicios*: Node.js/TypeScript
+* *Base de datos*: PostgreSQL 14+
+* *Cache*: Redis Cluster
+* *Message Queue*: Apache Kafka
+
+=== Frontend
+
+* *Admin Panel*: AdminLTE + React
+* *Mobile*: Framework7 PWA
+
+=== DevOps
+
+* *Containerization*: Docker + Kubernetes
+* *CI/CD*: GitLab CI
+* *Monitoring*: Prometheus + Grafana
+* *Documentation*: Antora
+
+[NOTE]
+====
+Esta documentación proporciona una base sólida para el desarrollo de la API de gestión de devoluciones, considerando los altos requisitos de performance y escalabilidad especificados.
+====
