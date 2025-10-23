@@ -227,6 +227,7 @@ María realiza la mayoría de sus compras online y valora enormemente su tiempo.
 image::supervisor_persona.png[Carlos Rodríguez, supervisor de tienda, 200, 200]
 
 *Perfil Demográfico*:
+
 * Edad: 42 años
 * Ocupación: Supervisor de operaciones en tienda flagship
 * Experiencia: 15 años en retail
@@ -237,12 +238,14 @@ image::supervisor_persona.png[Carlos Rodríguez, supervisor de tienda, 200, 200]
 Carlos gestiona un equipo de personas en la tienda de mayor volumen de la cadena. Su desempeño se mide por métricas operativas como tiempo de procesamiento, satisfacción del cliente y eficiencia del personal. Trabaja bajo presión constante para balancear la experiencia del cliente con los procedimientos operativos.
 
 *Flujo de Trabajo Diario*:
+
 * 8:00-10:00: Revisión métricas del día anterior y planificación
 * 10:00-14:00: Supervisión piso de ventas y resolución de incidencias
 * 14:00-16:00: Reuniones operativas y reportes
 * 16:00-18:00: Capacitación equipo y cierre operativo
 
 *Requerimientos*:
+
 * Visión en tiempo real del volumen de devoluciones pendientes
 * Herramientas para priorizar casos urgentes o de alto valor
 * Capacidad de tomar decisiones excepcionales con información completa
@@ -250,6 +253,7 @@ Carlos gestiona un equipo de personas en la tienda de mayor volumen de la cadena
 * Integración fluida con sistemas de inventario y caja
 
 *Problemas organizacionales*:
+
 * Sistemas desconectados que requieren ingresar la misma información múltiples veces
 * Falta de visibilidad sobre el historial completo del cliente
 * Procesos manuales que consumen tiempo valioso de atención al cliente
