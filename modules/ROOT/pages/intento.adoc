@@ -265,158 +265,33 @@ Carlos gestiona un equipo de personas en la tienda de mayor volumen de la cadena
 
 === Flujos de Negocio Críticos
 
-==== Flujo Devolución Estándar
+==== Flujo Principal de Devolución
 
-[plantuml]
----
-title Flujo Devolución Estándar
----
+*Inicio del Proceso*:
+El flujo se activa cuando un cliente solicita una devolución a través de cualquiera de los canales habilitados: aplicación móvil, sitio web o directamente en tienda física. El sistema captura automáticamente la información básica de la transacción original.
 
-start
-:Cliente solicita devolución;
-if (Validación automática) then (Aprobado)
-  :Generar código QR;
-  :Cliente lleva a tienda;
-  :Escaneo QR;
-  if (Validación física) then (OK)
-    :Procesar reembolso;
-    :Actualizar inventario;
-    :Notificar cliente;
-  else (Rechazado)
-    :Escalar a supervisor;
-  endif
-else (Rechazado)
-  :Notificar con motivo;
-endif
-stop
----
+*Validación Inicial y Crítica*:
+La primera y única regla automática aplicada actualmente es la validación del período de 5 días desde la fecha de compra. El sistema calcula exactamente el tiempo transcurrido y determina si la solicitud cumple con este requisito fundamental.
 
-=== Reglas de Negocio
+*Escenarios de Validación:*
 
-[source,javascript]
-----
-// Políticas de devolución por categoría
-const returnPolicies = {
-  electronics: {
-    window_days: 30,
-    requires_box: true,
-    restocking_fee: 0.15,
-    condition_check: ['sealed', 'like_new']
-  },
-  clothing: {
-    window_days: 90,
-    requires_tags: true,
-    condition_check: ['unworn', 'tags_attached']
-  }
-};
+* Aprobado automático: Si la solicitud está dentro del período de 5 días
 
-// Reglas de fraude
-const fraudRules = {
-  max_returns_per_month: 3,
-  amount_threshold: 500.00,
-  high_risk_products: ['electronics', 'jewelry']
-};
-----
+* Rechazo automático: Si ha transcurrido más de 5 días desde la compra
+
+* Escalación manual: Casos especiales que requieren supervisión humana
+
+*Proceso de Aprobación*:
+Para las solicitudes que pasan la validación inicial, el sistema genera automáticamente un código QR único que sirve como comprobante digital. Este código contiene toda la información necesaria para procesar la devolución en tienda.
 
 == SOLUCIÓN TÉCNICA
 
-=== Requisitos Funcionales Detallados
+=== Resumen de la solución
 
-==== RF-001: Gestión de Ciclo de Vida
+La plataforma de gestión de devoluciones se concibe como un sistema unificado que transforma la experiencia del cliente y optimiza las operaciones internas del retail. La solución aborda las necesidades fundamentales mediante un proceso completamente digitalizado que elimina las dificultades actuales, proporcionando transparencia total y agilidad en cada etapa. Para el negocio, se establece una infraestructura escalable que reduce costos operativos mediante automatización inteligente y provee capacidades avanzadas de analítica para la toma de decisiones.
 
-[source,yaml]
-----
-Estados:
-  - submitted: Solicitud creada
-  - validation_pending: En validación
-  - approved: Aprobada
-  - rejected: Rechazada
-  - in_transit: En tránsito a tienda
-  - received: Recibida en tienda
-  - refund_processed: Reembolsado
-  - completed: Finalizada
+El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.
 
-Transiciones:
-  submitted → validation_pending: Automático
-  validation_pending → approved: Motor reglas
-  approved → rejected: Supervisor override
-----
-
-==== RF-002: Motor de Validación
-
-[source,python]
-----
-def validate_return(sale_data, product_data, customer_history):
-    # Regla 1: Ventana de tiempo
-    if not within_return_window(sale_data.sale_date, product_data.category):
-        return False, "Fuera de ventana de devolución"
-    
-    # Regla 2: Historial cliente
-    if exceeds_monthly_limit(customer_history):
-        return False, "Límite mensual excedido"
-    
-    # Regla 3: Política específica producto
-    if not meets_product_policy(product_data, sale_data.condition):
-        return False, "No cumple política del producto"
-    
-    return True, "Aprobado"
-----
-
-=== Restricciones y Dependencias
-
-==== Dependencias Técnicas Críticas
-
-[source,yaml]
-----
-external_apis:
-  payment_gateway:
-    provider: "Stripe/PayPal"
-    sla: "99.95%"
-    rate_limit: "1000 req/seg"
-    
-  inventory_system:
-    endpoint: "SOAP/REST"
-    sync_interval: "5 minutos"
-    fallback: "Async queue"
-    
-  crm_system:
-    data: "Historial cliente"
-    real_time: "Sí"
-    compliance: "GDPR"
-----
-
-==== Restricciones Legales
-
-[source,yaml]
-----
-compliance:
-  - Ley del Consumidor: "30 días mínimo devoluciones"
-  - Protección Datos: "GDPR/LGPD"
-  - Financiero: "Normativa antifraude"
-  - Fiscal: "Facturación electrónica"
-----
-
-=== Criterios de Aceptación (UAT)
-
-==== Escenarios de Prueba Críticos
-
-[source,gherkin]
-----
-Scenario: Devolución exitosa producto electrónico
-  Given producto comprado hace 15 días
-  And cliente con menos de 3 devoluciones mensuales
-  When solicita devolución con recibo válido
-  Then sistema aprueba automáticamente
-  And genera código QR
-  And notifica al cliente
-
-Scenario: Detección de fraude
-  Given cliente con 5 devoluciones este mes
-  And producto de alta gama (>$1000)
-  When intenta devolución
-  Then sistema rechaza automáticamente
-  And notifica al equipo de fraudes
-----
 
 == ESTRATEGIA DE LANZAMIENTO
 
