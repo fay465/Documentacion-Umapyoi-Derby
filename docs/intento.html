@@ -129,8 +129,11 @@
 </li>
 <li><a href="#métricas-e-impacto">4. MÉTRICAS E IMPACTO</a>
 <ul class="sectlevel2">
-<li><a href="#kpis-principales">4.1. KPIs Principales</a></li>
-<li><a href="#dnd-metrics-do-not-disturb">4.2. DND Metrics (Do Not Disturb)</a></li>
+<li><a href="#kpis-de-negocio-críticos">4.1. KPIs de Negocio Críticos</a></li>
+<li><a href="#kpis-de-experiencia-de-usuario">4.2. KPIs de Experiencia de Usuario</a></li>
+<li><a href="#kpis-técnicos-de-performance">4.3. KPIs Técnicos de Performance</a></li>
+<li><a href="#kpis-de-eficiencia-del-sistema">4.4. KPIs de Eficiencia del Sistema</a></li>
+<li><a href="#métricas-de-adopción">4.5. Métricas de Adopción</a></li>
 </ul>
 </li>
 <li><a href="#usuarios-y-clientes">5. USUARIOS Y CLIENTES</a>
@@ -251,7 +254,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Necesidad crítica</strong>: Automatización que reduzca costos operacionales en 60% y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.</p>
+<p><strong>Necesidad crítica</strong>: Automatización que reduzca costos operacionales y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.</p>
 </div>
 </div>
 </div>
@@ -267,13 +270,10 @@
 <p><strong>Sistema transaccional</strong> de alta velocidad para gestión de devoluciones</p>
 </li>
 <li>
-<p><strong>Motor de reglas</strong> para validación automática de políticas</p>
+<p><strong>Motor de reglas</strong> para validación automática de políticas (5 dias para la devolucion)</p>
 </li>
 <li>
-<p><strong>Integrador</strong> con sistemas de inventario, POS y financieros</p>
-</li>
-<li>
-<p><strong>Generador de analytics</strong> en tiempo real para toma de decisiones</p>
+<p><strong>Integrador</strong> con sistemas de inventario, ventas y devoluciones</p>
 </li>
 </ul>
 </div>
@@ -289,7 +289,7 @@
 <p>❌ No es un ERP completo</p>
 </li>
 <li>
-<p>❌ No maneja logística inversa física</p>
+<p>❌ No maneja logística física</p>
 </li>
 <li>
 <p>❌ No reemplaza sistemas contables existentes</p>
@@ -302,16 +302,13 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Volumen</strong>: 10M transacciones/día = ~116 transacciones/segundo (peak)</p>
+<p><strong>Volumen</strong>: 10'000.000 transacciones/día = ~2.777 transacciones/segundo (peak)</p>
 </li>
 <li>
 <p><strong>Disponibilidad</strong>: Requerimiento 99.99% = ~52 minutos downtime/año máximo</p>
 </li>
 <li>
 <p><strong>Latencia</strong>: &lt;200ms para 95% de las transacciones</p>
-</li>
-<li>
-<p><strong>Consistencia</strong>: ACID required para transacciones financieras</p>
 </li>
 </ol>
 </div>
@@ -374,9 +371,6 @@
 <p><strong>Anual</strong>: $45M USD en reducción de costos operacionales</p>
 </li>
 <li>
-<p><strong>ROI</strong>: 3.2x en primer año</p>
-</li>
-<li>
 <p><strong>Recuperación</strong>: 15% de ventas perdidas por mala experiencia</p>
 </li>
 </ul>
@@ -388,55 +382,226 @@
 <h2 id="métricas-e-impacto"><a class="anchor" href="#métricas-e-impacto"></a>4. MÉTRICAS E IMPACTO</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="kpis-principales"><a class="anchor" href="#kpis-principales"></a>4.1. KPIs Principales</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- KPIs de Performance
-SELECT
-  COUNT(*) as total_returns,
-  AVG(processing_time) as avg_processing_time,
-  SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as auto_approval_rate,
-  SUM(CASE WHEN fraud_detected = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as fraud_detection_rate
-FROM returns
-WHERE created_at &gt;= CURRENT_DATE - INTERVAL '30 days';</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="dnd-metrics-do-not-disturb"><a class="anchor" href="#dnd-metrics-do-not-disturb"></a>4.2. DND Metrics (Do Not Disturb)</h3>
+<h3 id="kpis-de-negocio-críticos"><a class="anchor" href="#kpis-de-negocio-críticos"></a>4.1. KPIs de Negocio Críticos</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Métrica</th>
-<th class="tableblock halign-left valign-top">Límite</th>
-<th class="tableblock halign-left valign-top">Monitoreo</th>
+<th class="tableblock halign-left valign-top">Categoría</th>
+<th class="tableblock halign-left valign-top">KPI</th>
+<th class="tableblock halign-left valign-top">Línea Base</th>
+<th class="tableblock halign-left valign-top">Meta 6 meses</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia sistemas POS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;100ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Datadog + New Relic</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia Operacional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo promedio procesamiento (horas)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">72-120</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;24</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disponibilidad inventario</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">99.95%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pingdom + Custom checks</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Costo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Costo por devolución (USD)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$18</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$7</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo respuesta financiero</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;500ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">APM integrado</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Automatización</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa auto-aprobación (%)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">75%</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Error rate existente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Calidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa error procesamiento (%)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Fraude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efectividad detección fraudes (%)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="kpis-de-experiencia-de-usuario"><a class="anchor" href="#kpis-de-experiencia-de-usuario"></a>4.2. KPIs de Experiencia de Usuario</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">KPI</th>
+<th class="tableblock halign-left valign-top">Definición</th>
+<th class="tableblock halign-left valign-top">Meta</th>
+<th class="tableblock halign-left valign-top">Frecuencia</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CSAT Devoluciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Satisfacción post-devolución (1-5)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4.5/5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diaria</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Abandono</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitudes iniciadas no completadas (%)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;5%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Semanal</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Primera Respuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Minutos hasta primer contacto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;30 min</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Diaria</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NPS Proceso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Net Promoter Score específico</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">+50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mensual</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="kpis-técnicos-de-performance"><a class="anchor" href="#kpis-técnicos-de-performance"></a>4.3. KPIs Técnicos de Performance</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 40%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">KPI</th>
+<th class="tableblock halign-left valign-top">Objetivo</th>
+<th class="tableblock halign-left valign-top">Alerta</th>
+<th class="tableblock halign-left valign-top">Crítico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia P95</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;200ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">250ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500ms</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disponibilidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">99.99%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">99.9%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">99.5%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Throughput Máximo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">150 trans/segundo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">120 trans/segundo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100 trans/segundo</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Error</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&lt;0.1%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Log aggregation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.5%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Respuesta BD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;50ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">200ms</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="kpis-de-eficiencia-del-sistema"><a class="anchor" href="#kpis-de-eficiencia-del-sistema"></a>4.4. KPIs de Eficiencia del Sistema</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">KPI</th>
+<th class="tableblock halign-left valign-top">Propósito</th>
+<th class="tableblock halign-left valign-top">Meta</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Costo por Transacción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia infraestructura</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;$0.001</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Utilización Recursos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Optimización capacidad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65-75%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Escalado</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Segundos para escalar automático</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;30s</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Cache Hit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Efectividad cache Redis</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;95%</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="métricas-de-adopción"><a class="anchor" href="#métricas-de-adopción"></a>4.5. Métricas de Adopción</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 60%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Métrica</th>
+<th class="tableblock halign-left valign-top">Indicador de Evolución</th>
+<th class="tableblock halign-left valign-top">Meta 3 meses</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Penetración Digital</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">% devoluciones por app vs tienda física</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Uso Self-Service</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitudes completadas sin asistencia</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">80%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Retención</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Clientes que repiten proceso</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">70%</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adopción por Tienda</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">% tiendas usando sistema activamente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100%</p></td>
 </tr>
 </tbody>
 </table>

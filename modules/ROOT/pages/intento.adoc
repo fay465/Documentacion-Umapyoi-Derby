@@ -39,40 +39,6 @@
 . *Disponibilidad*: Requerimiento 99.99% = ~52 minutos downtime/año máximo
 . *Latencia*: <200ms para 95% de las transacciones
 
-== OBJETIVOS
-
-=== Objetivos Cuantitativos
-
-[cols="1,1,1,1"]
-|===
-| Objetivo | Métrica Actual | Meta | Timeline
-
-| Reducción tiempo procesamiento
-| 72-120 horas
-| <24 horas
-| 3 meses
-
-| Costo por devolución
-| $18 USD
-| $7 USD
-| 6 meses
-
-| Detección fraudes
-| 65%
-| 90%
-| 4 meses
-
-| Satisfacción cliente
-| 65%
-| 85%
-| 3 meses
-|===
-
-=== Beneficios Esperados
-
-* *Anual*: $45M USD en reducción de costos operacionales
-* *Recuperación*: 15% de ventas perdidas por mala experiencia
-
 == MÉTRICAS E IMPACTO
 
 === KPIs de Negocio Críticos
@@ -216,34 +182,113 @@
 
 === User Personas
 
-==== Persona 1: Cliente Final (María, 35 años)
+=== Persona 1: Cliente Frecuente - "María González"
 
-[source,yaml]
-----
-Comportamiento:
-  - Dispositivo principal: Mobile (85%)
-  - Horario pico: 18:00-21:00 hrs
-  - Expectativa: Devolución en 1 click
-  - Frustración: Procesos burocráticos
+image::customer_persona.png[María González, cliente frecuente, 200, 200]
 
-Storyboard:
-  1. Escanea código producto → 2. Selecciona motivo → 3. Toma foto recibo → 
-  4. Recibe código QR → 5. Entrega en tienda → 6. Recibe notificación confirmación
-----
+Perfil Demográfico:
 
-==== Persona 2: Supervisor Tienda (Carlos, 42 años)
+Edad: 35 años
 
-[source,yaml]
-----
-Comportamiento:
-  - Dispositivo: Tablet corporativa
-  - Necesidad: Dashboard tiempo real
-  - Métrica clave: Devoluciones procesadas/hora
+Ocupación: Ejecutiva en empresa tecnológica
 
-User Story:
-  "Como supervisor, necesito ver el estado de todas las devoluciones 
-   pendientes en mi tienda para asignar recursos eficientemente"
-----
+Ubicación: Urbana, ciudad principal
+
+Nivel Tecnológico: Alta competencia digital
+
+Frecuencia Compras: 2-3 veces por semana
+
+Contexto y Comportamiento:
+María realiza la mayoría de sus compras online y valora enormemente su tiempo. Como madre trabajadora, necesita procesos eficientes que se adapten a su apretada agenda. Prefiere resolver problemas por sí misma usando su smartphone antes que contactar servicio al cliente.
+
+Horarios de Actividad:
+
+Mañanas (7:00-9:00): Revisión rápida en el transporte
+
+Tardes (18:00-20:00): Compras y gestiones desde casa
+
+Fines de semana: Compras familiares y planificación
+
+Expectativas Clave:
+
+Procesos digitales sin necesidad de impresión o papeleo
+
+Transparencia total en el estado de sus gestiones
+
+Resolución en máximo 24 horas
+
+Opciones flexibles de reembolso o cambio
+
+Comunicación proactiva sin tener que hacer seguimiento
+
+Frustraciones Actuales:
+
+Tener que imprimir formularios o visitar tiendas físicas para trámites simples
+
+Falta de visibilidad sobre el estado de sus devoluciones
+
+Tiempos de respuesta lentos que afectan su planificación financiera
+
+Diferentes procesos según el producto o categoría
+
+Escenario de Uso Ideal:
+"Quiero poder gestionar una devolución durante mi viaje en metro matutino, recibir confirmación inmediata y saber exactamente cuándo y cómo recibiré mi reembolso, todo desde mi teléfono sin tener que llamar a nadie"
+
+=== Persona 2: Supervisor de Tienda - "Carlos Rodríguez"
+
+image::supervisor_persona.png[Carlos Rodríguez, supervisor de tienda, 200, 200]
+
+Perfil Demográfico:
+
+Edad: 42 años
+
+Ocupación: Supervisor de operaciones en tienda flagship
+
+Experiencia: 15 años en retail
+
+Ubicación: Tienda principal en centro comercial
+
+Dispositivo Principal: Tablet corporativa y terminal POS
+
+Contexto y Responsabilidades:
+Carlos gestiona un equipo de 25 personas en la tienda de mayor volumen de la cadena. Su desempeño se mide por métricas operativas como tiempo de procesamiento, satisfacción del cliente y eficiencia del personal. Trabaja bajo presión constante para balancear la experiencia del cliente con los procedimientos operativos.
+
+Flujo de Trabajo Diario:
+
+8:00-10:00: Revisión métricas del día anterior y planificación
+
+10:00-14:00: Supervisión piso de ventas y resolución de incidencias
+
+14:00-16:00: Reuniones operativas y reportes
+
+16:00-18:00: Capacitación equipo y cierre operativo
+
+Necesidades Operativas Críticas:
+
+Visión en tiempo real del volumen de devoluciones pendientes
+
+Herramientas para priorizar casos urgentes o de alto valor
+
+Capacidad de tomar decisiones excepcionales con información completa
+
+Reportes automáticos de desempeño de su equipo
+
+Integración fluida con sistemas de inventario y caja
+
+Dolores Actuales:
+
+Sistemas desconectados que requieren ingresar la misma información múltiples veces
+
+Falta de visibilidad sobre el historial completo del cliente
+
+Procesos manuales que consumen tiempo valioso de atención al cliente
+
+Dificultad para escalar problemas complejos a áreas especializadas
+
+Limitada capacidad de análisis para identificar patrones o oportunidades de mejora
+
+Escenario de Uso Ideal:
+"Necesito un dashboard que me muestre instantáneamente el estado de todas las devoluciones en mi tienda, me alerte sobre casos que requieren mi atención específica y me permita resolver la mayoría de las situaciones con un par de clicks, manteniendo el flujo de la tienda"
 
 === Flujos de Negocio Críticos
 
