@@ -186,19 +186,15 @@
 
 image::customer_persona.png[María González, cliente frecuente, 200, 200]
 
-Perfil Demográfico:
+*Perfil Demográfico*:
 
-Edad: 35 años
+* Edad: 35 años
+* Ocupación: Ejecutiva en empresa tecnológica
+* Ubicación: Urbana, ciudad principal
+* Nivel Tecnológico: Alta competencia digital
+* Frecuencia Compras: 2-3 veces por semana
 
-Ocupación: Ejecutiva en empresa tecnológica
-
-Ubicación: Urbana, ciudad principal
-
-Nivel Tecnológico: Alta competencia digital
-
-Frecuencia Compras: 2-3 veces por semana
-
-Contexto y Comportamiento:
+*Contexto y Comportamiento*:
 María realiza la mayoría de sus compras online y valora enormemente su tiempo. Como madre trabajadora, necesita procesos eficientes que se adapten a su apretada agenda. Prefiere resolver problemas por sí misma usando su smartphone antes que contactar servicio al cliente.
 
 Horarios de Actividad:
