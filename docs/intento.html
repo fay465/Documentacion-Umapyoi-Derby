@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: Example Documentation</title>
+    <title>Documentación API Gestión de Devoluciones Retail :: Example Documentation</title>
     <link rel="canonical" href="https://ninjascl.github.io/antora-docs-bootstrap/intento.html">
     <link rel="prev" href="index.html">
     <meta name="generator" content="Antora 3.1.10">
@@ -67,7 +67,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="intento.html">intento.adoc</a>
+    <a class="nav-link" href="intento.html">Documentación API Gestión de Devoluciones Retail</a>
   </li>
 </ul>
   </li>
@@ -95,7 +95,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Example Documentation</a></li>
-    <li><a href="intento.html">intento.adoc</a></li>
+    <li><a href="intento.html">Documentación API Gestión de Devoluciones Retail</a></li>
   </ul>
 </nav>
 <div class="edit-this-page"><a href="file:///antora/./modules/ROOT/pages/intento.adoc">Edit this Page</a></div>
@@ -105,9 +105,1099 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<div class="imageblock kroki">
+<h1 class="page">Documentación API Gestión de Devoluciones Retail</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#contexto">1. CONTEXTO</a>
+<ul class="sectlevel2">
+<li><a href="#problema-del-negocio">1.1. Problema del Negocio</a></li>
+</ul>
+</li>
+<li><a href="#hipótesis-y-supuestos">2. HIPÓTESIS Y SUPUESTOS</a>
+<ul class="sectlevel2">
+<li><a href="#qué-sí-es-el-proyecto">2.1. Qué SÍ es el proyecto:</a></li>
+<li><a href="#qué-no-es-el-proyecto">2.2. Qué NO es el proyecto:</a></li>
+<li><a href="#supuestos-técnicos-validados">2.3. Supuestos técnicos validados:</a></li>
+</ul>
+</li>
+<li><a href="#objetivos">3. OBJETIVOS</a>
+<ul class="sectlevel2">
+<li><a href="#objetivos-cuantitativos">3.1. Objetivos Cuantitativos</a></li>
+<li><a href="#beneficios-esperados">3.2. Beneficios Esperados</a></li>
+</ul>
+</li>
+<li><a href="#métricas-e-impacto">4. MÉTRICAS E IMPACTO</a>
+<ul class="sectlevel2">
+<li><a href="#kpis-principales">4.1. KPIs Principales</a></li>
+<li><a href="#dnd-metrics-do-not-disturb">4.2. DND Metrics (Do Not Disturb)</a></li>
+</ul>
+</li>
+<li><a href="#usuarios-y-clientes">5. USUARIOS Y CLIENTES</a>
+<ul class="sectlevel2">
+<li><a href="#user-personas">5.1. User Personas</a>
+<ul class="sectlevel3">
+<li><a href="#persona-1-cliente-final-maría-35-años">5.1.1. Persona 1: Cliente Final (María, 35 años)</a></li>
+<li><a href="#persona-2-supervisor-tienda-carlos-42-años">5.1.2. Persona 2: Supervisor Tienda (Carlos, 42 años)</a></li>
+</ul>
+</li>
+<li><a href="#flujos-de-negocio-críticos">5.2. Flujos de Negocio Críticos</a>
+<ul class="sectlevel3">
+<li><a href="#flujo-devolución-estándar">5.2.1. Flujo Devolución Estándar</a></li>
+</ul>
+</li>
+<li><a href="#reglas-de-negocio">5.3. Reglas de Negocio</a></li>
+</ul>
+</li>
+<li><a href="#solución-técnica">6. SOLUCIÓN TÉCNICA</a>
+<ul class="sectlevel2">
+<li><a href="#requisitos-funcionales-detallados">6.1. Requisitos Funcionales Detallados</a>
+<ul class="sectlevel3">
+<li><a href="#rf-001-gestión-de-ciclo-de-vida">6.1.1. RF-001: Gestión de Ciclo de Vida</a></li>
+<li><a href="#rf-002-motor-de-validación">6.1.2. RF-002: Motor de Validación</a></li>
+</ul>
+</li>
+<li><a href="#restricciones-y-dependencias">6.2. Restricciones y Dependencias</a>
+<ul class="sectlevel3">
+<li><a href="#dependencias-técnicas-críticas">6.2.1. Dependencias Técnicas Críticas</a></li>
+<li><a href="#restricciones-legales">6.2.2. Restricciones Legales</a></li>
+</ul>
+</li>
+<li><a href="#criterios-de-aceptación-uat">6.3. Criterios de Aceptación (UAT)</a>
+<ul class="sectlevel3">
+<li><a href="#escenarios-de-prueba-críticos">6.3.1. Escenarios de Prueba Críticos</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#estrategia-de-lanzamiento">7. ESTRATEGIA DE LANZAMIENTO</a>
+<ul class="sectlevel2">
+<li><a href="#plan-de-release-por-fases">7.1. Plan de Release por Fases</a></li>
+<li><a href="#áreas-impactadas-matriz-raci">7.2. Áreas Impactadas - Matriz RACI</a></li>
+</ul>
+</li>
+<li><a href="#preguntas-y-respuestas">8. PREGUNTAS Y RESPUESTAS</a>
+<ul class="sectlevel2">
+<li><a href="#preguntas-abiertas-críticas">8.1. Preguntas Abiertas Críticas</a></li>
+<li><a href="#faq-preguntas-frecuentes">8.2. FAQ - Preguntas Frecuentes</a></li>
+</ul>
+</li>
+<li><a href="#contingencias-y-riesgos">9. CONTINGENCIAS Y RIESGOS</a>
+<ul class="sectlevel2">
+<li><a href="#plan-de-mitigación">9.1. Plan de Mitigación</a></li>
+</ul>
+</li>
+<li><a href="#diagrama-c4">10. DIAGRAMA C4</a>
+<ul class="sectlevel2">
+<li><a href="#nivel-1-contexto-del-sistema">10.1. Nivel 1 - Contexto del Sistema</a></li>
+<li><a href="#nivel-2-contenedores">10.2. Nivel 2 - Contenedores</a></li>
+</ul>
+</li>
+<li><a href="#diagrama-entidad-relación">11. DIAGRAMA ENTIDAD-RELACIÓN</a></li>
+<li><a href="#architecture-decision-records-adr">12. ARCHITECTURE DECISION RECORDS (ADR)</a>
+<ul class="sectlevel2">
+<li><a href="#adr-001-microservicios-vs-monolito">12.1. ADR 001: Microservicios vs Monolito</a></li>
+<li><a href="#adr-002-estrategia-de-base-de-datos">12.2. ADR 002: Estrategia de Base de Datos</a></li>
+</ul>
+</li>
+<li><a href="#especificación-de-endpoints">13. ESPECIFICACIÓN DE ENDPOINTS</a>
+<ul class="sectlevel2">
+<li><a href="#crear-devolución">13.1. Crear Devolución</a></li>
+<li><a href="#consultar-estado">13.2. Consultar Estado</a></li>
+<li><a href="#procesar-devolución">13.3. Procesar Devolución</a></li>
+</ul>
+</li>
+<li><a href="#estrategia-de-implementación">14. ESTRATEGIA DE IMPLEMENTACIÓN</a>
+<ul class="sectlevel2">
+<li><a href="#fase-1-mvp-6-semanas">14.1. Fase 1 (MVP - 6 semanas)</a></li>
+<li><a href="#fase-2-8-semanas">14.2. Fase 2 (8 semanas)</a></li>
+<li><a href="#fase-3-6-semanas">14.3. Fase 3 (6 semanas)</a></li>
+</ul>
+</li>
+<li><a href="#stack-tecnológico">15. STACK TECNOLÓGICO</a>
+<ul class="sectlevel2">
+<li><a href="#backend">15.1. Backend</a></li>
+<li><a href="#frontend">15.2. Frontend</a></li>
+<li><a href="#devops">15.3. DevOps</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="sect1">
+<h2 id="contexto"><a class="anchor" href="#contexto"></a>1. CONTEXTO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="problema-del-negocio"><a class="anchor" href="#problema-del-negocio"></a>1.1. Problema del Negocio</h3>
+<div class="paragraph lead">
+<p><strong>Problema Principal</strong>: El proceso actual de devoluciones en la cadena de retail maneja:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Tiempo de procesamiento</strong>: 3-5 días hábiles por devolución</p>
+</li>
+<li>
+<p><strong>Costo operacional</strong>: $15-20 USD por devolución manual</p>
+</li>
+<li>
+<p><strong>Tasa de error</strong>: 12% en procesamiento manual</p>
+</li>
+<li>
+<p><strong>Insatisfacción cliente</strong>: 35% de clientes reportan mala experiencia en devoluciones</p>
+</li>
+<li>
+<p><strong>Pérdida por fraudes</strong>: 8% del total de devoluciones son fraudulentas no detectadas</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Necesidad crítica</strong>: Automatización que reduzca costos operacionales en 60% y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="hipótesis-y-supuestos"><a class="anchor" href="#hipótesis-y-supuestos"></a>2. HIPÓTESIS Y SUPUESTOS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="qué-sí-es-el-proyecto"><a class="anchor" href="#qué-sí-es-el-proyecto"></a>2.1. Qué SÍ es el proyecto:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Sistema transaccional</strong> de alta velocidad para gestión de devoluciones</p>
+</li>
+<li>
+<p><strong>Motor de reglas</strong> para validación automática de políticas</p>
+</li>
+<li>
+<p><strong>Integrador</strong> con sistemas de inventario, POS y financieros</p>
+</li>
+<li>
+<p><strong>Generador de analytics</strong> en tiempo real para toma de decisiones</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="qué-no-es-el-proyecto"><a class="anchor" href="#qué-no-es-el-proyecto"></a>2.2. Qué NO es el proyecto:</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>❌ No es un sistema de ventas POS</p>
+</li>
+<li>
+<p>❌ No es un ERP completo</p>
+</li>
+<li>
+<p>❌ No maneja logística inversa física</p>
+</li>
+<li>
+<p>❌ No reemplaza sistemas contables existentes</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="supuestos-técnicos-validados"><a class="anchor" href="#supuestos-técnicos-validados"></a>2.3. Supuestos técnicos validados:</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Volumen</strong>: 10M transacciones/día = ~116 transacciones/segundo (peak)</p>
+</li>
+<li>
+<p><strong>Disponibilidad</strong>: Requerimiento 99.99% = ~52 minutos downtime/año máximo</p>
+</li>
+<li>
+<p><strong>Latencia</strong>: &lt;200ms para 95% de las transacciones</p>
+</li>
+<li>
+<p><strong>Consistencia</strong>: ACID required para transacciones financieras</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="objetivos"><a class="anchor" href="#objetivos"></a>3. OBJETIVOS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="objetivos-cuantitativos"><a class="anchor" href="#objetivos-cuantitativos"></a>3.1. Objetivos Cuantitativos</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Objetivo</th>
+<th class="tableblock halign-left valign-top">Métrica Actual</th>
+<th class="tableblock halign-left valign-top">Meta</th>
+<th class="tableblock halign-left valign-top">Timeline</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Reducción tiempo procesamiento</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">72-120 horas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;24 horas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 meses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Costo por devolución</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$18 USD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$7 USD</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6 meses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Detección fraudes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">90%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 meses</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Satisfacción cliente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">65%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">85%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 meses</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="beneficios-esperados"><a class="anchor" href="#beneficios-esperados"></a>3.2. Beneficios Esperados</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Anual</strong>: $45M USD en reducción de costos operacionales</p>
+</li>
+<li>
+<p><strong>ROI</strong>: 3.2x en primer año</p>
+</li>
+<li>
+<p><strong>Recuperación</strong>: 15% de ventas perdidas por mala experiencia</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="métricas-e-impacto"><a class="anchor" href="#métricas-e-impacto"></a>4. MÉTRICAS E IMPACTO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="kpis-principales"><a class="anchor" href="#kpis-principales"></a>4.1. KPIs Principales</h3>
+<div class="listingblock">
 <div class="content">
-<img src="_images/diag-b7f2a7046315795f58973f095882161379cb3fc1.svg" alt="Diagram">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- KPIs de Performance
+SELECT
+  COUNT(*) as total_returns,
+  AVG(processing_time) as avg_processing_time,
+  SUM(CASE WHEN status = 'approved' THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as auto_approval_rate,
+  SUM(CASE WHEN fraud_detected = true THEN 1 ELSE 0 END) * 100.0 / COUNT(*) as fraud_detection_rate
+FROM returns
+WHERE created_at &gt;= CURRENT_DATE - INTERVAL '30 days';</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dnd-metrics-do-not-disturb"><a class="anchor" href="#dnd-metrics-do-not-disturb"></a>4.2. DND Metrics (Do Not Disturb)</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Métrica</th>
+<th class="tableblock halign-left valign-top">Límite</th>
+<th class="tableblock halign-left valign-top">Monitoreo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia sistemas POS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;100ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Datadog + New Relic</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Disponibilidad inventario</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">99.95%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pingdom + Custom checks</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo respuesta financiero</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;500ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">APM integrado</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error rate existente</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;0.1%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log aggregation</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="usuarios-y-clientes"><a class="anchor" href="#usuarios-y-clientes"></a>5. USUARIOS Y CLIENTES</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="user-personas"><a class="anchor" href="#user-personas"></a>5.1. User Personas</h3>
+<div class="sect3">
+<h4 id="persona-1-cliente-final-maría-35-años"><a class="anchor" href="#persona-1-cliente-final-maría-35-años"></a>5.1.1. Persona 1: Cliente Final (María, 35 años)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Comportamiento:
+  - Dispositivo principal: Mobile (85%)
+  - Horario pico: 18:00-21:00 hrs
+  - Expectativa: Devolución en 1 click
+  - Frustración: Procesos burocráticos
+
+Storyboard:
+  1. Escanea código producto → 2. Selecciona motivo → 3. Toma foto recibo →
+  4. Recibe código QR → 5. Entrega en tienda → 6. Recibe notificación confirmación</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persona-2-supervisor-tienda-carlos-42-años"><a class="anchor" href="#persona-2-supervisor-tienda-carlos-42-años"></a>5.1.2. Persona 2: Supervisor Tienda (Carlos, 42 años)</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Comportamiento:
+  - Dispositivo: Tablet corporativa
+  - Necesidad: Dashboard tiempo real
+  - Métrica clave: Devoluciones procesadas/hora
+
+User Story:
+  "Como supervisor, necesito ver el estado de todas las devoluciones
+   pendientes en mi tienda para asignar recursos eficientemente"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="flujos-de-negocio-críticos"><a class="anchor" href="#flujos-de-negocio-críticos"></a>5.2. Flujos de Negocio Críticos</h3>
+<div class="sect3">
+<h4 id="flujo-devolución-estándar"><a class="anchor" href="#flujo-devolución-estándar"></a>5.2.1. Flujo Devolución Estándar</h4>
+<hr>
+<div class="paragraph">
+<p>title Flujo Devolución Estándar
+---</p>
+</div>
+<div class="paragraph">
+<p>start
+:Cliente solicita devolución;
+if (Validación automática) then (Aprobado)
+  :Generar código QR;
+  :Cliente lleva a tienda;
+  :Escaneo QR;
+  if (Validación física) then (OK)
+    :Procesar reembolso;
+    :Actualizar inventario;
+    :Notificar cliente;
+  else (Rechazado)
+    :Escalar a supervisor;
+  endif
+else (Rechazado)
+  :Notificar con motivo;
+endif
+stop
+---</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="reglas-de-negocio"><a class="anchor" href="#reglas-de-negocio"></a>5.3. Reglas de Negocio</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">// Políticas de devolución por categoría
+const returnPolicies = {
+  electronics: {
+    window_days: 30,
+    requires_box: true,
+    restocking_fee: 0.15,
+    condition_check: ['sealed', 'like_new']
+  },
+  clothing: {
+    window_days: 90,
+    requires_tags: true,
+    condition_check: ['unworn', 'tags_attached']
+  }
+};
+
+// Reglas de fraude
+const fraudRules = {
+  max_returns_per_month: 3,
+  amount_threshold: 500.00,
+  high_risk_products: ['electronics', 'jewelry']
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="solución-técnica"><a class="anchor" href="#solución-técnica"></a>6. SOLUCIÓN TÉCNICA</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="requisitos-funcionales-detallados"><a class="anchor" href="#requisitos-funcionales-detallados"></a>6.1. Requisitos Funcionales Detallados</h3>
+<div class="sect3">
+<h4 id="rf-001-gestión-de-ciclo-de-vida"><a class="anchor" href="#rf-001-gestión-de-ciclo-de-vida"></a>6.1.1. RF-001: Gestión de Ciclo de Vida</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">Estados:
+  - submitted: Solicitud creada
+  - validation_pending: En validación
+  - approved: Aprobada
+  - rejected: Rechazada
+  - in_transit: En tránsito a tienda
+  - received: Recibida en tienda
+  - refund_processed: Reembolsado
+  - completed: Finalizada
+
+Transiciones:
+  submitted → validation_pending: Automático
+  validation_pending → approved: Motor reglas
+  approved → rejected: Supervisor override</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="rf-002-motor-de-validación"><a class="anchor" href="#rf-002-motor-de-validación"></a>6.1.2. RF-002: Motor de Validación</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">def validate_return(sale_data, product_data, customer_history):
+    # Regla 1: Ventana de tiempo
+    if not within_return_window(sale_data.sale_date, product_data.category):
+        return False, "Fuera de ventana de devolución"
+
+    # Regla 2: Historial cliente
+    if exceeds_monthly_limit(customer_history):
+        return False, "Límite mensual excedido"
+
+    # Regla 3: Política específica producto
+    if not meets_product_policy(product_data, sale_data.condition):
+        return False, "No cumple política del producto"
+
+    return True, "Aprobado"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restricciones-y-dependencias"><a class="anchor" href="#restricciones-y-dependencias"></a>6.2. Restricciones y Dependencias</h3>
+<div class="sect3">
+<h4 id="dependencias-técnicas-críticas"><a class="anchor" href="#dependencias-técnicas-críticas"></a>6.2.1. Dependencias Técnicas Críticas</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">external_apis:
+  payment_gateway:
+    provider: "Stripe/PayPal"
+    sla: "99.95%"
+    rate_limit: "1000 req/seg"
+
+  inventory_system:
+    endpoint: "SOAP/REST"
+    sync_interval: "5 minutos"
+    fallback: "Async queue"
+
+  crm_system:
+    data: "Historial cliente"
+    real_time: "Sí"
+    compliance: "GDPR"</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="restricciones-legales"><a class="anchor" href="#restricciones-legales"></a>6.2.2. Restricciones Legales</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">compliance:
+  - Ley del Consumidor: "30 días mínimo devoluciones"
+  - Protección Datos: "GDPR/LGPD"
+  - Financiero: "Normativa antifraude"
+  - Fiscal: "Facturación electrónica"</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="criterios-de-aceptación-uat"><a class="anchor" href="#criterios-de-aceptación-uat"></a>6.3. Criterios de Aceptación (UAT)</h3>
+<div class="sect3">
+<h4 id="escenarios-de-prueba-críticos"><a class="anchor" href="#escenarios-de-prueba-críticos"></a>6.3.1. Escenarios de Prueba Críticos</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-gherkin hljs" data-lang="gherkin">Scenario: Devolución exitosa producto electrónico
+  Given producto comprado hace 15 días
+  And cliente con menos de 3 devoluciones mensuales
+  When solicita devolución con recibo válido
+  Then sistema aprueba automáticamente
+  And genera código QR
+  And notifica al cliente
+
+Scenario: Detección de fraude
+  Given cliente con 5 devoluciones este mes
+  And producto de alta gama (&gt;$1000)
+  When intenta devolución
+  Then sistema rechaza automáticamente
+  And notifica al equipo de fraudes</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="estrategia-de-lanzamiento"><a class="anchor" href="#estrategia-de-lanzamiento"></a>7. ESTRATEGIA DE LANZAMIENTO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="plan-de-release-por-fases"><a class="anchor" href="#plan-de-release-por-fases"></a>7.1. Plan de Release por Fases</h3>
+<hr>
+<div class="paragraph">
+<p>title Plan de Implementación
+---</p>
+</div>
+<div class="paragraph">
+<p>projectscale quarterly
+[Fase 1 - MVP] lasts from 2024-01-15 to 2024-02-29
+[Core API] lasts from 2024-01-15 to 2024-02-15
+[Integración POS] lasts from 2024-01-15 to 2024-02-29
+[Dashboard básico] lasts from 2024-02-01 to 2024-03-02</p>
+</div>
+<div class="paragraph">
+<p>[Fase 2 - Escalabilidad] lasts from 2024-03-01 to 2024-04-15
+[Auto-scaling] lasts from 2024-03-01 to 2024-03-31
+[Cache Redis] lasts from 2024-03-15 to 2024-04-05
+[Monitoring] lasts from 2024-03-20 to 2024-04-15</p>
+</div>
+<div class="paragraph">
+<p>[Fase 3 - Optimización] lasts from 2024-04-15 to 2024-06-15
+[Machine Learning] lasts from 2024-04-15 to 2024-05-30
+[Mobile PWA] lasts from 2024-05-01 to 2024-05-31
+[Analytics avanzado] lasts from 2024-05-15 to 2024-06-15
+---</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="áreas-impactadas-matriz-raci"><a class="anchor" href="#áreas-impactadas-matriz-raci"></a>7.2. Áreas Impactadas - Matriz RACI</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Área</th>
+<th class="tableblock halign-left valign-top">Responsable</th>
+<th class="tableblock halign-left valign-top">Aprobador</th>
+<th class="tableblock halign-left valign-top">Consultado</th>
+<th class="tableblock halign-left valign-top">Informado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Operaciones TI</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiendas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Finanzas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Legal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">CRM</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">R</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="preguntas-y-respuestas"><a class="anchor" href="#preguntas-y-respuestas"></a>8. PREGUNTAS Y RESPUESTAS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="preguntas-abiertas-críticas"><a class="anchor" href="#preguntas-abiertas-críticas"></a>8.1. Preguntas Abiertas Críticas</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><strong>Integración legacy</strong>: ¿Cómo manejar tiendas con sistemas POS antiguos sin API?</p>
+<div class="paragraph">
+<p><strong>Respuesta pendiente: Evaluar middleware o terminales intermedias</strong></p>
+</div>
+</li>
+<li>
+<p><strong>Data migration</strong>: ¿Migración histórica de devoluciones o solo datos nuevos?</p>
+<div class="paragraph">
+<p><strong>Respuesta: Solo datos nuevos inicialmente, históricos en fase 2</strong></p>
+</div>
+</li>
+<li>
+<p><strong>Disponibilidad</strong>: ¿Plan de contingencia para caídas de sistemas dependientes?</p>
+<div class="paragraph">
+<p><strong>Respuesta pendiente: Definir circuit breakers y colas de retry</strong></p>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="faq-preguntas-frecuentes"><a class="anchor" href="#faq-preguntas-frecuentes"></a>8.2. FAQ - Preguntas Frecuentes</h3>
+<div class="paragraph">
+<p><strong>Q: ¿Qué pasa si el sistema de inventario está caído?</strong>
+<strong>R</strong>: Modo degradado con cola de sincronización y validación manual temporal.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q: ¿Cómo se manejan devoluciones sin recibo físico?</strong>
+<strong>R</strong>: Búsqueda por email/teléfono + validación con datos de pago.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q: ¿Límite de devoluciones por cliente?</strong>
+<strong>R</strong>: Sí, 3 devoluciones/mes para clientes regulares, 1 para nuevos.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q: ¿Tiempo de reembolso?</strong>
+<strong>R</strong>: 24-48 horas para tarjetas, 5-7 días para transferencias.</p>
+</div>
+<div class="paragraph">
+<p><strong>Q: ¿Productos no elegibles?</strong>
+<strong>R</strong>: Ropa interior, productos personalizados, software abierto.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="contingencias-y-riesgos"><a class="anchor" href="#contingencias-y-riesgos"></a>9. CONTINGENCIAS Y RIESGOS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="plan-de-mitigación"><a class="anchor" href="#plan-de-mitigación"></a>9.1. Plan de Mitigación</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 40%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Riesgo</th>
+<th class="tableblock halign-left valign-top">Probabilidad</th>
+<th class="tableblock halign-left valign-top">Impacto</th>
+<th class="tableblock halign-left valign-top">Mitigación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Caída sistema POS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cache local + sync async</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pico de transacciones</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Medio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Auto-scaling + rate limiting</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Error en motor reglas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Baja</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Audit trail + rollback manual</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Brecha seguridad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Media</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Alto</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Encryption + pentesting regular</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="diagrama-c4"><a class="anchor" href="#diagrama-c4"></a>10. DIAGRAMA C4</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="nivel-1-contexto-del-sistema"><a class="anchor" href="#nivel-1-contexto-del-sistema"></a>10.1. Nivel 1 - Contexto del Sistema</h3>
+<hr>
+<div class="paragraph">
+<p>title Contexto del Sistema - Nivel 1
+---</p>
+</div>
+<div class="paragraph">
+<p>left to right direction
+actor "Cliente" as client
+rectangle "Sistema Devoluciones" as returns
+rectangle "Sistema Retail" as retail
+rectangle "Proveedor Pago" as payment</p>
+</div>
+<div class="paragraph">
+<p>client -&#8594; returns
+returns -&#8594; retail
+returns -&#8594; payment
+---</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="nivel-2-contenedores"><a class="anchor" href="#nivel-2-contenedores"></a>10.2. Nivel 2 - Contenedores</h3>
+<hr>
+<div class="paragraph">
+<p>title Contenedores - Nivel 2
+---</p>
+</div>
+<div class="paragraph">
+<p>node "Sistema Gestión Devoluciones" {
+  [API Gateway\nKong] as gateway
+  [Service Mesh\nIstio] as mesh
+  [Message Queue\nKafka] as queue</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Microservicio\nDevoluciones] as returns_ms
+[Microservicio\nValidación] as validation_ms
+[Cache Layer\nRedis Cluster] as cache</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>[Database\nPostgreSQL] as db
+[Data Warehouse\nBigQuery] as dw
+[Monitoring\nPrometheus] as monitoring</pre>
+</div>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>  gateway --&gt; returns_ms
+  mesh --&gt; validation_ms
+  queue --&gt; cache
+  returns_ms --&gt; db
+  validation_ms --&gt; dw
+  monitoring --&gt; returns_ms
+}
+---</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="diagrama-entidad-relación"><a class="anchor" href="#diagrama-entidad-relación"></a>11. DIAGRAMA ENTIDAD-RELACIÓN</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sql hljs" data-lang="sql">-- Tabla principal de devoluciones
+CREATE TABLE returns (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    sale_id UUID NOT NULL,
+    customer_id UUID NOT NULL,
+    status VARCHAR(50) NOT NULL CHECK (status IN ('pending', 'approved', 'rejected', 'processed')),
+    return_reason VARCHAR(200) NOT NULL,
+    total_amount DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMPTZ DEFAULT NOW(),
+    updated_at TIMESTAMPTZ DEFAULT NOW(),
+    processed_by UUID,
+    notes TEXT
+);
+
+-- Items de devolución
+CREATE TABLE return_items (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    return_id UUID REFERENCES returns(id) ON DELETE CASCADE,
+    product_id UUID NOT NULL,
+    quantity INTEGER NOT NULL CHECK (quantity &gt; 0),
+    unit_price DECIMAL(10,2) NOT NULL,
+    reason VARCHAR(100) NOT NULL,
+    condition VARCHAR(50) CHECK (condition IN ('new', 'opened', 'damaged'))
+);
+
+-- Tabla de políticas de devolución
+CREATE TABLE return_policies (
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    product_category VARCHAR(100) NOT NULL,
+    return_window_days INTEGER NOT NULL,
+    restocking_fee DECIMAL(5,2) DEFAULT 0,
+    requires_receipt BOOLEAN DEFAULT true,
+    active BOOLEAN DEFAULT true
+);
+
+-- Índices para performance
+CREATE INDEX CONCURRENTLY idx_returns_sale_id ON returns(sale_id);
+CREATE INDEX CONCURRENTLY idx_returns_customer_id ON returns(customer_id);
+CREATE INDEX CONCURRENTLY idx_returns_status ON returns(status);
+CREATE INDEX CONCURRENTLY idx_returns_created_at ON returns(created_at);</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="architecture-decision-records-adr"><a class="anchor" href="#architecture-decision-records-adr"></a>12. ARCHITECTURE DECISION RECORDS (ADR)</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="adr-001-microservicios-vs-monolito"><a class="anchor" href="#adr-001-microservicios-vs-monolito"></a>12.1. ADR 001: Microservicios vs Monolito</h3>
+<div class="paragraph">
+<p><strong>Fecha</strong>: 2024-01-15
+<strong>Estado</strong>: Aceptado
+<strong>Contexto</strong>: Necesidad de manejar 10M transacciones diarias con alta disponibilidad
+<strong>Decisión</strong>: Arquitectura de microservicios
+<strong>Consecuencias</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>✅ Mejor escalabilidad horizontal</p>
+</li>
+<li>
+<p>✅ Deployment independiente por equipo</p>
+</li>
+<li>
+<p>✅ Resiliencia mejorada</p>
+</li>
+<li>
+<p>⚠️ Mayor complejidad operacional</p>
+</li>
+<li>
+<p>⚠️ Overhead de comunicación entre servicios</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="adr-002-estrategia-de-base-de-datos"><a class="anchor" href="#adr-002-estrategia-de-base-de-datos"></a>12.2. ADR 002: Estrategia de Base de Datos</h3>
+<div class="paragraph">
+<p><strong>Fecha</strong>: 2024-01-15
+<strong>Estado</strong>: Aceptado
+<strong>Contexto</strong>: Alto volumen transaccional con requerimientos de consistencia
+<strong>Decisión</strong>: PostgreSQL con particionamiento + Redis para cache
+<strong>Consecuencias</strong>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>✅ ACID compliance para transacciones financieras</p>
+</li>
+<li>
+<p>✅ Particionamiento por fecha para performance</p>
+</li>
+<li>
+<p>✅ Redis para queries frecuentes</p>
+</li>
+<li>
+<p>⚠️ Complejidad de mantenimiento</p>
+</li>
+<li>
+<p>⚠️ Costo de infraestructura mayor</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="especificación-de-endpoints"><a class="anchor" href="#especificación-de-endpoints"></a>13. ESPECIFICACIÓN DE ENDPOINTS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="crear-devolución"><a class="anchor" href="#crear-devolución"></a>13.1. Crear Devolución</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">POST /api/v1/returns
+Content-Type: application/json
+Authorization: Bearer {token}
+
+{
+  "sale_id": "uuid",
+  "items": [
+    {
+      "product_id": "uuid",
+      "quantity": 1,
+      "reason": "defective"
+    }
+  ],
+  "customer_notes": "string"
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="consultar-estado"><a class="anchor" href="#consultar-estado"></a>13.2. Consultar Estado</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">GET /api/v1/returns/{return_id}
+Authorization: Bearer {token}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="procesar-devolución"><a class="anchor" href="#procesar-devolución"></a>13.3. Procesar Devolución</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-http hljs" data-lang="http">PATCH /api/v1/returns/{return_id}/process
+Authorization: Bearer {token}
+
+{
+  "action": "approve|reject",
+  "admin_notes": "string"
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="estrategia-de-implementación"><a class="anchor" href="#estrategia-de-implementación"></a>14. ESTRATEGIA DE IMPLEMENTACIÓN</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="fase-1-mvp-6-semanas"><a class="anchor" href="#fase-1-mvp-6-semanas"></a>14.1. Fase 1 (MVP - 6 semanas)</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Core API devoluciones</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Integración básica con sistema de ventas</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Dashboard administrativo básico</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fase-2-8-semanas"><a class="anchor" href="#fase-2-8-semanas"></a>14.2. Fase 2 (8 semanas)</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Sistema de notificaciones</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Analytics y reporting</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Optimizaciones de performance</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="fase-3-6-semanas"><a class="anchor" href="#fase-3-6-semanas"></a>14.3. Fase 3 (6 semanas)</h3>
+<div class="ulist checklist">
+<ul class="checklist">
+<li>
+<p><i class="fa fa-square-o"></i> Mobile PWA</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Integraciones avanzadas</p>
+</li>
+<li>
+<p><i class="fa fa-square-o"></i> Auto-scaling configuration</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="stack-tecnológico"><a class="anchor" href="#stack-tecnológico"></a>15. STACK TECNOLÓGICO</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="backend"><a class="anchor" href="#backend"></a>15.1. Backend</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>API Gateway</strong>: Kong</p>
+</li>
+<li>
+<p><strong>Microservicios</strong>: Node.js/TypeScript</p>
+</li>
+<li>
+<p><strong>Base de datos</strong>: PostgreSQL 14+</p>
+</li>
+<li>
+<p><strong>Cache</strong>: Redis Cluster</p>
+</li>
+<li>
+<p><strong>Message Queue</strong>: Apache Kafka</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="frontend"><a class="anchor" href="#frontend"></a>15.2. Frontend</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Admin Panel</strong>: AdminLTE + React</p>
+</li>
+<li>
+<p><strong>Mobile</strong>: Framework7 PWA</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="devops"><a class="anchor" href="#devops"></a>15.3. DevOps</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Containerization</strong>: Docker + Kubernetes</p>
+</li>
+<li>
+<p><strong>CI/CD</strong>: GitLab CI</p>
+</li>
+<li>
+<p><strong>Monitoring</strong>: Prometheus + Grafana</p>
+</li>
+<li>
+<p><strong>Documentation</strong>: Antora</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>Esta documentación proporciona una base sólida para el desarrollo de la API de gestión de devoluciones, considerando los altos requisitos de performance y escalabilidad especificados.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">
