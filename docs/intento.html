@@ -145,6 +145,9 @@
 <li><a href="#solución-técnica">5. SOLUCIÓN TÉCNICA</a>
 <ul class="sectlevel2">
 <li><a href="#resumen-de-la-solución">5.1. Resumen de la solución</a></li>
+<li><a href="#requisitos-funcionales">5.2. Requisitos funcionales</a></li>
+<li><a href="#restricciones-y-dependencias">5.3. Restricciones y dependencias</a></li>
+<li><a href="#criterios-de-aceptación">5.4. Criterios de aceptación</a></li>
 </ul>
 </li>
 <li><a href="#estrategia-de-lanzamiento">6. ESTRATEGIA DE LANZAMIENTO</a>
@@ -754,6 +757,42 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 <div class="paragraph">
 <p>El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.</p>
+</div>
+<div class="paragraph">
+<p>===Nivel de Contexto
+---Agregar modelo C4(1)</p>
+</div>
+<div class="paragraph">
+<p>===Nivel de Contenedores
+---Agregar modelo C4(2)</p>
+</div>
+<div class="paragraph">
+<p>===Modelo Entidad-Relacion Base de Datos
+---Agregar modelo entidad Relacion</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="requisitos-funcionales"><a class="anchor" href="#requisitos-funcionales"></a>5.2. Requisitos funcionales</h3>
+<div class="paragraph">
+<p>El sistema debe proporcionar capacidades de gestión de devoluciones, incluyendo el control de estados desde la solicitud inicial hasta la resolución final. Cada transición de estado debe quedar auditada, proporcionando trazabilidad completa del proceso.</p>
+</div>
+<div class="paragraph">
+<p>La plataforma incorpora una API de validación configurable que aplica reglas de negocio, comenzando con la validación del período de 5 días desde la compra.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="restricciones-y-dependencias"><a class="anchor" href="#restricciones-y-dependencias"></a>5.3. Restricciones y dependencias</h3>
+<div class="paragraph">
+<p>La solución debe operar dentro del landscape tecnológico existente, manteniendo compatibilidad con sistemas legacy de punto de venta que presentan limitaciones técnicas específicas. El rendimiento debe garantizar latencias consistentemente bajas incluso durante picos de demanda que pueden alcanzar las 2.777 transacciones por segundo.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>5.4. Criterios de aceptación</h3>
+<div class="paragraph">
+<p>Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite completar una solicitud de devolución en menos de tres minutos, con confirmación inmediata y visibilidad completa del estado del trámite en todo momento. La experiencia debe ser consistentemente excelente a través de todos los canales digitales.</p>
+</div>
+<div class="paragraph">
+<p>Para el personal de tienda, la solución debe demostrar su valor mediante la reducción significativa del tiempo de procesamiento por caso, el acceso inmediato a información relevante y la capacidad de resolver excepciones comunes sin escalamiento. La integración con los flujos de trabajo existentes debe ser fluida e intuitiva.</p>
 </div>
 </div>
 </div>
