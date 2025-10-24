@@ -347,7 +347,7 @@ Para el personal de tienda, la solución debe demostrar su valor mediante la red
 ** *¿Volveria a desarrollar una API con elixir?:* Despues de todo el trabajo es probable que no vuelva a desarrollar una API :c
 ** *¿Todas las funciones se implementaron?:* No, particularmente se queria agregar un apartado de comentario al hacer la devolucion lo cual no fue posible porque cada que se intento agregar dicha funcion todo dejaba de funcionar, por lo que se opto por omitirlo.
 
-
+kajsdbkajsbdkajsdbkasjdbkasjdbkasjdbkajsdbkajsbd
 
 == ESTRATEGIA DE LANZAMIENTO
 
