@@ -335,7 +335,9 @@ Para el personal de tienda, la solución debe demostrar su valor mediante la red
 ** *Kotlin:* Es un lenguaje de programación orientado a objetos multiplataforma, estáticamente tipado, de alto nivel y propósito general con inferencia de tipos.
 ** *Switf:* Es un lenguaje de programación moderno y de código abierto creado por Apple para desarrollar aplicaciones en sus plataformas, como iOS, macOS, watchOS y tvOS. Se caracteriza por ser rápido, seguro, fácil de usar y por tener una sintaxis limpia y expresiva que mejora la experiencia del desarrollador en comparación con su antecesor, Objective-C. 
 * *Decisión* 
+
 *Se eligio Elixir*
+
 ** El principal motivo fue el facil uso de elixir y el uso con el framework Phoenix y Liveview
 ** El proceso de aprendizaje fue mas facil de entender desde el desarrollo con Elixir
 * *Observaciones y Notas*
