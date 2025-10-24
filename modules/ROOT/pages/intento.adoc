@@ -317,6 +317,22 @@ Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite
 
 Para el personal de tienda, la solución debe demostrar su valor mediante la reducción significativa del tiempo de procesamiento por caso, el acceso inmediato a información relevante y la capacidad de resolver excepciones comunes sin escalamiento. La integración con los flujos de trabajo existentes debe ser fluida e intuitiva.
 
+=== Dependencias de Negocio
+
+====Eleccion del lenguaje Elixir para la programacion de la API
+
+* *Status:* Acepted
+* *Fecha de creacion:*  24/10/2025
+* *Fecha ultima modificacion:*  24/10/2025
+* *Participantes:*
+** @PolloDiego159
+* *Decisores:*
+** @clsource
+* *Contexto:*
+** El sistema requiere procesar 10 millones de transacciones diarias con latencias consistentes menores a 200ms. La naturaleza concurrente de las solicitudes de devolución y la necesidad de alta disponibilidad exigen un lenguaje que maneje eficientemente la concurrencia masiva. El equipo actual tiene experiencia mixta en diferentes lenguajes y frameworks.
+* *Lista de opciones y alternativas*
+** *Elixir:* 
+
 
 == ESTRATEGIA DE LANZAMIENTO
 
