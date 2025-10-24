@@ -148,6 +148,7 @@
 <li><a href="#requisitos-funcionales">5.2. Requisitos funcionales</a></li>
 <li><a href="#restricciones-y-dependencias">5.3. Restricciones y dependencias</a></li>
 <li><a href="#criterios-de-aceptación">5.4. Criterios de aceptación</a></li>
+<li><a href="#dependencias-de-negocio">5.5. Dependencias de Negocio</a></li>
 </ul>
 </li>
 <li><a href="#estrategia-de-lanzamiento">6. ESTRATEGIA DE LANZAMIENTO</a>
@@ -748,6 +749,65 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 <div class="paragraph">
 <p>Para el personal de tienda, la solución debe demostrar su valor mediante la reducción significativa del tiempo de procesamiento por caso, el acceso inmediato a información relevante y la capacidad de resolver excepciones comunes sin escalamiento. La integración con los flujos de trabajo existentes debe ser fluida e intuitiva.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>5.5. Dependencias de Negocio</h3>
+<div class="paragraph">
+<p>====Eleccion del lenguaje Elixir para la programacion de la API</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Status:</strong> Acepted</p>
+</li>
+<li>
+<p><strong>Fecha de creacion:</strong>  24/10/2025</p>
+</li>
+<li>
+<p><strong>Fecha ultima modificacion:</strong>  24/10/2025</p>
+</li>
+<li>
+<p><strong>Participantes:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>@PolloDiego159</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Decisores:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>@clsource</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Contexto:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>El sistema requiere procesar 10 millones de transacciones diarias con latencias consistentes menores a 200ms. La naturaleza concurrente de las solicitudes de devolución y la necesidad de alta disponibilidad exigen un lenguaje que maneje eficientemente la concurrencia masiva. El equipo actual tiene experiencia mixta en diferentes lenguajes y frameworks.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Lista de opciones y alternativas</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Elixir:</strong></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>

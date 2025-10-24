@@ -331,7 +331,20 @@ Para el personal de tienda, la solución debe demostrar su valor mediante la red
 * *Contexto:*
 ** El sistema requiere procesar 10 millones de transacciones diarias con latencias consistentes menores a 200ms. La naturaleza concurrente de las solicitudes de devolución y la necesidad de alta disponibilidad exigen un lenguaje que maneje eficientemente la concurrencia masiva. El equipo actual tiene experiencia mixta en diferentes lenguajes y frameworks.
 * *Lista de opciones y alternativas*
-** *Elixir:* 
+** *Elixir:* Es un lenguaje de programación funcional, concurrente, de propósito general que se ejecuta sobre la máquina virtual de Erlang. Elixir está escrito sobre Erlang y comparte las mismas abstracciones para desarrollar aplicaciones distribuidas y tolerantes de fallos.
+** *Kotlin:* Es un lenguaje de programación orientado a objetos multiplataforma, estáticamente tipado, de alto nivel y propósito general con inferencia de tipos.
+** *Switf:* Es un lenguaje de programación moderno y de código abierto creado por Apple para desarrollar aplicaciones en sus plataformas, como iOS, macOS, watchOS y tvOS. Se caracteriza por ser rápido, seguro, fácil de usar y por tener una sintaxis limpia y expresiva que mejora la experiencia del desarrollador en comparación con su antecesor, Objective-C. 
+* *Decisión* 
+*Se eligio Elixir*
+** El principal motivo fue el facil uso de elixir y el uso con el framework Phoenix y Liveview
+** El proceso de aprendizaje fue mas facil de entender desde el desarrollo con Elixir
+* *Observaciones y Notas*
+** Fue bastante complicado entender al inicio el proyecto debido a que el equipo (yo) no entendia muy bien el lenguaje ademas de los nuevos conceptos que se aplicaron para el desarrollo de la API
+** Se debe probar en un entorno mas demandante para el caso especifico de que en realidad deba soportar 10 millones de transacciones diarias
+* *Preguntas abiertas*
+** *¿Volveria a desarrollar una API con elixir?:* Despues de todo el trabajo es probable que no vuelva a desarrollar una API :c
+** *¿Todas las funciones se implementaron?:* No, particularmente se queria agregar un apartado de comentario al hacer la devolucion lo cual no fue posible porque cada que se intento agregar dicha funcion todo dejaba de funcionar, por lo que se opto por omitirlo.
+
 
 
 == ESTRATEGIA DE LANZAMIENTO
