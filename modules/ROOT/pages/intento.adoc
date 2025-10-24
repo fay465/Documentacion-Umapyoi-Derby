@@ -319,7 +319,7 @@ Para el personal de tienda, la solución debe demostrar su valor mediante la red
 
 === Dependencias de Negocio
 
-====Eleccion del lenguaje Elixir para la programacion de la API
+==== Eleccion del lenguaje Elixir para la programacion de la API
 
 * *Status:* Acepted
 * *Fecha de creacion:*  24/10/2025
