@@ -295,8 +295,6 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 ===Nivel de Contexto
 
 @startuml
-!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml
-
 title Diagrama C4 - Nivel de Contexto: API de Devoluciones para Retail
 
 Person(cliente, "Cliente", "Accede vía canales digitales (app/web)")

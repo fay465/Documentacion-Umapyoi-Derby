@@ -151,6 +151,7 @@
 <li><a href="#dependencias-de-negocio">5.5. Dependencias de Negocio</a>
 <ul class="sectlevel3">
 <li><a href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api">5.5.1. Eleccion del lenguaje Elixir para la programacion de la API</a></li>
+<li><a href="#eleccion-del-gestor-de-base-de-datos">5.5.2. Eleccion del gestor de base de datos</a></li>
 </ul>
 </li>
 </ul>
@@ -719,8 +720,40 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 <p>El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.</p>
 </div>
 <div class="paragraph">
-<p>===Nivel de Contexto
----Agregar modelo C4(1)</p>
+<p>===Nivel de Contexto</p>
+</div>
+<div class="paragraph">
+<p>@startuml
+!include <a href="https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml" class="bare">https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Context.puml</a></p>
+</div>
+<div class="paragraph">
+<p>title Diagrama C4 - Nivel de Contexto: API de Devoluciones para Retail</p>
+</div>
+<div class="paragraph">
+<p>Person(cliente, "Cliente", "Accede vía canales digitales (app/web)")
+Person(personal_tienda, "Personal de Tienda", "Usa dispositivos corporativos")</p>
+</div>
+<div class="paragraph">
+<p>System(api_devoluciones, "API de Devoluciones", "Sistema central para procesar devoluciones, integrando datos en tiempo real")</p>
+</div>
+<div class="paragraph">
+<p>System_Ext(pos, "Sistema de Punto de Venta (POS)", "Gestiona transacciones en tiendas")
+System_Ext(inventario, "Sistema de Inventario", "Controla stock y actualizaciones")
+System_Ext(gestion_financiera, "Gestión Financiera", "Maneja reembolsos y contabilidad")
+System_Ext(servicios_pago, "Servicios de Pago Externos", "Procesadores como tarjetas o bancos")</p>
+</div>
+<div class="paragraph">
+<p>Rel(cliente, api_devoluciones, "Solicita/Consulta devoluciones", "HTTP/APP")
+Rel(personal_tienda, api_devoluciones, "Procesa devoluciones en tienda", "Dispositivos internos")</p>
+</div>
+<div class="paragraph">
+<p>Rel_Bi(api_devoluciones, pos, "Actualiza transacciones", "API/Events")
+Rel_Bi(api_devoluciones, inventario, "Verifica y actualiza stock", "API/Queues")
+Rel_Bi(api_devoluciones, gestion_financiera, "Procesa reembolsos", "API/DB Sync")
+Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")</p>
+</div>
+<div class="paragraph">
+<p>@enduml</p>
 </div>
 <div class="paragraph">
 <p>===Nivel de Contenedores
@@ -860,8 +893,108 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>kajsdbkajsbdkajsdbkasjdbkasjdbkasjdbkajsdbkajsbd</p>
+</div>
+<div class="sect3">
+<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>5.5.2. Eleccion del gestor de base de datos</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Status:</strong> Proposed</p>
+</li>
+<li>
+<p><strong>Fecha de creacion:</strong>  24/10/2025</p>
+</li>
+<li>
+<p><strong>Fecha ultima modificacion:</strong>  24/10/2025</p>
+</li>
+<li>
+<p><strong>Participantes:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>@PolloDiego159</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Decisores:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>@clsource</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Contexto:</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>El sistema de devoluciones maneja datos transaccionales críticos que requieren consistencia ACID fuerte. Las operaciones incluyen procesamiento financiero (reembolsos), gestión de inventario y trazabilidad completa de cada devolución. Los requerimientos regulatorios exigen integridad absoluta de los datos financieros.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Lista de opciones y alternativas</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>PostgreSQL:</strong> base de datos relacional open-source con fuerte compliance ACID y amplias capacidades.</p>
+</li>
+<li>
+<p><strong>Microsoft SQL Server:</strong> Es un sistema de gestión de base de datos relacional, desarrollado por la empresa Microsoft. El lenguaje de desarrollo utilizado es Transact-SQL, una implementación del estándar ANSI del lenguaje SQL, utilizado para manipular y recuperar datos, crear tablas y definir relaciones entre ellas.</p>
+</li>
+<li>
+<p><strong>Oracle Database:</strong> Es un sistema de gestión de base de datos de tipo objeto-relacional, desarrollado por Oracle Corporation, la empresa estadounidense de hardware y software. Este tipo de sistema mejora la gestión de grandes bases de datos y programación y también aumenta el nivel de seguridad.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Decisión</strong></p>
+<div class="literalblock">
+<div class="content">
+<pre>*Se eligio Microsoft SQL Server*</pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>El principal motivo fue que por temas de competencia de marcas era mejor contratar los servicios con Azure y, de esa forma y unificando todo el ecosistema, tambien contratar la nube de Microsoft</p>
+</li>
+<li>
+<p>Cuenta con herramientas de management excelentes demas de tener buen performance y estabilidad, ademas de un sistema de soporte enterprise</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Observaciones y Notas</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p>Aunque en el proyecto actual no se use este sistema de base de datos se recomienda debido a la exigencias que requiere el negocio</p>
+</li>
+<li>
+<p>En el caso de que se quiera utilizar la nube de azure para implementar todo el proceso de la API resulta muy comodo manejar el mismo entorno, por lo que se espera que todo las demas depencias tambien actuen en un entorno de Microsoft</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Preguntas abiertas</strong></p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>¿Puede usarse el mismo modelo que se esta usando en la prueba?</strong> Al ser los dos sistemas SQL no deberia haber mayores diferencias al usar un entorno SQLite o la nube de Microsoft</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
 </div>
 </div>
 </div>
