@@ -318,12 +318,16 @@ Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")
 
 [plantuml]
 ----
-@startuml
-	Class01 <|-- Class02
-	Class03 *-- Class04
-	Class05 o-- Class06
-	Class07 .. Class08
-	Class09 -- Class10
+@startuml Basic Sample
+
+Person(admin, "Administrator")
+System_Boundary(c1, "Sample System") {
+    Container(web_app, "Web Application", "C#, ASP.NET Core 2.1 MVC", "Allows users to compare multiple Twitter timelines")
+}
+System(twitter, "Twitter")
+
+Rel(admin, web_app, "Uses", "HTTPS")
+Rel(web_app, twitter, "Gets tweets from", "HTTPS")
 @enduml
 ----
 
