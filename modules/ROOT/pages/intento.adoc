@@ -294,6 +294,8 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 
 ===Nivel de Contexto
 
+[plantuml]
+----
 @startuml
 title Diagrama C4 - Nivel de Contexto: API de Devoluciones para Retail
 
@@ -316,6 +318,7 @@ Rel_Bi(api_devoluciones, gestion_financiera, "Procesa reembolsos", "API/DB Sync"
 Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")
 
 @enduml
+----
 
 
 ===Nivel de Contenedores
