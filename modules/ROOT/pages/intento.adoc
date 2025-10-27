@@ -294,7 +294,8 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 
 ===Nivel de Contexto
 
-image::real_C4.png[Diagrama C4, width=800, allign=center]
+image::./modules/ROOT/image/real_C4.png[Diagrama C4, width=800, allign=center]
+
 
 
 ===Nivel de Contenedores
