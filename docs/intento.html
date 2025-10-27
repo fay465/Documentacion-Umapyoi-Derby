@@ -742,9 +742,19 @@ Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")
 @enduml</pre>
 </div>
 </div>
-<div class="imageblock kroki">
+<div class="listingblock kroki-error">
 <div class="content">
-<img src="_images/diag-baf677473c05c2e246abe12b3e474d20eb0a9b3d.svg" alt="Diagram">
+<pre>@startuml Basic Sample
+
+Person(admin, "Administrator")
+System_Boundary(c1, "Sample System") {
+    Container(web_app, "Web Application", "C#, ASP.NET Core 2.1 MVC", "Allows users to compare multiple Twitter timelines")
+}
+System(twitter, "Twitter")
+
+Rel(admin, web_app, "Uses", "HTTPS")
+Rel(web_app, twitter, "Gets tweets from", "HTTPS")
+@enduml</pre>
 </div>
 </div>
 <div class="paragraph">
