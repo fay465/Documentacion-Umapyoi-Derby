@@ -722,35 +722,31 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 <div class="paragraph">
 <p>===Nivel de Contexto</p>
 </div>
-<div class="paragraph">
-<p>@startuml
-title Diagrama C4 - Nivel de Contexto: API de Devoluciones para Retail</p>
-</div>
-<div class="paragraph">
-<p>Person(cliente, "Cliente", "Accede vía canales digitales (app/web)")
-Person(personal_tienda, "Personal de Tienda", "Usa dispositivos corporativos")</p>
-</div>
-<div class="paragraph">
-<p>System(api_devoluciones, "API de Devoluciones", "Sistema central para procesar devoluciones, integrando datos en tiempo real")</p>
-</div>
-<div class="paragraph">
-<p>System_Ext(pos, "Sistema de Punto de Venta (POS)", "Gestiona transacciones en tiendas")
+<div class="listingblock kroki-error">
+<div class="content">
+<pre>@startuml
+title Diagrama C4 - Nivel de Contexto: API de Devoluciones para Retail
+
+Person(cliente, "Cliente", "Accede vía canales digitales (app/web)")
+Person(personal_tienda, "Personal de Tienda", "Usa dispositivos corporativos")
+
+System(api_devoluciones, "API de Devoluciones", "Sistema central para procesar devoluciones, integrando datos en tiempo real")
+
+System_Ext(pos, "Sistema de Punto de Venta (POS)", "Gestiona transacciones en tiendas")
 System_Ext(inventario, "Sistema de Inventario", "Controla stock y actualizaciones")
 System_Ext(gestion_financiera, "Gestión Financiera", "Maneja reembolsos y contabilidad")
-System_Ext(servicios_pago, "Servicios de Pago Externos", "Procesadores como tarjetas o bancos")</p>
-</div>
-<div class="paragraph">
-<p>Rel(cliente, api_devoluciones, "Solicita/Consulta devoluciones", "HTTP/APP")
-Rel(personal_tienda, api_devoluciones, "Procesa devoluciones en tienda", "Dispositivos internos")</p>
-</div>
-<div class="paragraph">
-<p>Rel_Bi(api_devoluciones, pos, "Actualiza transacciones", "API/Events")
+System_Ext(servicios_pago, "Servicios de Pago Externos", "Procesadores como tarjetas o bancos")
+
+Rel(cliente, api_devoluciones, "Solicita/Consulta devoluciones", "HTTP/APP")
+Rel(personal_tienda, api_devoluciones, "Procesa devoluciones en tienda", "Dispositivos internos")
+
+Rel_Bi(api_devoluciones, pos, "Actualiza transacciones", "API/Events")
 Rel_Bi(api_devoluciones, inventario, "Verifica y actualiza stock", "API/Queues")
 Rel_Bi(api_devoluciones, gestion_financiera, "Procesa reembolsos", "API/DB Sync")
-Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")</p>
+Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")
+
+@enduml</pre>
 </div>
-<div class="paragraph">
-<p>@enduml</p>
 </div>
 <div class="paragraph">
 <p>===Nivel de Contenedores

@@ -320,6 +320,17 @@ Rel_Bi(api_devoluciones, servicios_pago, "Valida pagos", "API externa")
 @enduml
 ----
 
+[plantuml]
+----
+@startuml
+	Class01 <|-- Class02
+	Class03 *-- Class04
+	Class05 o-- Class06
+	Class07 .. Class08
+	Class09 -- Class10
+@enduml
+----
+
 
 ===Nivel de Contenedores
 ---Agregar modelo C4(2)
