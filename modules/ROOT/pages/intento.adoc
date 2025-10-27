@@ -294,7 +294,7 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 
 ===Nivel de Contexto
 
-image::/home/uvm/Escritorio/antora-docs-bootstrap-main/docs/_images/real_C4(1).png[Arquitectura C4, width=600, align=center]
+image::real_C4.png[Diagrama C4, width=800, allign=center]
 
 
 ===Nivel de Contenedores
