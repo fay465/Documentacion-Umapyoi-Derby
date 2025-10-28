@@ -541,3 +541,92 @@ Para el personal de tienda, la solución debe demostrar su valor mediante la red
 
 == ESTRATEGIA DE LANZAMIENTO
 
+=== Plan de Puesta en Marcha y Lanzamiento (Go-Live)
+
+Este plan detalla la estrategia de despliegue, la coordinación interdepartamental y la cronología general para la migración al nuevo sistema de retail basado en Azure, diseñado para manejar 10.000.000 de transacciones diarias.
+
+=== 1. Estrategia de Lanzamiento (Release Strategy)
+
+Se adoptará una estrategia de Lanzamiento Controlado por Fases (Canary Release), que permite medir el impacto de la nueva solución en un subconjunto reducido de usuarios o tiendas antes de un despliegue masivo. Esto minimiza el riesgo operativo, vital dada la alta carga transaccional (500 TPS pico).
+
+==== Fases de Despliegue
+
+|===
+| Fase | Duración Estimada | Descripción
+
+| 1. Beta Cerrada y Pruebas de Humo
+| 1 Mes
+| Lanzamiento a 1-3 ubicaciones piloto o un grupo de empleados seleccionados. El tráfico en vivo es menor al 1% del total. Se valida la estabilidad básica y la conectividad de la infraestructura Cloud de Azure.
+
+| 2. Lanzamiento Canary (Tráfico Reducido)
+| 2 Meses
+| Despliegue al 10% del tráfico total. Azure Front Door dirigirá el 10% de las peticiones a la nueva arquitectura. Se prueba el escalado automático de Azure Kubernetes Service (AKS) y la latencia real en Azure SQL Business Critical.
+
+| 3. Go-Live Segmentado
+| 1.5 Meses
+| Aumento gradual de la exposición (25%, 50%, 100%). La transición crítica al 100% debe realizarse durante una ventana de mantenimiento en hora de tráfico mínimo.
+
+| 4. Estabilización y Desmantelamiento
+| 3 Meses
+| Monitoreo intensivo y estabilización. Retiro y archivado de la infraestructura de la versión anterior (Legacy) 3 meses después de alcanzar el 100% de adopción estable.
+|===
+
+==== Comunicación y Alineamiento
+
+Alineamiento Técnico: Establecer un Comité de Control de Cambios (CAB) que debe aprobar formalmente el avance entre las fases, basándose en métricas de rendimiento (TPS, Latencia) y errores.
+
+Manejo de Versiones: La solución Legacy permanecerá en modo de solo lectura durante la Fase 3, sirviendo como un roll-back de emergencia, antes de ser totalmente apagada.
+
+=== 2. Áreas Impactadas para Coordinación
+
+El lanzamiento de este sistema centralizado requiere la coordinación transversal de varias áreas para asegurar la continuidad del negocio.
+
+Tecnología de la Información (TI) - Infraestructura:
+Rol: Configuración final de Azure Networking, WAF y Monitoreo (Application Insights).
+Continuidad Operacional: Garantizar el 'uptime' del 99.99% y la alerta proactiva ante fallas de latencia o TPS.
+
+Operaciones y Puntos de Venta (Retail):
+Rol: Prueba de flujos de trabajo en tiendas físicas (POS) y capacitación del personal.
+Continuidad Operacional: Asegurar la adopción exitosa y validar la velocidad transaccional a nivel de tienda.
+
+Finanzas y Contabilidad:
+Rol: Validación de la migración e integración de datos transaccionales y la precisión de los reportes en Azure Synapse.
+Continuidad Operacional: Conciliación de saldos entre el sistema Legacy y el nuevo Azure SQL DB.
+
+Seguridad de la Información y Cumplimiento:
+Rol: Auditoría final de seguridad y cumplimiento (PCI-DSS) sobre la arquitectura en la nube.
+Continuidad Operacional: Revisión de las políticas de WAF y la gestión de identidades (Azure AD).
+
+=== 3. Fechas y Estimados (Alto Nivel)
+
+Esta tabla provee una estimación general del esfuerzo (medido en meses) necesario para completar las fases clave del proyecto. T~0~ marca el inicio del desarrollo formal.
+
+|===
+| Hito Clave | Estimación de Esfuerzo (Meses) | Fecha de Entrega Estimada
+
+| Preparación de Infraestructura y Migración de Datos Base
+| 1 Mes
+| T~0~ + 1
+
+| Desarrollo de Microservicios Core
+| 6 Meses
+| T~0~ + 7
+
+| Pruebas de Rendimiento y Seguridad (UAT)
+| 1.5 Meses
+| T~0~ + 8.5
+
+| Lanzamiento Beta (Fase 1)
+| 1 Mes
+| T~0~ + 9.5
+
+| Lanzamiento Canary (Fase 2) y Estabilización
+| 2 Meses
+| T~0~ + 11.5
+
+| Go-Live 100% (Fase 3)
+| 1.5 Meses
+| T~0~ + 13
+|===
+
+ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO: 12 meses (desde el inicio del desarrollo).
