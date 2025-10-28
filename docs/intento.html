@@ -145,13 +145,43 @@
 <li><a href="#solución-técnica">5. SOLUCIÓN TÉCNICA</a>
 <ul class="sectlevel2">
 <li><a href="#resumen-de-la-solución">5.1. Resumen de la solución</a></li>
-<li><a href="#requisitos-funcionales">5.2. Requisitos funcionales</a></li>
-<li><a href="#restricciones-y-dependencias">5.3. Restricciones y dependencias</a></li>
-<li><a href="#criterios-de-aceptación">5.4. Criterios de aceptación</a></li>
-<li><a href="#dependencias-de-negocio">5.5. Dependencias de Negocio</a>
+<li><a href="#requisitos-funcionales-restricciones-y-dependencias">5.2. Requisitos funcionales, restricciones y dependencias</a>
 <ul class="sectlevel3">
-<li><a href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api">5.5.1. Eleccion del lenguaje Elixir para la programacion de la API</a></li>
-<li><a href="#eleccion-del-gestor-de-base-de-datos">5.5.2. Eleccion del gestor de base de datos</a></li>
+<li><a href="#i-carga-de-trabajo-crítica-10m-txdía">5.2.1. I. Carga de Trabajo Crítica (10M Tx/Día)</a></li>
+<li><a href="#ii-a-capa-de-aplicación-compute-and-hosting">5.2.2. II.A. Capa de Aplicación (Compute and Hosting)</a>
+<ul class="sectlevel4">
+<li><a href="#azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura">Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)</a></li>
+<li><a href="#azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores">Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica">5.3. III. Especificación Detallada de Componentes PaaS de Misión Crítica</a>
+<ul class="sectlevel3">
+<li><a href="#iii-a-capa-de-datos-transaccionales-oltp-core">5.3.1. III.A. Capa de Datos Transaccionales (OLTP Core)</a>
+<ul class="sectlevel4">
+<li><a href="#1-azure-sql-database-hyperscale">1. Azure SQL Database Hyperscale</a></li>
+<li><a href="#2-azure-cosmos-db-nosql-y-baja-latencia-global">2. Azure Cosmos DB (NoSQL y Baja Latencia Global)</a></li>
+</ul>
+</li>
+<li><a href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial">5.3.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</a>
+<ul class="sectlevel4">
+<li><a href="#iv-a-seguridad-perimetral-y-mitigación-de-ataques">IV.A. Seguridad Perimetral y Mitigación de Ataques</a></li>
+</ul>
+</li>
+<li><a href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel">5.3.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</a></li>
+</ul>
+</li>
+<li><a href="#v-modelo-financiero-consolidado-y-proyección-tco">5.4. V. Modelo Financiero Consolidado y Proyección TCO</a>
+<ul class="sectlevel3">
+<li><a href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto">5.4.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</a></li>
+</ul>
+</li>
+<li><a href="#criterios-de-aceptación">5.5. Criterios de aceptación</a></li>
+<li><a href="#dependencias-de-negocio">5.6. Dependencias de Negocio</a>
+<ul class="sectlevel3">
+<li><a href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api">5.6.1. Eleccion del lenguaje Elixir para la programacion de la API</a></li>
+<li><a href="#eleccion-del-gestor-de-base-de-datos">5.6.2. Eleccion del gestor de base de datos</a></li>
 </ul>
 </li>
 </ul>
@@ -724,10 +754,11 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 <div class="imageblock unresolved">
 <div class="content">
-<img src="real_C4.png" alt="Diagrama C4" width="800">
+<img src="./modules/ROOT/image/real_C4.png" alt="Diagrama C4" width="800">
 </div>
 </div>
 <div class="paragraph">
+<div class="title">/modules/ROOT/image/real_C4.png</div>
 <p>===Nivel de Contenedores
 ---Agregar modelo C4(2)</p>
 </div>
@@ -737,22 +768,477 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="requisitos-funcionales"><a class="anchor" href="#requisitos-funcionales"></a>5.2. Requisitos funcionales</h3>
+<h3 id="requisitos-funcionales-restricciones-y-dependencias"><a class="anchor" href="#requisitos-funcionales-restricciones-y-dependencias"></a>5.2. Requisitos funcionales, restricciones y dependencias</h3>
+<div class="sect3">
+<h4 id="i-carga-de-trabajo-crítica-10m-txdía"><a class="anchor" href="#i-carga-de-trabajo-crítica-10m-txdía"></a>5.2.1. I. Carga de Trabajo Crítica (10M Tx/Día)</h4>
 <div class="paragraph">
-<p>El sistema debe proporcionar capacidades de gestión de devoluciones, incluyendo el control de estados desde la solicitud inicial hasta la resolución final. Cada transición de estado debe quedar auditada, proporcionando trazabilidad completa del proceso.</p>
+<p>La gestión de 10 millones de transacciones diarias demanda una planificación rigurosa de la capacidad. El volumen transaccional en el sector minorista es inherentemente variable, con picos de demanda que superan con creces el promedio estadístico.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Rendimiento Promedio:</strong> Un volumen diario de 10,000,000 de transacciones se traduce en un rendimiento promedio constante de aproximadamente $115.7$ transacciones por segundo (TPS).</p>
+</li>
+<li>
+<p><strong>Capacidad de Pico:</strong> El dimensionamiento de la arquitectura debe basarse en la capacidad de manejar picos sostenidos. Se estima que, durante eventos críticos como lanzamientos de productos, ofertas estacionales o el Black Friday, la demanda puede escalar entre 4 y 10 veces el promedio. Por lo tanto, la arquitectura se diseñará para un pico sostenido de <strong>500 TPS</strong>, manteniendo la capacidad elástica para manejar ráfagas de hasta <strong>1,000 TPS</strong> sin degradación del servicio.</p>
+</li>
+<li>
+<p><strong>Requerimientos de Datos:</strong> En el contexto de bases de datos NoSQL como Azure Cosmos DB, estas 10 millones de operaciones diarias pueden requerir una línea base de aproximadamente $2,300$ Request Units por segundo (RU/s), asumiendo un costo conservador de 20 RU por transacción de escritura/lectura. La capacidad de pico debe ascender a $125,000$ RU/s, lo que justifica el uso de capacidades de escalamiento automático (Autoscale).</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>La plataforma incorpora una API de validación configurable que aplica reglas de negocio, comenzando con la validación del período de 5 días desde la compra.</p>
+<p>La siguiente tabla resume los requisitos de <strong>throughput</strong> identificados:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 1. Tabla 1: Estimación de Requisitos de Throughput para 10 Millones de Transacciones Diarias</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Métrica</th>
+<th class="tableblock halign-left valign-top">Volumen Diario (10M)</th>
+<th class="tableblock halign-left valign-top">Rendimiento Promedio (TPS/RU/s)</th>
+<th class="tableblock halign-left valign-top">Capacidad de Pico Estimada (TPS/RU/s)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Transacciones OLTP (Promedio)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\approx 115$ TPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$500$ TPS (Mínimo, con factor de $4.3 \times$)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Requerimiento de BBDD (Reads/Writes)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10,000,000</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\approx 2,300$ RU/s (Solo writes, 20 RU/transacción)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$125,000$ RU/s (Pico flexible con Autoscale)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Ingesta de Logs/Datos Analíticos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$5.78$ MB/s</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$500 - 750$ GB/día (Estimación Sentinel Enterprise) [2]</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>===0 II. Diseño Arquitectónico de Alta Disponibilidad y Marco de Cómputo</p>
+</div>
+<div class="paragraph">
+<p>La plataforma se desplegará bajo un modelo de redundancia geográfica (HA/DR), utilizando Zonas de Disponibilidad (AZs) dentro de una región primaria y replicación activa-pasiva o activa-activa hacia una región secundaria. Este enfoque garantiza un SLA de tiempo de actividad superior.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ii-a-capa-de-aplicación-compute-and-hosting"><a class="anchor" href="#ii-a-capa-de-aplicación-compute-and-hosting"></a>5.2.2. II.A. Capa de Aplicación (Compute and Hosting)</h4>
+<div class="paragraph">
+<p>La elección del servicio de cómputo para la lógica de negocio y la capa de presentación debe reflejar el compromiso con la máxima seguridad y rendimiento. Las dos opciones principales de Microsoft que cumplen con el criterio de alta inversión son Azure App Service Isolated v2 o Azure Kubernetes Service (AKS) Premium.</p>
+</div>
+<div class="sect4">
+<h5 id="azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura"><a class="anchor" href="#azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura"></a>Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)</h5>
+<div class="paragraph">
+<p>La selección de App Service Isolated v2 se justifica por la necesidad de aislamiento de red y recursos dedicados. Este nivel proporciona entornos de servicio de aplicaciones dedicados y completamente aislados dentro de una red virtual de Azure (VNet), lo cual es crucial para requisitos regulatorios de seguridad y cumplimiento en el sector retail. [5]</p>
+</div>
+<div class="paragraph">
+<p>Para gestionar picos de 500 a 1,000 TPS, es necesario un plan de servicio con instancias grandes que pueda escalar horizontalmente hasta el límite de 100 instancias ofrecido por el entorno Isolated. [8]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>SKU Base:</strong> Se recomienda el plan de servicio I4v2. Esta es una de las SKUs más potentes disponibles en la capa Isolated v2, con 16 Cores y 64 GB de RAM por instancia. [9]</p>
+</li>
+<li>
+<p><strong>Dimensionamiento Inicial y Costo Base:</strong> Para la configuración base de alta disponibilidad en la región primaria, se dimensionan 4 instancias activas. Asumiendo que la aplicación utiliza Windows Server (a menudo el caso para migraciones.NET), se utiliza la tarifa más alta de pago por uso (PAYG) para este cálculo inicial. [9]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Costo de I4v2 (Windows, PAYG): $\$ 3,282.08$ por mes. [9]</p>
+</li>
+<li>
+<p><strong>Costo de Cómputo Base:</strong> $\$ 3,282.08 / mes \times 4$ instancias $\approx \$ 13,128.32$ por mes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5 id="azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores"><a class="anchor" href="#azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores"></a>Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)</h5>
+<div class="paragraph">
+<p>Si la estrategia de desarrollo se centra en microservicios y contenedores, AKS es la opción de misión crítica. Para cumplir con la alta disponibilidad y la capacidad de escala hasta 5,000 nodos, se requiere el nivel <strong>Standard Tier</strong>. [10] Sin embargo, dada la directriz de "no escatimar", se recomienda el <strong>Premium Tier</strong> por sus beneficios de soporte a largo plazo (LTS). [11]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Costo del Plano de Control (Control Plane):</strong> El Premium Tier se factura a $\$ 0.60$ por <strong>cluster</strong> por hora. [11]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Costo Mensual del Control Plane (Premium): $\$ 0.60 / hora \times 730$ horas/mes $\approx \$ 438.00$ USD por <strong>cluster</strong>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Costo Real del Cómputo:</strong> El costo dominante en AKS es el de los Nodos de Agente (VMs) que ejecutan los contenedores, que deberían ser dimensionados de forma similar a los recursos I4v2 (VMs D-series o similares). [12]</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 2. Tabla 2: Detalle de Costos de Cómputo (App Tier)</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Componente</th>
+<th class="tableblock halign-left valign-top">SKU / Nivel de Servicio</th>
+<th class="tableblock halign-left valign-top">Especificaciones Base</th>
+<th class="tableblock halign-left valign-top">Costo Mensual PAYG (USD)</th>
+<th class="tableblock halign-left valign-top">Base</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">App Hosting Principal (PaaS)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">App Service Isolated v2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">I4v2 (16 Cores, 64 GB RAM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\$ 3,282.08$ [9]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4 Instancias Mínimas</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Control Plane Contenedores (Opción Alt.)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AKS Premium Tier</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SLA y LTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\$ 438.00$ [11]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 Cluster</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Carga/Balanceo Global</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Front Door / Traffic Manager</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Basado en tráfico y reglas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Varía (No cotizado)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="restricciones-y-dependencias"><a class="anchor" href="#restricciones-y-dependencias"></a>5.3. Restricciones y dependencias</h3>
+<h3 id="iii-especificación-detallada-de-componentes-paas-de-misión-crítica"><a class="anchor" href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica"></a>5.3. III. Especificación Detallada de Componentes PaaS de Misión Crítica</h3>
 <div class="paragraph">
-<p>La solución debe operar dentro del landscape tecnológico existente, manteniendo compatibilidad con sistemas legacy de punto de venta que presentan limitaciones técnicas específicas. El rendimiento debe garantizar latencias consistentemente bajas incluso durante picos de demanda que pueden alcanzar las 2.777 transacciones por segundo.</p>
+<p>La arquitectura de alta inversión exige soluciones de datos que puedan crecer linealmente con la carga transaccional masiva.</p>
+</div>
+<div class="sect3">
+<h4 id="iii-a-capa-de-datos-transaccionales-oltp-core"><a class="anchor" href="#iii-a-capa-de-datos-transaccionales-oltp-core"></a>5.3.1. III.A. Capa de Datos Transaccionales (OLTP Core)</h4>
+<div class="paragraph">
+<p>El núcleo del negocio retail (pedidos, pagos, inventario) requiere una base de datos relacional que garantice la consistencia ACID. [3]</p>
+</div>
+<div class="sect4">
+<h5 id="1-azure-sql-database-hyperscale"><a class="anchor" href="#1-azure-sql-database-hyperscale"></a>1. Azure SQL Database Hyperscale</h5>
+<div class="paragraph">
+<p>Azure SQL Database Hyperscale es la elección de misión crítica para esta escala. [6] Su principal ventaja es la separación de cómputo y almacenamiento, lo que permite un escalamiento de almacenamiento de hasta 100 TB sin un aumento proporcional de los recursos de cómputo, y sin afectar la latencia transaccional. [13, 14]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Dimensionamiento de Cómputo:</strong> Para un volumen de 500+ TPS sostenido, se requiere un alto compromiso de vCores, típicamente utilizando la serie Standard (Gen 5). Un punto de partida conservador, basado en el requerimiento de alto rendimiento, es 12 vCores.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Costo de Cómputo (12 vCores): $\$ 3.3916$ por hora. [15]</p>
+</li>
+<li>
+<p>Costo Mensual (12 vCores, Solo Principal): $\$ 3.3916 / hora \times 730$ horas/mes $\approx \$ 2,475.80$ USD/mes.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p><strong>Alta Disponibilidad:</strong> Para garantizar el SLA, se requiere la configuración de réplicas secundarias de alta disponibilidad (HA). [13] Esto efectivamente duplica el costo de cómputo.</p>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Costo Mensual Total OLTP (2 Réplicas HA):</strong> $\$ 2,475.80 \times 2 \approx \$ 4,951.60$ USD/mes (solo cómputo).</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Una consideración financiera importante es que el almacenamiento de bases de datos en Hyperscale es escalable y el costo de <strong>backup</strong> está incluido inicialmente hasta el tamaño máximo de los datos. [13] Esto significa que el principal factor de costo recurrente es el componente de vCores, lo que dirige la estrategia de optimización financiera hacia los beneficios de licencia (como Azure Hybrid Benefit, discutido en la Sección VII).</p>
+</div>
+</div>
+<div class="sect4">
+<h5 id="2-azure-cosmos-db-nosql-y-baja-latencia-global"><a class="anchor" href="#2-azure-cosmos-db-nosql-y-baja-latencia-global"></a>2. Azure Cosmos DB (NoSQL y Baja Latencia Global)</h5>
+<div class="paragraph">
+<p>Azure Cosmos DB es fundamental para cargas de trabajo de retail que requieren latencia ultrabaja y escalamiento global para datos no relacionales (ej. perfiles de usuario, carritos de compra, catálogo de productos). La alta inversión en este servicio se justifica por su capacidad de ofrecer disponibilidad inigualable y replicación de escritura multi-región. [7]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Dimensionamiento de Throughput:</strong> Para soportar la línea base de 10 millones de operaciones de escritura diarias y absorber picos, se dimensiona un <strong>throughput</strong> de <strong>10,000 RU/s</strong> utilizando el modelo <strong>Autoscale Provisioned</strong>. [7] El uso de Autoscale es preferible al <strong>Standard Provisioned</strong> porque permite que la capacidad elástica absorba los picos de tráfico de retail de manera eficiente, optimizando el costo operativo al tiempo que garantiza el rendimiento. [7]</p>
+</li>
+<li>
+<p><strong>Configuración de Alta Inversión:</strong> Se recomienda la replicación en 4 regiones (Región principal + 3 regiones secundarias) para maximizar la redundancia geográfica (DR) y la latencia de lectura global.</p>
+</li>
+<li>
+<p><strong>Costo Estimado (4 Regiones):</strong> Basado en el ejemplo de replicación de 10K RU/s y 4 TB de almacenamiento distribuido (1 TB principal, 3 TB secundarios), el costo mensual de <strong>throughput</strong> y almacenamiento es de aproximadamente $\$ 3,404.80$ USD. [7, 16]</p>
+</li>
+</ul>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 3. Tabla 3: Costo de BBDD OLTP y NoSQL de Hiperescala</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Base de Datos</th>
+<th class="tableblock halign-left valign-top">SKU / Servicio</th>
+<th class="tableblock halign-left valign-top">Configuración Principal</th>
+<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OLTP Relacional</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure SQL Hyperscale (Gen5)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">12 vCores (Compute HA, 2 Réplicas)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 4,951.60$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NoSQL / Global</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Cosmos DB Autoscale</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10K RU/s (4 Regiones, 4 TB Storage)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 3,404.80$ [7, 16]</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Subtotal Datos</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$\sim \$ 8,356.40$</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"><a class="anchor" href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"></a>5.3.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</h4>
+<div class="paragraph">
+<p>La directriz de no escatimar en necesidades se aplica rigurosamente a la seguridad y la observabilidad, componentes críticos para proteger los datos de los clientes y mantener la continuidad operativa.</p>
+</div>
+<div class="sect4">
+<h5 id="iv-a-seguridad-perimetral-y-mitigación-de-ataques"><a class="anchor" href="#iv-a-seguridad-perimetral-y-mitigación-de-ataques"></a>IV.A. Seguridad Perimetral y Mitigación de Ataques</h5>
+<div class="sect5">
+<h6 id="1-azure-ddos-protection-standard"><a class="anchor" href="#1-azure-ddos-protection-standard"></a>1. Azure DDoS Protection Standard</h6>
+<div class="paragraph">
+<p>Dado que la empresa retail está expuesta al tráfico público de Internet, la protección contra ataques de Denegación de Servicio Distribuido (DDoS) es obligatoria.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Costo Fijo:</strong> El nivel <strong>DDoS Protection Standard</strong> impone un cargo fijo de $\$ 2,944$ por mes, que incluye protección para 100 recursos de IP pública. [23]</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>La adopción de este plan de alta inversión tiene un beneficio adicional de optimización de costos. Cuando DDoS Network Protection está habilitado en la VNet, el Web Application Firewall (WAF) desplegado en Application Gateway se factura a la tarifa de Application Gateway Standard v2, en lugar de la tarifa más alta de WAF. [23, 24] Este descuento parcial compensa marginalmente el alto costo base del plan DDoS.</p>
+</div>
+</div>
+<div class="sect5">
+<h6 id="2-azure-firewall-premium"><a class="anchor" href="#2-azure-firewall-premium"></a>2. Azure Firewall Premium</h6>
+<div class="paragraph">
+<p>Para garantizar la inspección de tráfico de salida y entrada más rigurosa, se requiere el nivel <strong>Premium</strong> de Azure Firewall, que ofrece capacidades avanzadas como inspección TLS y detección de intrusiones basada en inteligencia de amenazas. [25, 26]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Costo de Despliegue:</strong> $\$ 1.75$ por hora por despliegue. [26]</p>
+</li>
+<li>
+<p><strong>Dimensionamiento:</strong> Se requieren 2 despliegues en modo de Alta Disponibilidad (HA) para la región primaria.</p>
+</li>
+<li>
+<p><strong>Costo Anual de Despliegue:</strong> $\$ 1.75 / hora \times 730$ horas/mes $\times 12$ meses $\times 2$ despliegues $\approx \$ 30,660.00$ anual, o $\sim \$ 2,555.00$ mensual. Los costos de procesamiento de datos se añaden a esta tarifa, a $\$ 0.016$ por GB procesado. [26]</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"><a class="anchor" href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"></a>5.3.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</h4>
+<div class="paragraph">
+<p>La capacidad para monitorear, detectar y responder a amenazas en tiempo real es vital. Esto se logra mediante la plataforma SIEM nativa de Microsoft, Sentinel. [27]</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Volumen de Logs:</strong> Un sistema que procesa 10 millones de transacciones diarias, genera un tráfico masivo de logs de aplicación, base de datos y red. Un volumen conservador y realista para una operación de esta escala, que no escatima en la ingesta de logs de seguridad y operacionales, es de <strong>500 GB por día</strong>. [28, 29]</p>
+</li>
+<li>
+<p><strong>Nivel de Compromiso (Commitment Tier):</strong> Para gestionar este gran volumen de datos de manera predecible y costo-efectiva, se debe seleccionar un Nivel de Compromiso fijo en lugar del modelo <strong>Pay-As-You-Go</strong>. [27]</p>
+</li>
+<li>
+<p><strong>Optimización del Costo de Logs:</strong> Si bien la ingesta de 500 GB/día representa un gasto significativo, el modelo de Nivel de Compromiso proporciona un ahorro sustancial, hasta el 60% en comparación con la tarifa PAYG. [28]</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Costo Diario (500 GB/día Commitment Tier): $\$ 492$ USD/día. [28]</p>
+</li>
+<li>
+<p><strong>Costo Mensual Proyectado de Sentinel:</strong> $\$ 492 / día \times 30$ días $\approx \$ 14,760$ USD/mes.</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Esta estrategia asegura que la seguridad y el monitoreo no se vean limitados por preocupaciones presupuestarias a corto plazo, ya que la ingesta masiva se convierte en un costo operativo fijo y altamente descontado.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 4. Tabla 4: Costo Proyectado de Microsoft Sentinel (SIEM)</caption>
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+<col style="width: 20%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Servicio</th>
+<th class="tableblock halign-left valign-top">Nivel de Compromiso</th>
+<th class="tableblock halign-left valign-top">Costo Diario (USD)</th>
+<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
+<th class="tableblock halign-left valign-top">Ahorro Estimado vs. PAYG</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Sentinel (SIEM)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">500 GB por Día</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\$ 492$ [28]</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 14,760$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim 60\%$ [28]</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect2">
-<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>5.4. Criterios de aceptación</h3>
+<h3 id="v-modelo-financiero-consolidado-y-proyección-tco"><a class="anchor" href="#v-modelo-financiero-consolidado-y-proyección-tco"></a>5.4. V. Modelo Financiero Consolidado y Proyección TCO</h3>
+<div class="paragraph">
+<p>A continuación, se presenta una estimación del Costo Total de Propiedad (TCO) anual, basado en la tarifa de Pago por Uso (PAYG) y los niveles de servicio <strong>Premium</strong> y <strong>Aislado</strong> seleccionados, antes de la aplicación de descuentos por acuerdos de consumo y licencias.</p>
+</div>
+<div class="sect3">
+<h4 id="v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"><a class="anchor" href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"></a>5.4.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</h4>
+<div class="paragraph">
+<p>La estimación incluye los principales costos de cómputo y servicios 24/7/365 en una configuración de alta disponibilidad (HA).</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<caption class="title">Table 5. Tabla 5: Estimación de Costo Operacional Anual Bruto (PAYG - Componentes Principales)</caption>
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Componente de Azure</th>
+<th class="tableblock halign-left valign-top">Nivel de Servicio Seleccionado</th>
+<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
+<th class="tableblock halign-left valign-top">Costo Anual Estimado (USD)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">App Hosting Principal (Web/App)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">App Service Isolated v2 (4 I4v2 Instancias)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 13,128$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 157,536$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base de Datos OLTP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure SQL Hyperscale (12 vCores HA)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 4,952$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 59,424$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Base de Datos NoSQL (Global)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Cosmos DB (10K RU/s, 4 Regiones)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 3,405$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 40,860$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">SIEM / Log Analytics</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Sentinel (500 GB/Día Commitment)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 14,760$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 177,120$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad Perimetral</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Firewall Premium (2 Despliegues HA)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 2,555$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 30,660$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Mitigación de DDoS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Azure DDoS Protection Standard</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 2,944$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 35,328$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Subtotal Infraestructura Base (24/7)</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$\sim \$ 58,563$</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$\sim \$ 702,756$</strong></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Costos de Red, Almacenamiento, Backups, Egress, etc.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">(Estimación Conservadora)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 41,437$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 500,000$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Soporte Empresarial (Unified Support - 8% TCO)</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 8,000$</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">$\sim \$ 96,000$</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>TOTAL ANUAL (TCO Bruto Aproximado)</strong></p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$\sim \$ 108,000$</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$\sim \$ 1,298,756$</strong></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>El gasto anual de infraestructura y servicios de soporte, operando con la máxima resiliencia y capacidad, se estima en $\sim \$ 1.3$ millones de USD en un escenario de Pago por Uso (PAYG) no optimizado.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>5.5. Criterios de aceptación</h3>
 <div class="paragraph">
 <p>Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite completar una solicitud de devolución en menos de tres minutos, con confirmación inmediata y visibilidad completa del estado del trámite en todo momento. La experiencia debe ser consistentemente excelente a través de todos los canales digitales.</p>
 </div>
@@ -761,9 +1247,9 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>5.5. Dependencias de Negocio</h3>
+<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>5.6. Dependencias de Negocio</h3>
 <div class="sect3">
-<h4 id="eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"><a class="anchor" href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"></a>5.5.1. Eleccion del lenguaje Elixir para la programacion de la API</h4>
+<h4 id="eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"><a class="anchor" href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"></a>5.6.1. Eleccion del lenguaje Elixir para la programacion de la API</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -867,7 +1353,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect3">
-<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>5.5.2. Eleccion del gestor de base de datos</h4>
+<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>5.6.2. Eleccion del gestor de base de datos</h4>
 <div class="ulist">
 <ul>
 <li>

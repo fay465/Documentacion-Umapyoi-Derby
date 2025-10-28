@@ -294,25 +294,184 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 
 ===Nivel de Contexto
 
-image::./modules/ROOT/image/real_C4.png[Diagrama C4, width=800, allign=center]
+image::real_C4.png[Diagrama C4, width=800, allign=center]
 
-
-
+./modules/ROOT/image/real_C4.png
 ===Nivel de Contenedores
 ---Agregar modelo C4(2)
 
 ===Modelo Entidad-Relacion Base de Datos
 ---Agregar modelo entidad Relacion
 
-=== Requisitos funcionales
+=== Requisitos funcionales, restricciones y dependencias
 
-El sistema debe proporcionar capacidades de gestión de devoluciones, incluyendo el control de estados desde la solicitud inicial hasta la resolución final. Cada transición de estado debe quedar auditada, proporcionando trazabilidad completa del proceso.
 
-La plataforma incorpora una API de validación configurable que aplica reglas de negocio, comenzando con la validación del período de 5 días desde la compra.
+==== I. Carga de Trabajo Crítica (10M Tx/Día)
 
-=== Restricciones y dependencias
+La gestión de 10 millones de transacciones diarias demanda una planificación rigurosa de la capacidad. El volumen transaccional en el sector minorista es inherentemente variable, con picos de demanda que superan con creces el promedio estadístico.
 
-La solución debe operar dentro del landscape tecnológico existente, manteniendo compatibilidad con sistemas legacy de punto de venta que presentan limitaciones técnicas específicas. El rendimiento debe garantizar latencias consistentemente bajas incluso durante picos de demanda que pueden alcanzar las 2.777 transacciones por segundo.
+*   *Rendimiento Promedio:* Un volumen diario de 10,000,000 de transacciones se traduce en un rendimiento promedio constante de aproximadamente $115.7$ transacciones por segundo (TPS).
+*   *Capacidad de Pico:* El dimensionamiento de la arquitectura debe basarse en la capacidad de manejar picos sostenidos. Se estima que, durante eventos críticos como lanzamientos de productos, ofertas estacionales o el Black Friday, la demanda puede escalar entre 4 y 10 veces el promedio. Por lo tanto, la arquitectura se diseñará para un pico sostenido de *500 TPS*, manteniendo la capacidad elástica para manejar ráfagas de hasta *1,000 TPS* sin degradación del servicio.
+*   *Requerimientos de Datos:* En el contexto de bases de datos NoSQL como Azure Cosmos DB, estas 10 millones de operaciones diarias pueden requerir una línea base de aproximadamente $2,300$ Request Units por segundo (RU/s), asumiendo un costo conservador de 20 RU por transacción de escritura/lectura. La capacidad de pico debe ascender a $125,000$ RU/s, lo que justifica el uso de capacidades de escalamiento automático (Autoscale).
+
+La siguiente tabla resume los requisitos de *throughput* identificados:
+
+.Tabla 1: Estimación de Requisitos de Throughput para 10 Millones de Transacciones Diarias
+
+|===
+| Métrica | Volumen Diario (10M) | Rendimiento Promedio (TPS/RU/s) | Capacidad de Pico Estimada (TPS/RU/s)
+
+| Transacciones OLTP (Promedio) | 10,000,000 | $\approx 115$ TPS | $500$ TPS (Mínimo, con factor de $4.3 \times$)
+| Requerimiento de BBDD (Reads/Writes) | 10,000,000 | $\approx 2,300$ RU/s (Solo writes, 20 RU/transacción) | $125,000$ RU/s (Pico flexible con Autoscale)
+| Ingesta de Logs/Datos Analíticos | N/A | $5.78$ MB/s | $500 - 750$ GB/día (Estimación Sentinel Enterprise) [2]
+|===
+
+
+===0 II. Diseño Arquitectónico de Alta Disponibilidad y Marco de Cómputo
+
+La plataforma se desplegará bajo un modelo de redundancia geográfica (HA/DR), utilizando Zonas de Disponibilidad (AZs) dentro de una región primaria y replicación activa-pasiva o activa-activa hacia una región secundaria. Este enfoque garantiza un SLA de tiempo de actividad superior.
+
+==== II.A. Capa de Aplicación (Compute and Hosting)
+
+La elección del servicio de cómputo para la lógica de negocio y la capa de presentación debe reflejar el compromiso con la máxima seguridad y rendimiento. Las dos opciones principales de Microsoft que cumplen con el criterio de alta inversión son Azure App Service Isolated v2 o Azure Kubernetes Service (AKS) Premium.
+
+===== Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)
+
+La selección de App Service Isolated v2 se justifica por la necesidad de aislamiento de red y recursos dedicados. Este nivel proporciona entornos de servicio de aplicaciones dedicados y completamente aislados dentro de una red virtual de Azure (VNet), lo cual es crucial para requisitos regulatorios de seguridad y cumplimiento en el sector retail. [5]
+
+Para gestionar picos de 500 a 1,000 TPS, es necesario un plan de servicio con instancias grandes que pueda escalar horizontalmente hasta el límite de 100 instancias ofrecido por el entorno Isolated. [8]
+
+*   *SKU Base:* Se recomienda el plan de servicio I4v2. Esta es una de las SKUs más potentes disponibles en la capa Isolated v2, con 16 Cores y 64 GB de RAM por instancia. [9]
+*   *Dimensionamiento Inicial y Costo Base:* Para la configuración base de alta disponibilidad en la región primaria, se dimensionan 4 instancias activas. Asumiendo que la aplicación utiliza Windows Server (a menudo el caso para migraciones.NET), se utiliza la tarifa más alta de pago por uso (PAYG) para este cálculo inicial. [9]
+** Costo de I4v2 (Windows, PAYG): $\$ 3,282.08$ por mes. [9]
+** *Costo de Cómputo Base:* $\$ 3,282.08 / mes \times 4$ instancias $\approx \$ 13,128.32$ por mes.
+
+===== Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)
+
+Si la estrategia de desarrollo se centra en microservicios y contenedores, AKS es la opción de misión crítica. Para cumplir con la alta disponibilidad y la capacidad de escala hasta 5,000 nodos, se requiere el nivel *Standard Tier*. [10] Sin embargo, dada la directriz de "no escatimar", se recomienda el *Premium Tier* por sus beneficios de soporte a largo plazo (LTS). [11]
+
+*   *Costo del Plano de Control (Control Plane):* El Premium Tier se factura a $\$ 0.60$ por *cluster* por hora. [11]
+** Costo Mensual del Control Plane (Premium): $\$ 0.60 / hora \times 730$ horas/mes $\approx \$ 438.00$ USD por *cluster*.
+*   *Costo Real del Cómputo:* El costo dominante en AKS es el de los Nodos de Agente (VMs) que ejecutan los contenedores, que deberían ser dimensionados de forma similar a los recursos I4v2 (VMs D-series o similares). [12]
+
+.Tabla 2: Detalle de Costos de Cómputo (App Tier)
+
+|===
+| Componente | SKU / Nivel de Servicio | Especificaciones Base | Costo Mensual PAYG (USD) | Base
+
+| App Hosting Principal (PaaS) | App Service Isolated v2 | I4v2 (16 Cores, 64 GB RAM) | $\$ 3,282.08$ [9] | 4 Instancias Mínimas
+| Control Plane Contenedores (Opción Alt.) | AKS Premium Tier | SLA y LTS | $\$ 438.00$ [11] | 1 Cluster
+| Carga/Balanceo Global | Azure Front Door / Traffic Manager | Basado en tráfico y reglas | Varía (No cotizado) | N/A
+|===
+
+=== III. Especificación Detallada de Componentes PaaS de Misión Crítica
+
+La arquitectura de alta inversión exige soluciones de datos que puedan crecer linealmente con la carga transaccional masiva.
+
+==== III.A. Capa de Datos Transaccionales (OLTP Core)
+
+El núcleo del negocio retail (pedidos, pagos, inventario) requiere una base de datos relacional que garantice la consistencia ACID. [3]
+
+===== 1. Azure SQL Database Hyperscale
+
+Azure SQL Database Hyperscale es la elección de misión crítica para esta escala. [6] Su principal ventaja es la separación de cómputo y almacenamiento, lo que permite un escalamiento de almacenamiento de hasta 100 TB sin un aumento proporcional de los recursos de cómputo, y sin afectar la latencia transaccional. [13, 14]
+
+*   *Dimensionamiento de Cómputo:* Para un volumen de 500+ TPS sostenido, se requiere un alto compromiso de vCores, típicamente utilizando la serie Standard (Gen 5). Un punto de partida conservador, basado en el requerimiento de alto rendimiento, es 12 vCores.
+** Costo de Cómputo (12 vCores): $\$ 3.3916$ por hora. [15]
+** Costo Mensual (12 vCores, Solo Principal): $\$ 3.3916 / hora \times 730$ horas/mes $\approx \$ 2,475.80$ USD/mes.
+*   *Alta Disponibilidad:* Para garantizar el SLA, se requiere la configuración de réplicas secundarias de alta disponibilidad (HA). [13] Esto efectivamente duplica el costo de cómputo.
+** *Costo Mensual Total OLTP (2 Réplicas HA):* $\$ 2,475.80 \times 2 \approx \$ 4,951.60$ USD/mes (solo cómputo).
+
+Una consideración financiera importante es que el almacenamiento de bases de datos en Hyperscale es escalable y el costo de *backup* está incluido inicialmente hasta el tamaño máximo de los datos. [13] Esto significa que el principal factor de costo recurrente es el componente de vCores, lo que dirige la estrategia de optimización financiera hacia los beneficios de licencia (como Azure Hybrid Benefit, discutido en la Sección VII).
+
+===== 2. Azure Cosmos DB (NoSQL y Baja Latencia Global)
+
+Azure Cosmos DB es fundamental para cargas de trabajo de retail que requieren latencia ultrabaja y escalamiento global para datos no relacionales (ej. perfiles de usuario, carritos de compra, catálogo de productos). La alta inversión en este servicio se justifica por su capacidad de ofrecer disponibilidad inigualable y replicación de escritura multi-región. [7]
+
+*   *Dimensionamiento de Throughput:* Para soportar la línea base de 10 millones de operaciones de escritura diarias y absorber picos, se dimensiona un *throughput* de *10,000 RU/s* utilizando el modelo *Autoscale Provisioned*. [7] El uso de Autoscale es preferible al *Standard Provisioned* porque permite que la capacidad elástica absorba los picos de tráfico de retail de manera eficiente, optimizando el costo operativo al tiempo que garantiza el rendimiento. [7]
+*   *Configuración de Alta Inversión:* Se recomienda la replicación en 4 regiones (Región principal + 3 regiones secundarias) para maximizar la redundancia geográfica (DR) y la latencia de lectura global.
+*   *Costo Estimado (4 Regiones):* Basado en el ejemplo de replicación de 10K RU/s y 4 TB de almacenamiento distribuido (1 TB principal, 3 TB secundarios), el costo mensual de *throughput* y almacenamiento es de aproximadamente $\$ 3,404.80$ USD. [7, 16]
+
+.Tabla 3: Costo de BBDD OLTP y NoSQL de Hiperescala
+
+|===
+| Base de Datos | SKU / Servicio | Configuración Principal | Costo Mensual Estimado (USD)
+
+| OLTP Relacional | Azure SQL Hyperscale (Gen5) | 12 vCores (Compute HA, 2 Réplicas) | $\sim \$ 4,951.60$
+| NoSQL / Global | Azure Cosmos DB Autoscale | 10K RU/s (4 Regiones, 4 TB Storage) | $\sim \$ 3,404.80$ [7, 16]
+| *Subtotal Datos* | | | *$\sim \$ 8,356.40$*
+|===
+
+==== IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial
+
+La directriz de no escatimar en necesidades se aplica rigurosamente a la seguridad y la observabilidad, componentes críticos para proteger los datos de los clientes y mantener la continuidad operativa.
+
+===== IV.A. Seguridad Perimetral y Mitigación de Ataques
+
+====== 1. Azure DDoS Protection Standard
+
+Dado que la empresa retail está expuesta al tráfico público de Internet, la protección contra ataques de Denegación de Servicio Distribuido (DDoS) es obligatoria.
+
+*   *Costo Fijo:* El nivel *DDoS Protection Standard* impone un cargo fijo de $\$ 2,944$ por mes, que incluye protección para 100 recursos de IP pública. [23]
+
+La adopción de este plan de alta inversión tiene un beneficio adicional de optimización de costos. Cuando DDoS Network Protection está habilitado en la VNet, el Web Application Firewall (WAF) desplegado en Application Gateway se factura a la tarifa de Application Gateway Standard v2, en lugar de la tarifa más alta de WAF. [23, 24] Este descuento parcial compensa marginalmente el alto costo base del plan DDoS.
+
+====== 2. Azure Firewall Premium
+
+Para garantizar la inspección de tráfico de salida y entrada más rigurosa, se requiere el nivel *Premium* de Azure Firewall, que ofrece capacidades avanzadas como inspección TLS y detección de intrusiones basada en inteligencia de amenazas. [25, 26]
+
+*   *Costo de Despliegue:* $\$ 1.75$ por hora por despliegue. [26]
+*   *Dimensionamiento:* Se requieren 2 despliegues en modo de Alta Disponibilidad (HA) para la región primaria.
+*   *Costo Anual de Despliegue:* $\$ 1.75 / hora \times 730$ horas/mes $\times 12$ meses $\times 2$ despliegues $\approx \$ 30,660.00$ anual, o $\sim \$ 2,555.00$ mensual. Los costos de procesamiento de datos se añaden a esta tarifa, a $\$ 0.016$ por GB procesado. [26]
+
+==== IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)
+
+La capacidad para monitorear, detectar y responder a amenazas en tiempo real es vital. Esto se logra mediante la plataforma SIEM nativa de Microsoft, Sentinel. [27]
+
+*   *Volumen de Logs:* Un sistema que procesa 10 millones de transacciones diarias, genera un tráfico masivo de logs de aplicación, base de datos y red. Un volumen conservador y realista para una operación de esta escala, que no escatima en la ingesta de logs de seguridad y operacionales, es de *500 GB por día*. [28, 29]
+*   *Nivel de Compromiso (Commitment Tier):* Para gestionar este gran volumen de datos de manera predecible y costo-efectiva, se debe seleccionar un Nivel de Compromiso fijo en lugar del modelo *Pay-As-You-Go*. [27]
+*   *Optimización del Costo de Logs:* Si bien la ingesta de 500 GB/día representa un gasto significativo, el modelo de Nivel de Compromiso proporciona un ahorro sustancial, hasta el 60% en comparación con la tarifa PAYG. [28]
+** Costo Diario (500 GB/día Commitment Tier): $\$ 492$ USD/día. [28]
+** *Costo Mensual Proyectado de Sentinel:* $\$ 492 / día \times 30$ días $\approx \$ 14,760$ USD/mes.
+
+Esta estrategia asegura que la seguridad y el monitoreo no se vean limitados por preocupaciones presupuestarias a corto plazo, ya que la ingesta masiva se convierte en un costo operativo fijo y altamente descontado.
+
+.Tabla 4: Costo Proyectado de Microsoft Sentinel (SIEM)
+
+|===
+| Servicio | Nivel de Compromiso | Costo Diario (USD) | Costo Mensual Estimado (USD) | Ahorro Estimado vs. PAYG
+
+| Microsoft Sentinel (SIEM) | 500 GB por Día | $\$ 492$ [28] | $\sim \$ 14,760$ | $\sim 60\%$ [28]
+|===
+
+=== V. Modelo Financiero Consolidado y Proyección TCO
+
+A continuación, se presenta una estimación del Costo Total de Propiedad (TCO) anual, basado en la tarifa de Pago por Uso (PAYG) y los niveles de servicio *Premium* y *Aislado* seleccionados, antes de la aplicación de descuentos por acuerdos de consumo y licencias.
+
+==== V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)
+
+La estimación incluye los principales costos de cómputo y servicios 24/7/365 en una configuración de alta disponibilidad (HA).
+
+.Tabla 5: Estimación de Costo Operacional Anual Bruto (PAYG - Componentes Principales)
+
+|===
+| Componente de Azure | Nivel de Servicio Seleccionado | Costo Mensual Estimado (USD) | Costo Anual Estimado (USD)
+
+| App Hosting Principal (Web/App) | App Service Isolated v2 (4 I4v2 Instancias) | $\sim \$ 13,128$ | $\sim \$ 157,536$
+| Base de Datos OLTP | Azure SQL Hyperscale (12 vCores HA) | $\sim \$ 4,952$ | $\sim \$ 59,424$
+| Base de Datos NoSQL (Global) | Azure Cosmos DB (10K RU/s, 4 Regiones) | $\sim \$ 3,405$ | $\sim \$ 40,860$
+| SIEM / Log Analytics | Microsoft Sentinel (500 GB/Día Commitment) | $\sim \$ 14,760$ | $\sim \$ 177,120$
+| Seguridad Perimetral | Azure Firewall Premium (2 Despliegues HA) | $\sim \$ 2,555$ | $\sim \$ 30,660$
+| Mitigación de DDoS | Azure DDoS Protection Standard | $\sim \$ 2,944$ | $\sim \$ 35,328$
+| *Subtotal Infraestructura Base (24/7)* | | *$\sim \$ 58,563$* | *$\sim \$ 702,756$*
+| Costos de Red, Almacenamiento, Backups, Egress, etc. | (Estimación Conservadora) | $\sim \$ 41,437$ | $\sim \$ 500,000$
+| Soporte Empresarial (Unified Support - 8% TCO) | | $\sim \$ 8,000$ | $\sim \$ 96,000$
+| *TOTAL ANUAL (TCO Bruto Aproximado)* | | *$\sim \$ 108,000$* | *$\sim \$ 1,298,756$*
+|===
+
+El gasto anual de infraestructura y servicios de soporte, operando con la máxima resiliencia y capacidad, se estima en $\sim \$ 1.3$ millones de USD en un escenario de Pago por Uso (PAYG) no optimizado.
+
+
 
 === Criterios de aceptación
 
