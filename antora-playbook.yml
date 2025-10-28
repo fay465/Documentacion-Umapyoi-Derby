@@ -1,5 +1,5 @@
 site:
-  title: Example Documentation
+  title: Documentación API Gestión de Devoluciones Retail
   url: https://ninjascl.github.io/antora-docs-bootstrap
   start_page: "ROOT::index.adoc"
 
