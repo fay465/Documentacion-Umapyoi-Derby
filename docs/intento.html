@@ -1380,7 +1380,147 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 <div class="sect1">
 <h2 id="estrategia-de-lanzamiento"><a class="anchor" href="#estrategia-de-lanzamiento"></a>ESTRATEGIA DE LANZAMIENTO</h2>
 <div class="sectionbody">
-
+<div class="sect2">
+<h3 id="plan-de-puesta-en-marcha-y-lanzamiento-go-live"><a class="anchor" href="#plan-de-puesta-en-marcha-y-lanzamiento-go-live"></a>Plan de Puesta en Marcha y Lanzamiento (Go-Live)</h3>
+<div class="paragraph">
+<p>Este plan detalla la estrategia de despliegue, la coordinación interdepartamental y la cronología general para la migración al nuevo sistema de retail basado en Azure, diseñado para manejar 10.000.000 de transacciones diarias.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="1-estrategia-de-lanzamiento-release-strategy"><a class="anchor" href="#1-estrategia-de-lanzamiento-release-strategy"></a>1. Estrategia de Lanzamiento (Release Strategy)</h3>
+<div class="paragraph">
+<p>Se adoptará una estrategia de Lanzamiento Controlado por Fases (Canary Release), que permite medir el impacto de la nueva solución en un subconjunto reducido de usuarios o tiendas antes de un despliegue masivo. Esto minimiza el riesgo operativo, vital dada la alta carga transaccional (500 TPS pico).</p>
+</div>
+<div class="sect3">
+<h4 id="fases-de-despliegue"><a class="anchor" href="#fases-de-despliegue"></a>Fases de Despliegue</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Fase</th>
+<th class="tableblock halign-left valign-top">Duración Estimada</th>
+<th class="tableblock halign-left valign-top">Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1. Beta Cerrada y Pruebas de Humo</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento a 1-3 ubicaciones piloto o un grupo de empleados seleccionados. El tráfico en vivo es menor al 1% del total. Se valida la estabilidad básica y la conectividad de la infraestructura Cloud de Azure.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2. Lanzamiento Canary (Tráfico Reducido)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Despliegue al 10% del tráfico total. Azure Front Door dirigirá el 10% de las peticiones a la nueva arquitectura. Se prueba el escalado automático de Azure Kubernetes Service (AKS) y la latencia real en Azure SQL Business Critical.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3. Go-Live Segmentado</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Aumento gradual de la exposición (25%, 50%, 100%). La transición crítica al 100% debe realizarse durante una ventana de mantenimiento en hora de tráfico mínimo.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">4. Estabilización y Desmantelamiento</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Monitoreo intensivo y estabilización. Retiro y archivado de la infraestructura de la versión anterior (Legacy) 3 meses después de alcanzar el 100% de adopción estable.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="comunicación-y-alineamiento"><a class="anchor" href="#comunicación-y-alineamiento"></a>Comunicación y Alineamiento</h4>
+<div class="paragraph">
+<p>Alineamiento Técnico: Establecer un Comité de Control de Cambios (CAB) que debe aprobar formalmente el avance entre las fases, basándose en métricas de rendimiento (TPS, Latencia) y errores.</p>
+</div>
+<div class="paragraph">
+<p>Manejo de Versiones: La solución Legacy permanecerá en modo de solo lectura durante la Fase 3, sirviendo como un roll-back de emergencia, antes de ser totalmente apagada.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="2-áreas-impactadas-para-coordinación"><a class="anchor" href="#2-áreas-impactadas-para-coordinación"></a>2. Áreas Impactadas para Coordinación</h3>
+<div class="paragraph">
+<p>El lanzamiento de este sistema centralizado requiere la coordinación transversal de varias áreas para asegurar la continuidad del negocio.</p>
+</div>
+<div class="paragraph">
+<p>Tecnología de la Información (TI) - Infraestructura:
+Rol: Configuración final de Azure Networking, WAF y Monitoreo (Application Insights).
+Continuidad Operacional: Garantizar el 'uptime' del 99.99% y la alerta proactiva ante fallas de latencia o TPS.</p>
+</div>
+<div class="paragraph">
+<p>Operaciones y Puntos de Venta (Retail):
+Rol: Prueba de flujos de trabajo en tiendas físicas (POS) y capacitación del personal.
+Continuidad Operacional: Asegurar la adopción exitosa y validar la velocidad transaccional a nivel de tienda.</p>
+</div>
+<div class="paragraph">
+<p>Finanzas y Contabilidad:
+Rol: Validación de la migración e integración de datos transaccionales y la precisión de los reportes en Azure Synapse.
+Continuidad Operacional: Conciliación de saldos entre el sistema Legacy y el nuevo Azure SQL DB.</p>
+</div>
+<div class="paragraph">
+<p>Seguridad de la Información y Cumplimiento:
+Rol: Auditoría final de seguridad y cumplimiento (PCI-DSS) sobre la arquitectura en la nube.
+Continuidad Operacional: Revisión de las políticas de WAF y la gestión de identidades (Azure AD).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="3-fechas-y-estimados-alto-nivel"><a class="anchor" href="#3-fechas-y-estimados-alto-nivel"></a>3. Fechas y Estimados (Alto Nivel)</h3>
+<div class="paragraph">
+<p>Esta tabla provee una estimación general del esfuerzo (medido en meses) necesario para completar las fases clave del proyecto. T<sub>0</sub> marca el inicio del desarrollo formal.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Hito Clave</th>
+<th class="tableblock halign-left valign-top">Estimación de Esfuerzo (Meses)</th>
+<th class="tableblock halign-left valign-top">Fecha de Entrega Estimada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Preparación de Infraestructura y Migración de Datos Base</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollo de Microservicios Core</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 7</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas de Rendimiento y Seguridad (UAT)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 8.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento Beta (Fase 1)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 9.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento Canary (Fase 2) y Estabilización</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">2 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 11.5</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Go-Live 100% (Fase 3)</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 13</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO: 12 meses (desde el inicio del desarrollo).</p>
+</div>
+</div>
 </div>
 </div>
 <nav class="pagination">

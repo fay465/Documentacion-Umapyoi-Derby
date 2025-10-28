@@ -629,4 +629,4 @@ Esta tabla provee una estimación general del esfuerzo (medido en meses) necesar
 | T~0~ + 13
 |===
 
-ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO: 12 meses (desde el inicio del desarrollo).
+*ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO:* 12 meses (desde el inicio del desarrollo).
