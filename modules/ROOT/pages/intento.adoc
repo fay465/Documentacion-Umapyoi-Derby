@@ -294,14 +294,15 @@ El alcance comprende el primer contacto para devoluciones, integrando de manera 
 
 ===Nivel de Contexto
 
-image::real_C4.png[Diagrama C4, width=800, allign=center]
+image::real_C4.png[Diagrama de Contexto, width=800, allign=center]
 
-./modules/ROOT/image/real_C4.png
 ===Nivel de Contenedores
----Agregar modelo C4(2)
+
+image::real_C4(2).png[Diagrama de Contenedores, width=800, allign=center]
 
 ===Modelo Entidad-Relacion Base de Datos
----Agregar modelo entidad Relacion
+
+image::ER.jpg[Modelo ER base de datos, width=800, allign=center]
 
 === Requisitos funcionales, restricciones y dependencias
 
