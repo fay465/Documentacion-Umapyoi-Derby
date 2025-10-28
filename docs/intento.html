@@ -145,10 +145,13 @@
 <li><a href="#solución-técnica">5. SOLUCIÓN TÉCNICA</a>
 <ul class="sectlevel2">
 <li><a href="#resumen-de-la-solución">5.1. Resumen de la solución</a></li>
-<li><a href="#requisitos-funcionales-restricciones-y-dependencias">5.2. Requisitos funcionales, restricciones y dependencias</a>
+<li><a href="#nivel-de-contexto">5.2. Nivel de Contexto</a></li>
+<li><a href="#nivel-de-contenedores">5.3. Nivel de Contenedores</a></li>
+<li><a href="#modelo-entidad-relacion-base-de-datos">5.4. Modelo Entidad-Relacion Base de Datos</a></li>
+<li><a href="#requisitos-funcionales-restricciones-y-dependencias">5.5. Requisitos funcionales, restricciones y dependencias</a>
 <ul class="sectlevel3">
-<li><a href="#i-carga-de-trabajo-crítica-10m-txdía">5.2.1. I. Carga de Trabajo Crítica (10M Tx/Día)</a></li>
-<li><a href="#ii-a-capa-de-aplicación-compute-and-hosting">5.2.2. II.A. Capa de Aplicación (Compute and Hosting)</a>
+<li><a href="#i-carga-de-trabajo-crítica-10m-txdía">5.5.1. I. Carga de Trabajo Crítica (10M Tx/Día)</a></li>
+<li><a href="#ii-a-capa-de-aplicación-compute-and-hosting">5.5.2. II.A. Capa de Aplicación (Compute and Hosting)</a>
 <ul class="sectlevel4">
 <li><a href="#azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura">Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)</a></li>
 <li><a href="#azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores">Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)</a></li>
@@ -156,32 +159,32 @@
 </li>
 </ul>
 </li>
-<li><a href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica">5.3. III. Especificación Detallada de Componentes PaaS de Misión Crítica</a>
+<li><a href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica">5.6. III. Especificación Detallada de Componentes PaaS de Misión Crítica</a>
 <ul class="sectlevel3">
-<li><a href="#iii-a-capa-de-datos-transaccionales-oltp-core">5.3.1. III.A. Capa de Datos Transaccionales (OLTP Core)</a>
+<li><a href="#iii-a-capa-de-datos-transaccionales-oltp-core">5.6.1. III.A. Capa de Datos Transaccionales (OLTP Core)</a>
 <ul class="sectlevel4">
 <li><a href="#1-azure-sql-database-hyperscale">1. Azure SQL Database Hyperscale</a></li>
 <li><a href="#2-azure-cosmos-db-nosql-y-baja-latencia-global">2. Azure Cosmos DB (NoSQL y Baja Latencia Global)</a></li>
 </ul>
 </li>
-<li><a href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial">5.3.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</a>
+<li><a href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial">5.6.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</a>
 <ul class="sectlevel4">
 <li><a href="#iv-a-seguridad-perimetral-y-mitigación-de-ataques">IV.A. Seguridad Perimetral y Mitigación de Ataques</a></li>
 </ul>
 </li>
-<li><a href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel">5.3.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</a></li>
+<li><a href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel">5.6.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</a></li>
 </ul>
 </li>
-<li><a href="#v-modelo-financiero-consolidado-y-proyección-tco">5.4. V. Modelo Financiero Consolidado y Proyección TCO</a>
+<li><a href="#v-modelo-financiero-consolidado-y-proyección-tco">5.7. V. Modelo Financiero Consolidado y Proyección TCO</a>
 <ul class="sectlevel3">
-<li><a href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto">5.4.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</a></li>
+<li><a href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto">5.7.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</a></li>
 </ul>
 </li>
-<li><a href="#criterios-de-aceptación">5.5. Criterios de aceptación</a></li>
-<li><a href="#dependencias-de-negocio">5.6. Dependencias de Negocio</a>
+<li><a href="#criterios-de-aceptación">5.8. Criterios de aceptación</a></li>
+<li><a href="#dependencias-de-negocio">5.9. Dependencias de Negocio</a>
 <ul class="sectlevel3">
-<li><a href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api">5.6.1. Eleccion del lenguaje Elixir para la programacion de la API</a></li>
-<li><a href="#eleccion-del-gestor-de-base-de-datos">5.6.2. Eleccion del gestor de base de datos</a></li>
+<li><a href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api">5.9.1. Eleccion del lenguaje Elixir para la programacion de la API</a></li>
+<li><a href="#eleccion-del-gestor-de-base-de-datos">5.9.2. Eleccion del gestor de base de datos</a></li>
 </ul>
 </li>
 </ul>
@@ -749,25 +752,25 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 <div class="paragraph">
 <p>El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.</p>
 </div>
-<div class="paragraph">
-<p>===Nivel de Contexto</p>
 </div>
+<div class="sect2">
+<h3 id="nivel-de-contexto"><a class="anchor" href="#nivel-de-contexto"></a>5.2. Nivel de Contexto</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/real_C4.png" alt="Diagrama de Contexto" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>===Nivel de Contenedores</p>
 </div>
+<div class="sect2">
+<h3 id="nivel-de-contenedores"><a class="anchor" href="#nivel-de-contenedores"></a>5.3. Nivel de Contenedores</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/real_C4(2).png" alt="Diagrama de Contenedores" width="800">
 </div>
 </div>
-<div class="paragraph">
-<p>===Modelo Entidad-Relacion Base de Datos</p>
 </div>
+<div class="sect2">
+<h3 id="modelo-entidad-relacion-base-de-datos"><a class="anchor" href="#modelo-entidad-relacion-base-de-datos"></a>5.4. Modelo Entidad-Relacion Base de Datos</h3>
 <div class="imageblock">
 <div class="content">
 <img src="_images/ER.jpg" alt="Modelo ER base de datos" width="800">
@@ -775,9 +778,9 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="requisitos-funcionales-restricciones-y-dependencias"><a class="anchor" href="#requisitos-funcionales-restricciones-y-dependencias"></a>5.2. Requisitos funcionales, restricciones y dependencias</h3>
+<h3 id="requisitos-funcionales-restricciones-y-dependencias"><a class="anchor" href="#requisitos-funcionales-restricciones-y-dependencias"></a>5.5. Requisitos funcionales, restricciones y dependencias</h3>
 <div class="sect3">
-<h4 id="i-carga-de-trabajo-crítica-10m-txdía"><a class="anchor" href="#i-carga-de-trabajo-crítica-10m-txdía"></a>5.2.1. I. Carga de Trabajo Crítica (10M Tx/Día)</h4>
+<h4 id="i-carga-de-trabajo-crítica-10m-txdía"><a class="anchor" href="#i-carga-de-trabajo-crítica-10m-txdía"></a>5.5.1. I. Carga de Trabajo Crítica (10M Tx/Día)</h4>
 <div class="paragraph">
 <p>La gestión de 10 millones de transacciones diarias demanda una planificación rigurosa de la capacidad. El volumen transaccional en el sector minorista es inherentemente variable, con picos de demanda que superan con creces el promedio estadístico.</p>
 </div>
@@ -842,7 +845,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect3">
-<h4 id="ii-a-capa-de-aplicación-compute-and-hosting"><a class="anchor" href="#ii-a-capa-de-aplicación-compute-and-hosting"></a>5.2.2. II.A. Capa de Aplicación (Compute and Hosting)</h4>
+<h4 id="ii-a-capa-de-aplicación-compute-and-hosting"><a class="anchor" href="#ii-a-capa-de-aplicación-compute-and-hosting"></a>5.5.2. II.A. Capa de Aplicación (Compute and Hosting)</h4>
 <div class="paragraph">
 <p>La elección del servicio de cómputo para la lógica de negocio y la capa de presentación debe reflejar el compromiso con la máxima seguridad y rendimiento. Las dos opciones principales de Microsoft que cumplen con el criterio de alta inversión son Azure App Service Isolated v2 o Azure Kubernetes Service (AKS) Premium.</p>
 </div>
@@ -943,12 +946,12 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="iii-especificación-detallada-de-componentes-paas-de-misión-crítica"><a class="anchor" href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica"></a>5.3. III. Especificación Detallada de Componentes PaaS de Misión Crítica</h3>
+<h3 id="iii-especificación-detallada-de-componentes-paas-de-misión-crítica"><a class="anchor" href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica"></a>5.6. III. Especificación Detallada de Componentes PaaS de Misión Crítica</h3>
 <div class="paragraph">
 <p>La arquitectura de alta inversión exige soluciones de datos que puedan crecer linealmente con la carga transaccional masiva.</p>
 </div>
 <div class="sect3">
-<h4 id="iii-a-capa-de-datos-transaccionales-oltp-core"><a class="anchor" href="#iii-a-capa-de-datos-transaccionales-oltp-core"></a>5.3.1. III.A. Capa de Datos Transaccionales (OLTP Core)</h4>
+<h4 id="iii-a-capa-de-datos-transaccionales-oltp-core"><a class="anchor" href="#iii-a-capa-de-datos-transaccionales-oltp-core"></a>5.6.1. III.A. Capa de Datos Transaccionales (OLTP Core)</h4>
 <div class="paragraph">
 <p>El núcleo del negocio retail (pedidos, pagos, inventario) requiere una base de datos relacional que garantice la consistencia ACID. [3]</p>
 </div>
@@ -1046,7 +1049,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect3">
-<h4 id="iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"><a class="anchor" href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"></a>5.3.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</h4>
+<h4 id="iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"><a class="anchor" href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"></a>5.6.2. IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</h4>
 <div class="paragraph">
 <p>La directriz de no escatimar en necesidades se aplica rigurosamente a la seguridad y la observabilidad, componentes críticos para proteger los datos de los clientes y mantener la continuidad operativa.</p>
 </div>
@@ -1090,7 +1093,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect3">
-<h4 id="iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"><a class="anchor" href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"></a>5.3.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</h4>
+<h4 id="iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"><a class="anchor" href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"></a>5.6.3. IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</h4>
 <div class="paragraph">
 <p>La capacidad para monitorear, detectar y responder a amenazas en tiempo real es vital. Esto se logra mediante la plataforma SIEM nativa de Microsoft, Sentinel. [27]</p>
 </div>
@@ -1151,12 +1154,12 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="v-modelo-financiero-consolidado-y-proyección-tco"><a class="anchor" href="#v-modelo-financiero-consolidado-y-proyección-tco"></a>5.4. V. Modelo Financiero Consolidado y Proyección TCO</h3>
+<h3 id="v-modelo-financiero-consolidado-y-proyección-tco"><a class="anchor" href="#v-modelo-financiero-consolidado-y-proyección-tco"></a>5.7. V. Modelo Financiero Consolidado y Proyección TCO</h3>
 <div class="paragraph">
 <p>A continuación, se presenta una estimación del Costo Total de Propiedad (TCO) anual, basado en la tarifa de Pago por Uso (PAYG) y los niveles de servicio <strong>Premium</strong> y <strong>Aislado</strong> seleccionados, antes de la aplicación de descuentos por acuerdos de consumo y licencias.</p>
 </div>
 <div class="sect3">
-<h4 id="v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"><a class="anchor" href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"></a>5.4.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</h4>
+<h4 id="v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"><a class="anchor" href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"></a>5.7.1. V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</h4>
 <div class="paragraph">
 <p>La estimación incluye los principales costos de cómputo y servicios 24/7/365 en una configuración de alta disponibilidad (HA).</p>
 </div>
@@ -1245,7 +1248,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>5.5. Criterios de aceptación</h3>
+<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>5.8. Criterios de aceptación</h3>
 <div class="paragraph">
 <p>Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite completar una solicitud de devolución en menos de tres minutos, con confirmación inmediata y visibilidad completa del estado del trámite en todo momento. La experiencia debe ser consistentemente excelente a través de todos los canales digitales.</p>
 </div>
@@ -1254,9 +1257,9 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect2">
-<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>5.6. Dependencias de Negocio</h3>
+<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>5.9. Dependencias de Negocio</h3>
 <div class="sect3">
-<h4 id="eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"><a class="anchor" href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"></a>5.6.1. Eleccion del lenguaje Elixir para la programacion de la API</h4>
+<h4 id="eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"><a class="anchor" href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"></a>5.9.1. Eleccion del lenguaje Elixir para la programacion de la API</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -1360,7 +1363,7 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect3">
-<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>5.6.2. Eleccion del gestor de base de datos</h4>
+<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>5.9.2. Eleccion del gestor de base de datos</h4>
 <div class="ulist">
 <ul>
 <li>
