@@ -292,15 +292,15 @@ La plataforma de gestión de devoluciones se concibe como un sistema unificado q
 
 El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.
 
-===Nivel de Contexto
+=== Nivel de Contexto
 
 image::real_C4.png[Diagrama de Contexto, width=800, allign=center]
 
-===Nivel de Contenedores
+=== Nivel de Contenedores
 
 image::real_C4(2).png[Diagrama de Contenedores, width=800, allign=center]
 
-===Modelo Entidad-Relacion Base de Datos
+=== Modelo Entidad-Relacion Base de Datos
 
 image::ER.jpg[Modelo ER base de datos, width=800, allign=center]
 
