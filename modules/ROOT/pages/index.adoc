@@ -36,7 +36,7 @@
 
 === Supuestos técnicos validados:
 
-. *Volumen*: 10'000.000 transacciones/día = ~2.777 transacciones/segundo (peak)
+. *Volumen*: 10'000.000 transacciones/día = ~115.7 transacciones/segundo (peak)
 . *Disponibilidad*: Requerimiento 99.99% = ~52 minutos downtime/año máximo
 . *Latencia*: <200ms para 95% de las transacciones
 
@@ -185,9 +185,6 @@
 
 === Persona 1: Cliente Frecuente - "María González"
 
---agregar imagen
-image::customer_persona.png[María González, cliente frecuente, 200, 200]
-
 *Perfil Demográfico*:
 
 * Edad: 35 años
@@ -224,8 +221,6 @@ María realiza la mayoría de sus compras online y valora enormemente su tiempo.
 
 === Persona 2: Supervisor de Tienda - "Carlos Rodríguez"
 
---agregar imagen
-image::supervisor_persona.png[Carlos Rodríguez, supervisor de tienda, 200, 200]
 
 *Perfil Demográfico*:
 
