@@ -28,10 +28,7 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 * Módulo completo de *gestión de apuestas* con fichas.  
 * Cálculo automático de *multiplicadores aleatorios (2 a 5)* por cada “palo” o corredor.  
 * Ejecución multiplataforma: *Android, iOS y Web*.  
-* Música y sonidos originales.  
-* Presentación profesional para stakeholders reales.  
-* Código versionado con *GitHub* y metodología *Trunk Based Development*.  
-* Documentación técnica en *Antora Docs*.
+* Música y sonidos originales.   
 
 === Qué NO es el proyecto
 
@@ -39,15 +36,13 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 * ❌ No incluye transacciones financieras ni pagos digitales.  
 * ❌ No es un sistema móvil nativo (se empaqueta TIC-80).  
 * ❌ No incluye estadísticas avanzadas ni backend en la nube.  
-* ❌ No implementa inteligencia artificial para corredores.
 
 === Supuestos técnicos validados
 
 . TIC-80 permite exportación funcional a Web, Android e iOS.  
-. El performance requerido es mínimo (simulación 2D con sprites).  
-. El couprier (operador humano) avanza la carrera manualmente presionando un botón.  
+. El performance requerido es mínimo unicamente con sprites 2D.   
 . Los multiplicadores se generan aleatoriamente *en cada partida*.  
-. Las fichas ganadas se reportan en pantalla, el canje no es parte del software.
+. Las fichas ganadas se reportan en pantalla.
 
 == MÉTRICAS E IMPACTO
 
@@ -88,64 +83,21 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 
 | Estabilidad multiplataforma
 | 99% funcionamiento sin fallas
-| Cada build
+| Cada plataforma
 
 | Percepción estética
 | “Bonito / adorable”
 | Validado con stakeholders
 |===
 
-=== KPIs Técnicos
-
-|===
-| KPI | Objetivo | Alerta | Crítico
-
-| FPS del juego
-| 60 FPS
-| 45 FPS
-| 30 FPS
-
-| Tamaño archivo exportado
-| < 5 MB
-| 8 MB
-| 10 MB
-
-| Bugs por release
-| 0-2
-| 5
-| 10
-|===
-
-=== Métricas de Adopción
-
-|===
-| Métrica | Meta
-
-| Cantidad de partidas por evento | > 50
-| Usuarios recurrentes | > 40%
-| Personas que canjean premios | > 30%
-| Participación infantil | > 50%
-|===
-
 == USUARIOS Y CLIENTES
 
 === User Personas
 
-==== Persona 1: Operador/Couprier – “Ana la Voluntaria”
-
-*Edad*: 28  
-*Rol*: voluntaria del evento  
-*Uso del sistema*: controla el flujo de la carrera  
-*Necesidades*:
-- Interfaz simple, solo botones esenciales  
-- Poder explicar reglas rápidamente  
-- Tener visibilidad de las apuestas y multiplicadores  
-
-*Escenario ideal:* “Puedo iniciar una carrera en menos de 10 segundos sin preocuparme por fallas.”
-
 ==== Persona 2: Participante del Evento – “Lucas (niño de 10 años)”
 
 *Intereses*: animales, colores, juegos rápidos  
+
 *Necesidades*:  
 - Personajes adorables  
 - Animaciones llamativas  
@@ -157,17 +109,17 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 
 ==== Flujo Principal: Apuesta → Carrera → Resultado
 
-1. El couprier anuncia inicio de partidas.  
-2. Participantes seleccionan un corredor (palo).  
-3. El juego muestra multiplicadores aleatorios (x2 a x5).  
-4. El operador ingresa fichas apostadas.  
+1. El participante anuncia inicio de partidas.  
+2. Participantes seleccionan un corredor (palo)****.  
+3. El juego muestra multiplicadores aleatorios (x2 a x5)****.  
+4. El juego ingresa fichas apostadas.  
 5. Se presiona *“Iniciar Carrera”*.  
-6. Los personajes avanzan cuadro a cuadro al ritmo del operador.  
+6. Los personajes avanzan cuadro a cuadro automaticamente.  
 7. Se determina el ganador.  
 8. El sistema calcula *ganancia o pérdida*.  
-9. Se muestra pantalla de “Premios” o “Lo intentaste”.  
+9. Se muestra pantalla de “Premios” o “Lo intentaste”*****.  
 
-==== Flujo Secundario: Elección de diseño/personajes
+==== Flujo Secundario: Elección de diseño/personajes*****
 
 1. El diseñador prepara sprites temáticos de animales.  
 2. El operador selecciona set visual antes del evento.  
@@ -179,7 +131,6 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 El sistema es un *videojuego TIC-80* multiplataforma con:
 
 * Módulo de apuestas  
-* Módulo de multiplicadores  
 * Simulación visual de carrera  
 * Audio y música original  
 * Pantallas adaptadas a público familiar  
@@ -208,7 +159,7 @@ image::er_model.png[Diagrama ER, width=800]
 
 * RF1: Permitir registrar apuestas por corredor.  
 * RF2: Mostrar multiplicador aleatorio por corredor.  
-* RF3: Iniciar carrera controlada por operador.  
+* RF3: Iniciar carrera.  
 * RF4: Determinar ganador mediante avance aleatorio.  
 * RF5: Calcular ganancias o pérdidas.  
 * RF6: Mostrar resultados en pantalla final.  
@@ -221,13 +172,11 @@ image::er_model.png[Diagrama ER, width=800]
 * RNF2: Interfaz amigable e infantil.  
 * RNF3: Respuesta inmediata (<100 ms).  
 * RNF4: Tamaño del juego <5MB.  
-* RNF5: Código gestionado en GitHub bajo *Trunk Based Development*.  
-* RNF6: Documentación completa en Antora.  
 
 ==== III. Dependencias
 
-* TIC-80 PRO para exportación móvil.  
-* Repositorio GitHub con GitHub Projects.  
+* TIC-80 para exportación.  
+* Repositorio GitHub.  
 * Equipo de sonido para música original.  
 
 == ARQUITECTURA DETALLADA

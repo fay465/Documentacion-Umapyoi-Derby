@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Documentación API Gestión de Devoluciones Retail :: Documentación API Gestión de Devoluciones Retail</title>
+    <title>Documentación Proyecto “Carrera Solidaria de Mascotas” :: Documentación API Gestión de Devoluciones Retail</title>
     <link rel="canonical" href="https://ninjascl.github.io/antora-docs-bootstrap/index.html">
     <meta name="generator" content="Antora 3.1.10">
     <link rel="stylesheet" href="./_/css/site.css">
@@ -85,36 +85,114 @@
   <div class="toc-menu"></div>
 </aside>
 <article class="doc">
-<h1 class="page">Documentación API Gestión de Devoluciones Retail</h1>
+<h1 class="page">Documentación Proyecto “Carrera Solidaria de Mascotas”</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#contexto">CONTEXTO</a>
+<ul class="sectlevel2">
+<li><a href="#problema-del-negocio">Problema del Negocio</a></li>
+</ul>
+</li>
+<li><a href="#hipótesis-y-supuestos">HIPÓTESIS Y SUPUESTOS</a>
+<ul class="sectlevel2">
+<li><a href="#qué-sí-es-el-proyecto">Qué SÍ es el proyecto</a></li>
+<li><a href="#qué-no-es-el-proyecto">Qué NO es el proyecto</a></li>
+<li><a href="#supuestos-técnicos-validados">Supuestos técnicos validados</a></li>
+</ul>
+</li>
+<li><a href="#métricas-e-impacto">MÉTRICAS E IMPACTO</a>
+<ul class="sectlevel2">
+<li><a href="#kpis-del-evento-nivel-negocio">KPIs del Evento (Nivel Negocio)</a></li>
+<li><a href="#kpis-de-experiencia-de-usuario">KPIs de Experiencia de Usuario</a></li>
+<li><a href="#kpis-técnicos">KPIs Técnicos</a></li>
+<li><a href="#métricas-de-adopción">Métricas de Adopción</a></li>
+</ul>
+</li>
+<li><a href="#usuarios-y-clientes">USUARIOS Y CLIENTES</a>
+<ul class="sectlevel2">
+<li><a href="#user-personas">User Personas</a>
+<ul class="sectlevel3">
+<li><a href="#persona-1-operadorcouprier-ana-la-voluntaria">Persona 1: Operador/Couprier – “Ana la Voluntaria”</a></li>
+<li><a href="#persona-2-participante-del-evento-lucas-niño-de-10-años">Persona 2: Participante del Evento – “Lucas (niño de 10 años)”</a></li>
+</ul>
+</li>
+<li><a href="#flujos-de-negocio-críticos">Flujos de Negocio Críticos</a>
+<ul class="sectlevel3">
+<li><a href="#flujo-principal-apuesta-carrera-resultado">Flujo Principal: Apuesta → Carrera → Resultado</a></li>
+<li><a href="#flujo-secundario-elección-de-diseñopersonajes">Flujo Secundario: Elección de diseño/personajes</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#solución-técnica">SOLUCIÓN TÉCNICA</a>
+<ul class="sectlevel2">
+<li><a href="#resumen-de-la-solución">Resumen de la solución</a></li>
+<li><a href="#nivel-de-contexto">Nivel de Contexto</a></li>
+<li><a href="#nivel-de-contenedores">Nivel de Contenedores</a></li>
+<li><a href="#modelo-entidad-relación">Modelo Entidad-Relación</a></li>
+<li><a href="#requisitos-funcionales-restricciones-y-dependencias">Requisitos Funcionales, Restricciones y Dependencias</a>
+<ul class="sectlevel3">
+<li><a href="#i-requisitos-funcionales">I. Requisitos Funcionales</a></li>
+<li><a href="#ii-requisitos-no-funcionales">II. Requisitos No Funcionales</a></li>
+<li><a href="#iii-dependencias">III. Dependencias</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#arquitectura-detallada">ARQUITECTURA DETALLADA</a>
+<ul class="sectlevel2">
+<li><a href="#componentes-principales">Componentes Principales</a></li>
+<li><a href="#roles-del-equipo-y-responsabilidades">Roles del Equipo y Responsabilidades</a></li>
+</ul>
+</li>
+<li><a href="#seguridad-calidad-y-pruebas">SEGURIDAD, CALIDAD Y PRUEBAS</a>
+<ul class="sectlevel2">
+<li><a href="#seguridad">Seguridad</a></li>
+<li><a href="#testing">Testing</a></li>
+<li><a href="#validación-con-stakeholders">Validación con Stakeholders</a></li>
+</ul>
+</li>
+<li><a href="#criterios-de-aceptación">CRITERIOS DE ACEPTACIÓN</a></li>
+<li><a href="#dependencias-de-negocio">DEPENDENCIAS DE NEGOCIO</a>
+<ul class="sectlevel3">
+<li><a href="#lenguaje-y-herramientas">Lenguaje y Herramientas</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="contexto"><a class="anchor" href="#contexto"></a>CONTEXTO</h2>
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="problema-del-negocio"><a class="anchor" href="#problema-del-negocio"></a>Problema del Negocio</h3>
 <div class="paragraph lead">
-<p><strong>Problema Principal</strong>: El proceso actual de devoluciones en la cadena de retail maneja:</p>
+<p><strong>Problema Principal</strong>: Las organizaciones de rescate animal requieren nuevos mecanismos de recaudación que sean:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Tiempo de procesamiento</strong>: 3-5 días hábiles por devolución</p>
+<p><strong>Atractivos</strong> para público general</p>
 </li>
 <li>
-<p><strong>Costo operacional</strong>: $15-20 USD por devolución manual</p>
+<p><strong>Fáciles de operar</strong> durante eventos físicos</p>
 </li>
 <li>
-<p><strong>Tasa de error</strong>: 12% en procesamiento manual</p>
+<p><strong>Bajos en costo tecnológico</strong></p>
 </li>
 <li>
-<p><strong>Insatisfacción cliente</strong>: 35% de clientes reportan mala experiencia en devoluciones</p>
+<p><strong>Transparentes</strong> en la gestión de apuestas y premios</p>
 </li>
 <li>
-<p><strong>Pérdida por fraudes</strong>: 8% del total de devoluciones son fraudulentas no detectadas</p>
+<p><strong>Rápidos de ejecutar</strong> sin depender de infraestructura externa</p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p><strong>Necesidad crítica</strong>: Automatización que reduzca costos operacionales y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.</p>
+<p>Actualmente, muchos eventos benéficos carecen de actividades interactivas que atraigan al público más joven y generen experiencias memorables orientadas a donaciones.</p>
+</div>
+<div class="paragraph">
+<p><strong>Necesidad crítica</strong>: Crear un videojuego divertido, temático y con mecánicas simples donde participantes puedan “apostar” fichas que posteriormente se canjean por premios del evento.</p>
 </div>
 </div>
 </div>
@@ -123,52 +201,79 @@
 <h2 id="hipótesis-y-supuestos"><a class="anchor" href="#hipótesis-y-supuestos"></a>HIPÓTESIS Y SUPUESTOS</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="qué-sí-es-el-proyecto"><a class="anchor" href="#qué-sí-es-el-proyecto"></a>Qué SÍ es el proyecto:</h3>
+<h3 id="qué-sí-es-el-proyecto"><a class="anchor" href="#qué-sí-es-el-proyecto"></a>Qué SÍ es el proyecto</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Sistema transaccional</strong> de alta velocidad para gestión de devoluciones</p>
+<p>Un <strong>videojuego arcade/simulación</strong> desarrollado en TIC-80.</p>
 </li>
 <li>
-<p><strong>Motor de reglas</strong> para validación automática de políticas (5 dias para la devolucion)</p>
+<p>Reproducción de una <strong>carrera de personajes adorables</strong> (perritos, gatitos y animales tiernos).</p>
 </li>
 <li>
-<p><strong>Integrador</strong> con sistemas de inventario, ventas y devoluciones</p>
+<p>Módulo completo de <strong>gestión de apuestas</strong> con fichas.</p>
+</li>
+<li>
+<p>Cálculo automático de <strong>multiplicadores aleatorios (2 a 5)</strong> por cada “palo” o corredor.</p>
+</li>
+<li>
+<p>Ejecución multiplataforma: <strong>Android, iOS y Web</strong>.</p>
+</li>
+<li>
+<p>Música y sonidos originales.</p>
+</li>
+<li>
+<p>Presentación profesional para stakeholders reales.</p>
+</li>
+<li>
+<p>Código versionado con <strong>GitHub</strong> y metodología <strong>Trunk Based Development</strong>.</p>
+</li>
+<li>
+<p>Documentación técnica en <strong>Antora Docs</strong>.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="qué-no-es-el-proyecto"><a class="anchor" href="#qué-no-es-el-proyecto"></a>Qué NO es el proyecto:</h3>
+<h3 id="qué-no-es-el-proyecto"><a class="anchor" href="#qué-no-es-el-proyecto"></a>Qué NO es el proyecto</h3>
 <div class="ulist">
 <ul>
 <li>
-<p>❌ No es un sistema de ventas POS</p>
+<p>❌ No es un sistema real de apuestas con dinero.</p>
 </li>
 <li>
-<p>❌ No es un ERP completo</p>
+<p>❌ No incluye transacciones financieras ni pagos digitales.</p>
 </li>
 <li>
-<p>❌ No maneja logística física</p>
+<p>❌ No es un sistema móvil nativo (se empaqueta TIC-80).</p>
 </li>
 <li>
-<p>❌ No reemplaza sistemas contables existentes</p>
+<p>❌ No incluye estadísticas avanzadas ni backend en la nube.</p>
+</li>
+<li>
+<p>❌ No implementa inteligencia artificial para corredores.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="supuestos-técnicos-validados"><a class="anchor" href="#supuestos-técnicos-validados"></a>Supuestos técnicos validados:</h3>
+<h3 id="supuestos-técnicos-validados"><a class="anchor" href="#supuestos-técnicos-validados"></a>Supuestos técnicos validados</h3>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><strong>Volumen</strong>: 10'000.000 transacciones/día = ~115.7 transacciones/segundo (peak)</p>
+<p>TIC-80 permite exportación funcional a Web, Android e iOS.</p>
 </li>
 <li>
-<p><strong>Disponibilidad</strong>: Requerimiento 99.99% = ~52 minutos downtime/año máximo</p>
+<p>El performance requerido es mínimo (simulación 2D con sprites).</p>
 </li>
 <li>
-<p><strong>Latencia</strong>: &lt;200ms para 95% de las transacciones</p>
+<p>El couprier (operador humano) avanza la carrera manualmente presionando un botón.</p>
+</li>
+<li>
+<p>Los multiplicadores se generan aleatoriamente <strong>en cada partida</strong>.</p>
+</li>
+<li>
+<p>Las fichas ganadas se reportan en pantalla, el canje no es parte del software.</p>
 </li>
 </ol>
 </div>
@@ -179,52 +284,40 @@
 <h2 id="métricas-e-impacto"><a class="anchor" href="#métricas-e-impacto"></a>MÉTRICAS E IMPACTO</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="kpis-de-negocio-críticos"><a class="anchor" href="#kpis-de-negocio-críticos"></a>KPIs de Negocio Críticos</h3>
+<h3 id="kpis-del-evento-nivel-negocio"><a class="anchor" href="#kpis-del-evento-nivel-negocio"></a>KPIs del Evento (Nivel Negocio)</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Categoría</th>
 <th class="tableblock halign-left valign-top">KPI</th>
 <th class="tableblock halign-left valign-top">Línea Base</th>
-<th class="tableblock halign-left valign-top">Meta 6 meses</th>
+<th class="tableblock halign-left valign-top">Meta</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia Operacional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo promedio procesamiento (horas)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">72-120</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;24</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participación del público</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Actividades tradicionales tienen baja interacción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 60% de asistentes participan</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Costo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Costo por devolución (USD)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$18</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$7</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Recaudación promedio por actividad</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; USD $50</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; USD $200 por sesión</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Automatización</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa auto-aprobación (%)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">75%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo promedio por partida</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">No aplica</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; 3 minutos</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Calidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa error procesamiento (%)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2%</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Fraude</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Efectividad detección fraudes (%)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">65%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">90%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nivel de satisfacción</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sin medición previa</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 4.5/5</p></td>
 </tr>
 </tbody>
 </table>
@@ -233,55 +326,49 @@
 <h3 id="kpis-de-experiencia-de-usuario"><a class="anchor" href="#kpis-de-experiencia-de-usuario"></a>KPIs de Experiencia de Usuario</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">KPI</th>
-<th class="tableblock halign-left valign-top">Definición</th>
 <th class="tableblock halign-left valign-top">Meta</th>
 <th class="tableblock halign-left valign-top">Frecuencia</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">CSAT Devoluciones</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Satisfacción post-devolución (1-5)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4.5/5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Diaria</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Claridad en reglas de apuesta</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">100% entendible sin instrucciones orales</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cada partida</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Abandono</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitudes iniciadas no completadas (%)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;5%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Semanal</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo para iniciar una carrera</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; 10 segundos</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Permanente</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Primera Respuesta</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Minutos hasta primer contacto</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;30 min</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Diaria</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Estabilidad multiplataforma</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">99% funcionamiento sin fallas</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cada build</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NPS Proceso</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Net Promoter Score específico</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">+50</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mensual</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Percepción estética</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">“Bonito / adorable”</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Validado con stakeholders</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
-<h3 id="kpis-técnicos-de-performance"><a class="anchor" href="#kpis-técnicos-de-performance"></a>KPIs Técnicos de Performance</h3>
+<h3 id="kpis-técnicos"><a class="anchor" href="#kpis-técnicos"></a>KPIs Técnicos</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 40%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
+<col style="width: 25%;">
 </colgroup>
 <thead>
 <tr>
@@ -293,73 +380,22 @@
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Latencia P95</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;200ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">250ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">500ms</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">FPS del juego</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">60 FPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">45 FPS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">30 FPS</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Disponibilidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">99.99%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">99.9%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">99.5%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Tamaño archivo exportado</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; 5 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">8 MB</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10 MB</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Throughput Máximo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">150 trans/segundo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">120 trans/segundo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100 trans/segundo</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Error</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;0.1%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.5%</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1%</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Respuesta BD</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;50ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100ms</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">200ms</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="kpis-de-eficiencia-del-sistema"><a class="anchor" href="#kpis-de-eficiencia-del-sistema"></a>KPIs de Eficiencia del Sistema</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 60%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">KPI</th>
-<th class="tableblock halign-left valign-top">Propósito</th>
-<th class="tableblock halign-left valign-top">Meta</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Costo por Transacción</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Eficiencia infraestructura</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;$0.001</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Utilización Recursos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Optimización capacidad</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">65-75%</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tiempo Escalado</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Segundos para escalar automático</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt;30s</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Cache Hit</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Efectividad cache Redis</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;95%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bugs por release</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0-2</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
 </tr>
 </tbody>
 </table>
@@ -368,37 +404,31 @@
 <h3 id="métricas-de-adopción"><a class="anchor" href="#métricas-de-adopción"></a>Métricas de Adopción</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 20%;">
-<col style="width: 60%;">
-<col style="width: 20%;">
+<col style="width: 50%;">
+<col style="width: 50%;">
 </colgroup>
 <thead>
 <tr>
 <th class="tableblock halign-left valign-top">Métrica</th>
-<th class="tableblock halign-left valign-top">Indicador de Evolución</th>
-<th class="tableblock halign-left valign-top">Meta 3 meses</th>
+<th class="tableblock halign-left valign-top">Meta</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Penetración Digital</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">% devoluciones por app vs tienda física</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cantidad de partidas por evento</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 50</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Uso Self-Service</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Solicitudes completadas sin asistencia</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">80%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Usuarios recurrentes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 40%</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tasa Retención</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Clientes que repiten proceso</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">70%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Personas que canjean premios</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 30%</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adopción por Tienda</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">% tiendas usando sistema activamente</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100%</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Participación infantil</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 50%</p></td>
 </tr>
 </tbody>
 </table>
@@ -410,213 +440,82 @@
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="user-personas"><a class="anchor" href="#user-personas"></a>User Personas</h3>
-
-</div>
-<div class="sect2">
-<h3 id="persona-1-cliente-frecuente-maría-gonzález"><a class="anchor" href="#persona-1-cliente-frecuente-maría-gonzález"></a>Persona 1: Cliente Frecuente - "María González"</h3>
+<div class="sect3">
+<h4 id="persona-1-operadorcouprier-ana-la-voluntaria"><a class="anchor" href="#persona-1-operadorcouprier-ana-la-voluntaria"></a>Persona 1: Operador/Couprier – “Ana la Voluntaria”</h4>
 <div class="paragraph">
-<p><strong>Perfil Demográfico</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Edad: 35 años</p>
-</li>
-<li>
-<p>Ocupación: Ejecutiva en empresa tecnológica</p>
-</li>
-<li>
-<p>Ubicación: Urbana, ciudad principal</p>
-</li>
-<li>
-<p>Nivel Tecnológico: Alta competencia digital</p>
-</li>
-<li>
-<p>Frecuencia Compras: 2-3 veces por semana</p>
-</li>
-</ul>
+<p><strong>Edad</strong>: 28
+<strong>Rol</strong>: voluntaria del evento
+<strong>Uso del sistema</strong>: controla el flujo de la carrera
+<strong>Necesidades</strong>:
+- Interfaz simple, solo botones esenciales
+- Poder explicar reglas rápidamente
+- Tener visibilidad de las apuestas y multiplicadores</p>
 </div>
 <div class="paragraph">
-<p><strong>Contexto y Comportamiento</strong>:
-María realiza la mayoría de sus compras online y valora enormemente su tiempo. Como madre trabajadora, necesita procesos eficientes que se adapten a su apretada agenda. Prefiere resolver problemas por sí misma usando su smartphone antes que contactar servicio al cliente.</p>
+<p><strong>Escenario ideal:</strong> “Puedo iniciar una carrera en menos de 10 segundos sin preocuparme por fallas.”</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="persona-2-participante-del-evento-lucas-niño-de-10-años"><a class="anchor" href="#persona-2-participante-del-evento-lucas-niño-de-10-años"></a>Persona 2: Participante del Evento – “Lucas (niño de 10 años)”</h4>
+<div class="paragraph">
+<p><strong>Intereses</strong>: animales, colores, juegos rápidos
+<strong>Necesidades</strong>:
+- Personajes adorables
+- Animaciones llamativas
+- Reglas muy simples</p>
 </div>
 <div class="paragraph">
-<p><strong>Horarios de Actividad</strong>:</p>
+<p><strong>Escenario ideal:</strong> “Elijo un perrito, veo si gano y me emociono por el premio.”</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Mañanas (7:00-9:00): Revisión rápida en el transporte</p>
-</li>
-<li>
-<p>Tardes (18:00-20:00): Compras y gestiones desde casa</p>
-</li>
-<li>
-<p>Fines de semana: Compras familiares y planificación</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Expectativas Clave</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Procesos digitales sin necesidad de impresión o papeleo</p>
-</li>
-<li>
-<p>Transparencia total en el estado de sus gestiones</p>
-</li>
-<li>
-<p>Resolución en rapida</p>
-</li>
-<li>
-<p>Opciones flexibles de reembolso o cambio</p>
-</li>
-<li>
-<p>Comunicación proactiva sin tener que hacer seguimiento</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Requerimientos</strong>:
-* Tener que imprimir formularios o visitar tiendas físicas para trámites simples
-* Falta de visibilidad sobre el estado de sus devoluciones
-* Tiempos de respuesta lentos que afectan su planificación financiera
-* Diferentes procesos según el producto o categoría</p>
-</div>
-<div class="paragraph">
-<p><strong>Escenario de Uso Ideal</strong>:
-"Quiero poder gestionar una devolución durante mi viaje en metro matutino, recibir confirmación inmediata y saber exactamente cuándo y cómo recibiré mi reembolso, todo desde mi teléfono sin tener que llamar a nadie"</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="persona-2-supervisor-de-tienda-carlos-rodríguez"><a class="anchor" href="#persona-2-supervisor-de-tienda-carlos-rodríguez"></a>Persona 2: Supervisor de Tienda - "Carlos Rodríguez"</h3>
-<div class="paragraph">
-<p><strong>Perfil Demográfico</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Edad: 42 años</p>
-</li>
-<li>
-<p>Ocupación: Supervisor de operaciones en tienda flagship</p>
-</li>
-<li>
-<p>Experiencia: 15 años en retail</p>
-</li>
-<li>
-<p>Ubicación: Tienda principal en centro comercial</p>
-</li>
-<li>
-<p>Dispositivo Principal: Tablet corporativa y terminal POS</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Contexto y Responsabilidades</strong>:
-Carlos gestiona un equipo de personas en la tienda de mayor volumen de la cadena. Su desempeño se mide por métricas operativas como tiempo de procesamiento, satisfacción del cliente y eficiencia del personal. Trabaja bajo presión constante para balancear la experiencia del cliente con los procedimientos operativos.</p>
-</div>
-<div class="paragraph">
-<p><strong>Flujo de Trabajo Diario</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>8:00-10:00: Revisión métricas del día anterior y planificación</p>
-</li>
-<li>
-<p>10:00-14:00: Supervisión piso de ventas y resolución de incidencias</p>
-</li>
-<li>
-<p>14:00-16:00: Reuniones operativas y reportes</p>
-</li>
-<li>
-<p>16:00-18:00: Capacitación equipo y cierre operativo</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Requerimientos</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Visión en tiempo real del volumen de devoluciones pendientes</p>
-</li>
-<li>
-<p>Herramientas para priorizar casos urgentes o de alto valor</p>
-</li>
-<li>
-<p>Capacidad de tomar decisiones excepcionales con información completa</p>
-</li>
-<li>
-<p>Reportes automáticos de desempeño de su equipo</p>
-</li>
-<li>
-<p>Integración fluida con sistemas de inventario y caja</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Problemas organizacionales</strong>:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Sistemas desconectados que requieren ingresar la misma información múltiples veces</p>
-</li>
-<li>
-<p>Falta de visibilidad sobre el historial completo del cliente</p>
-</li>
-<li>
-<p>Procesos manuales que consumen tiempo valioso de atención al cliente</p>
-</li>
-<li>
-<p>Dificultad para escalar problemas complejos a áreas especializadas</p>
-</li>
-<li>
-<p>Limitada capacidad de análisis para identificar patrones o oportunidades de mejora</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Escenario de Uso Ideal</strong>:
-"Necesito tener la informacion instantáneamente del estado de todas las devoluciones en mi tienda, me alerte sobre casos que requieren mi atención específica y me permita resolver la mayoría de las situaciones con un par de clicks, manteniendo el flujo de la tienda"</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="flujos-de-negocio-críticos"><a class="anchor" href="#flujos-de-negocio-críticos"></a>Flujos de Negocio Críticos</h3>
 <div class="sect3">
-<h4 id="flujo-principal-de-devolución"><a class="anchor" href="#flujo-principal-de-devolución"></a>Flujo Principal de Devolución</h4>
-<div class="paragraph">
-<p><strong>Inicio del Proceso</strong>:
-El flujo se activa cuando un cliente solicita una devolución a través de cualquiera de los canales habilitados: aplicación móvil, sitio web o directamente en tienda física. El sistema captura automáticamente la información básica de la transacción original.</p>
-</div>
-<div class="paragraph">
-<p><strong>Validación Inicial y Crítica</strong>:
-La primera y única regla automática aplicada actualmente es la validación del período de 5 días desde la fecha de compra. El sistema calcula exactamente el tiempo transcurrido y determina si la solicitud cumple con este requisito fundamental.</p>
-</div>
-<div class="paragraph">
-<p><strong>Escenarios de Validación:</strong></p>
-</div>
-<div class="ulist">
-<ul>
+<h4 id="flujo-principal-apuesta-carrera-resultado"><a class="anchor" href="#flujo-principal-apuesta-carrera-resultado"></a>Flujo Principal: Apuesta → Carrera → Resultado</h4>
+<div class="olist arabic">
+<ol class="arabic">
 <li>
-<p>Aprobado automático: Si la solicitud está dentro del período de 5 días</p>
+<p>El couprier anuncia inicio de partidas.</p>
 </li>
 <li>
-<p>Rechazo automático: Si ha transcurrido más de 5 días desde la compra</p>
+<p>Participantes seleccionan un corredor (palo).</p>
 </li>
 <li>
-<p>Escalación manual: Casos especiales que requieren supervisión humana</p>
+<p>El juego muestra multiplicadores aleatorios (x2 a x5).</p>
 </li>
-</ul>
+<li>
+<p>El operador ingresa fichas apostadas.</p>
+</li>
+<li>
+<p>Se presiona <strong>“Iniciar Carrera”</strong>.</p>
+</li>
+<li>
+<p>Los personajes avanzan cuadro a cuadro al ritmo del operador.</p>
+</li>
+<li>
+<p>Se determina el ganador.</p>
+</li>
+<li>
+<p>El sistema calcula <strong>ganancia o pérdida</strong>.</p>
+</li>
+<li>
+<p>Se muestra pantalla de “Premios” o “Lo intentaste”.</p>
+</li>
+</ol>
 </div>
-<div class="paragraph">
-<p><strong>Proceso de Aprobación</strong>:
-Para las solicitudes que pasan la validación inicial, el sistema genera automáticamente un código QR único que sirve como comprobante digital. Este código contiene toda la información necesaria para procesar la devolución en tienda.</p>
+</div>
+<div class="sect3">
+<h4 id="flujo-secundario-elección-de-diseñopersonajes"><a class="anchor" href="#flujo-secundario-elección-de-diseñopersonajes"></a>Flujo Secundario: Elección de diseño/personajes</h4>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>El diseñador prepara sprites temáticos de animales.</p>
+</li>
+<li>
+<p>El operador selecciona set visual antes del evento.</p>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -628,722 +527,134 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 <div class="sect2">
 <h3 id="resumen-de-la-solución"><a class="anchor" href="#resumen-de-la-solución"></a>Resumen de la solución</h3>
 <div class="paragraph">
-<p>La plataforma de gestión de devoluciones se concibe como un sistema unificado que transforma la experiencia del cliente y optimiza las operaciones internas del retail. La solución aborda las necesidades fundamentales mediante un proceso completamente digitalizado que elimina las dificultades actuales, proporcionando transparencia total y agilidad en cada etapa. Para el negocio, se establece una infraestructura escalable que reduce costos operativos mediante automatización inteligente y provee capacidades avanzadas de analítica para la toma de decisiones.</p>
+<p>El sistema es un <strong>videojuego TIC-80</strong> multiplataforma con:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Módulo de apuestas</p>
+</li>
+<li>
+<p>Módulo de multiplicadores</p>
+</li>
+<li>
+<p>Simulación visual de carrera</p>
+</li>
+<li>
+<p>Audio y música original</p>
+</li>
+<li>
+<p>Pantallas adaptadas a público familiar</p>
+</li>
+<li>
+<p>Animaciones simples y fluidas</p>
+</li>
+<li>
+<p>Exportación para Web, Android e iOS</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
-<p>El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.</p>
+<p>Permite operación en eventos benéficos sin conexión a internet.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="nivel-de-contexto"><a class="anchor" href="#nivel-de-contexto"></a>Nivel de Contexto</h3>
-<div class="imageblock">
+<div class="imageblock unresolved">
 <div class="content">
-<img src="_images/real_C4.png" alt="Diagrama de Contexto" width="800">
+<img src="c4_context.png" alt="Diagrama C4 - Contexto" width="800">
 </div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="nivel-de-contenedores"><a class="anchor" href="#nivel-de-contenedores"></a>Nivel de Contenedores</h3>
-<div class="imageblock">
+<div class="imageblock unresolved">
 <div class="content">
-<img src="_images/real_C4(2).png" alt="Diagrama de Contenedores" width="800">
+<img src="c4_containers.png" alt="Diagrama C4 - Contenedores" width="800">
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="modelo-entidad-relacion-base-de-datos"><a class="anchor" href="#modelo-entidad-relacion-base-de-datos"></a>Modelo Entidad-Relacion Base de Datos</h3>
-<div class="imageblock">
+<h3 id="modelo-entidad-relación"><a class="anchor" href="#modelo-entidad-relación"></a>Modelo Entidad-Relación</h3>
+<div class="imageblock unresolved">
 <div class="content">
-<img src="_images/ER.jpg" alt="Modelo ER base de datos" width="800">
+<img src="er_model.png" alt="Diagrama ER" width="800">
 </div>
+</div>
+<div class="paragraph">
+<p>(Este modelo es mínimo; incluye Apuesta, Multiplicador, Corredor, Resultado y Partida)</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="requisitos-funcionales-restricciones-y-dependencias"><a class="anchor" href="#requisitos-funcionales-restricciones-y-dependencias"></a>Requisitos funcionales, restricciones y dependencias</h3>
+<h3 id="requisitos-funcionales-restricciones-y-dependencias"><a class="anchor" href="#requisitos-funcionales-restricciones-y-dependencias"></a>Requisitos Funcionales, Restricciones y Dependencias</h3>
 <div class="sect3">
-<h4 id="i-carga-de-trabajo-crítica-10m-txdía"><a class="anchor" href="#i-carga-de-trabajo-crítica-10m-txdía"></a>I. Carga de Trabajo Crítica (10M Tx/Día)</h4>
-<div class="paragraph">
-<p>La gestión de 10 millones de transacciones diarias demanda una planificación rigurosa de la capacidad. El volumen transaccional en el sector minorista es inherentemente variable, con picos de demanda que superan con creces el promedio estadístico.</p>
-</div>
+<h4 id="i-requisitos-funcionales"><a class="anchor" href="#i-requisitos-funcionales"></a>I. Requisitos Funcionales</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Rendimiento Promedio:</strong> Un volumen diario de 10,000,000 de transacciones se traduce en un rendimiento promedio constante de aproximadamente 115.7 transacciones por segundo (TPS).</p>
+<p>RF1: Permitir registrar apuestas por corredor.</p>
 </li>
 <li>
-<p><strong>Capacidad de Pico:</strong> El dimensionamiento de la arquitectura debe basarse en la capacidad de manejar picos sostenidos. Se estima que, durante eventos críticos como lanzamientos de productos, ofertas estacionales o el Black Friday, la demanda puede escalar entre 4 y 10 veces el promedio. Por lo tanto, la arquitectura se diseñará para un pico sostenido de <strong>500 TPS</strong>, manteniendo la capacidad elástica para manejar ráfagas de hasta <strong>1,000 TPS</strong> sin degradación del servicio.</p>
+<p>RF2: Mostrar multiplicador aleatorio por corredor.</p>
 </li>
 <li>
-<p><strong>Requerimientos de Datos:</strong> En el contexto de bases de datos NoSQL como Azure Cosmos DB, estas 10 millones de operaciones diarias pueden requerir una línea base de aproximadamente 2,300 Request Units por segundo (RU/s), asumiendo un costo conservador de 20 RU por transacción de escritura/lectura. La capacidad de pico debe ascender a 125,000 RU/s, lo que justifica el uso de capacidades de escalamiento automático (Autoscale).</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>La siguiente tabla resume los requisitos de <strong>throughput</strong> identificados:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Tabla 1: Estimación de Requisitos de Throughput para 10 Millones de Transacciones Diarias</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Métrica</th>
-<th class="tableblock halign-left valign-top">Volumen Diario (10M)</th>
-<th class="tableblock halign-left valign-top">Rendimiento Promedio (TPS/RU/s)</th>
-<th class="tableblock halign-left valign-top">Capacidad de Pico Estimada (TPS/RU/s)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Transacciones OLTP (Promedio)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10,000,000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">approx 115 TPS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">500 TPS (Mínimo, con factor de $4.3 \times$)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Requerimiento de BBDD (Reads/Writes)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10,000,000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">approx 2,300  RU/s (Solo writes, 20 RU/transacción)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">125,000$ RU/s (Pico flexible con Autoscale)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Ingesta de Logs/Datos Analíticos</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.78$ MB/s</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">500 - 750 GB/día (Estimación Sentinel Enterprise)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="ii-diseño-arquitectónico-de-alta-disponibilidad-y-marco-de-cómputo"><a class="anchor" href="#ii-diseño-arquitectónico-de-alta-disponibilidad-y-marco-de-cómputo"></a>II. Diseño Arquitectónico de Alta Disponibilidad y Marco de Cómputo</h4>
-<div class="paragraph">
-<p>La plataforma se desplegará bajo un modelo de redundancia geográfica (HA/DR), utilizando Zonas de Disponibilidad (AZs) dentro de una región primaria y replicación activa-pasiva o activa-activa hacia una región secundaria. Este enfoque garantiza un SLA de tiempo de actividad superior.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ii-a-capa-de-aplicación-compute-and-hosting"><a class="anchor" href="#ii-a-capa-de-aplicación-compute-and-hosting"></a>II.A. Capa de Aplicación (Compute and Hosting)</h4>
-<div class="paragraph">
-<p>La elección del servicio de cómputo para la lógica de negocio y la capa de presentación debe reflejar el compromiso con la máxima seguridad y rendimiento. Las dos opciones principales de Microsoft que cumplen con el criterio de alta inversión son Azure App Service Isolated v2 o Azure Kubernetes Service (AKS) Premium.</p>
-</div>
-<div class="sect4">
-<h5 id="azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura"><a class="anchor" href="#azure-app-service-isolated-v2-recomendado-para-arquitectura-paas-pura"></a>Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)</h5>
-<div class="paragraph">
-<p>La selección de App Service Isolated v2 se justifica por la necesidad de aislamiento de red y recursos dedicados. Este nivel proporciona entornos de servicio de aplicaciones dedicados y completamente aislados dentro de una red virtual de Azure (VNet), lo cual es crucial para requisitos regulatorios de seguridad y cumplimiento en el sector retail.</p>
-</div>
-<div class="paragraph">
-<p>Para gestionar picos de 500 a 1,000 TPS, es necesario un plan de servicio con instancias grandes que pueda escalar horizontalmente hasta el límite de 100 instancias ofrecido por el entorno Isolated.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>SKU Base:</strong> Se recomienda el plan de servicio I4v2. Esta es una de las SKUs más potentes disponibles en la capa Isolated v2, con 16 Cores y 64 GB de RAM por instancia.</p>
+<p>RF3: Iniciar carrera controlada por operador.</p>
 </li>
 <li>
-<p><strong>Dimensionamiento Inicial y Costo Base:</strong> Para la configuración base de alta disponibilidad en la región primaria, se dimensionan 4 instancias activas. Asumiendo que la aplicación utiliza Windows Server (a menudo el caso para migraciones.NET), se utiliza la tarifa más alta de pago por uso (PAYG) para este cálculo inicial.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Costo de I4v2 (Windows, PAYG): $3,282.08$ por mes.</p>
+<p>RF4: Determinar ganador mediante avance aleatorio.</p>
 </li>
 <li>
-<p><strong>Costo de Cómputo Base:</strong> $3,282.08/mes  4 instancias approx 13,128.32 por mes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores"><a class="anchor" href="#azure-kubernetes-service-aks-premium-opción-alternativa-para-contenedores"></a>Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)</h5>
-<div class="paragraph">
-<p>Si la estrategia de desarrollo se centra en microservicios y contenedores, AKS es la opción de misión crítica. Para cumplir con la alta disponibilidad y la capacidad de escala hasta 5,000 nodos, se requiere el nivel <strong>Standard Tier</strong>. Sin embargo, dada la directriz de "no escatimar", se recomienda el <strong>Premium Tier</strong> por sus beneficios de soporte a largo plazo (LTS).</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Costo del Plano de Control (Control Plane):</strong> El Premium Tier se factura a $\$ 0.60$ por <strong>cluster</strong> por hora.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Costo Mensual del Control Plane (Premium): $0.60/hora times 730 horas/mes approx 438.00 USD por <strong>cluster</strong>.</p>
-</li>
-</ul>
-</div>
+<p>RF5: Calcular ganancias o pérdidas.</p>
 </li>
 <li>
-<p><strong>Costo Real del Cómputo:</strong> El costo dominante en AKS es el de los Nodos de Agente (VMs) que ejecutan los contenedores, que deberían ser dimensionados de forma similar a los recursos I4v2 (VMs D-series o similares).</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 2. Tabla 2: Detalle de Costos de Cómputo (App Tier)</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Componente</th>
-<th class="tableblock halign-left valign-top">SKU / Nivel de Servicio</th>
-<th class="tableblock halign-left valign-top">Especificaciones Base</th>
-<th class="tableblock halign-left valign-top">Costo Mensual PAYG (USD)</th>
-<th class="tableblock halign-left valign-top">Base</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">App Hosting Principal (PaaS)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">App Service Isolated v2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">I4v2 (16 Cores, 64 GB RAM)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$3,282.08</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4 Instancias Mínimas</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Control Plane Contenedores (Opción Alt.)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">AKS Premium Tier</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SLA y LTS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$438.00</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 Cluster</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Carga/Balanceo Global</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Front Door / Traffic Manager</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Basado en tráfico y reglas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Varía (No cotizado)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">N/A</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="iii-especificación-detallada-de-componentes-paas-de-misión-crítica"><a class="anchor" href="#iii-especificación-detallada-de-componentes-paas-de-misión-crítica"></a>III. Especificación Detallada de Componentes PaaS de Misión Crítica</h3>
-<div class="paragraph">
-<p>La arquitectura de alta inversión exige soluciones de datos que puedan crecer linealmente con la carga transaccional masiva.</p>
-</div>
-<div class="sect3">
-<h4 id="iii-a-capa-de-datos-transaccionales-oltp-core"><a class="anchor" href="#iii-a-capa-de-datos-transaccionales-oltp-core"></a>III.A. Capa de Datos Transaccionales (OLTP Core)</h4>
-<div class="paragraph">
-<p>El núcleo del negocio retail (pedidos, pagos, inventario) requiere una base de datos relacional que garantice la consistencia ACID.</p>
-</div>
-<div class="sect4">
-<h5 id="1-azure-sql-database-hyperscale"><a class="anchor" href="#1-azure-sql-database-hyperscale"></a>1. Azure SQL Database Hyperscale</h5>
-<div class="paragraph">
-<p>Azure SQL Database Hyperscale es la elección de misión crítica para esta escala. Su principal ventaja es la separación de cómputo y almacenamiento, lo que permite un escalamiento de almacenamiento de hasta 100 TB sin un aumento proporcional de los recursos de cómputo, y sin afectar la latencia transaccional.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Dimensionamiento de Cómputo:</strong> Para un volumen de 500+ TPS sostenido, se requiere un alto compromiso de vCores, típicamente utilizando la serie Standard (Gen 5). Un punto de partida conservador, basado en el requerimiento de alto rendimiento, es 12 vCores.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Costo de Cómputo (12 vCores): $\$ 3.3916$ por hora.</p>
+<p>RF6: Mostrar resultados en pantalla final.</p>
 </li>
 <li>
-<p>Costo Mensual (12 vCores, Solo Principal): $3.3916/hora times 730 horas/mes approx 2,475.80 USD/mes.</p>
-</li>
-</ul>
-</div>
+<p>RF7: Reproducir música y efectos de sonido.</p>
 </li>
 <li>
-<p><strong>Alta Disponibilidad:</strong> Para garantizar el SLA, se requiere la configuración de réplicas secundarias de alta disponibilidad (HA). Esto efectivamente duplica el costo de cómputo.</p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Costo Mensual Total OLTP (2 Réplicas HA):</strong> $2,475.80 times 2 approx 4,951.60$ USD/mes (solo cómputo).</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Una consideración financiera importante es que el almacenamiento de bases de datos en Hyperscale es escalable y el costo de <strong>backup</strong> está incluido inicialmente hasta el tamaño máximo de los datos. Esto significa que el principal factor de costo recurrente es el componente de vCores, lo que dirige la estrategia de optimización financiera hacia los beneficios de licencia (como Azure Hybrid Benefit, discutido en la Sección VII).</p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="2-azure-cosmos-db-nosql-y-baja-latencia-global"><a class="anchor" href="#2-azure-cosmos-db-nosql-y-baja-latencia-global"></a>2. Azure Cosmos DB (NoSQL y Baja Latencia Global)</h5>
-<div class="paragraph">
-<p>Azure Cosmos DB es fundamental para cargas de trabajo de retail que requieren latencia ultrabaja y escalamiento global para datos no relacionales (ej. perfiles de usuario, carritos de compra, catálogo de productos). La alta inversión en este servicio se justifica por su capacidad de ofrecer disponibilidad inigualable y replicación de escritura multi-región.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Dimensionamiento de Throughput:</strong> Para soportar la línea base de 10 millones de operaciones de escritura diarias y absorber picos, se dimensiona un <strong>throughput</strong> de <strong>10,000 RU/s</strong> utilizando el modelo <strong>Autoscale Provisioned</strong>. El uso de Autoscale es preferible al <strong>Standard Provisioned</strong> porque permite que la capacidad elástica absorba los picos de tráfico de retail de manera eficiente, optimizando el costo operativo al tiempo que garantiza el rendimiento.</p>
-</li>
-<li>
-<p><strong>Configuración de Alta Inversión:</strong> Se recomienda la replicación en 4 regiones (Región principal + 3 regiones secundarias) para maximizar la redundancia geográfica (DR) y la latencia de lectura global.</p>
-</li>
-<li>
-<p><strong>Costo Estimado (4 Regiones):</strong> Basado en el ejemplo de replicación de 10K RU/s y 4 TB de almacenamiento distribuido (1 TB principal, 3 TB secundarios), el costo mensual de <strong>throughput</strong> y almacenamiento es de aproximadamente $3,404.80$ USD.</p>
-</li>
-</ul>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 3. Tabla 3: Costo de BBDD OLTP y NoSQL de Hiperescala</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Base de Datos</th>
-<th class="tableblock halign-left valign-top">SKU / Servicio</th>
-<th class="tableblock halign-left valign-top">Configuración Principal</th>
-<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OLTP Relacional</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure SQL Hyperscale (Gen5)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">12 vCores (Compute HA, 2 Réplicas)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$ 4,951.60</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NoSQL / Global</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Cosmos DB Autoscale</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10K RU/s (4 Regiones, 4 TB Storage)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$ 3,404.80</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Subtotal Datos</strong></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$8,356.40$</strong></p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"><a class="anchor" href="#iv-marco-integral-de-seguridad-y-observabilidad-de-nivel-empresarial"></a>IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial</h4>
-<div class="paragraph">
-<p>La directriz de no escatimar en necesidades se aplica rigurosamente a la seguridad y la observabilidad, componentes críticos para proteger los datos de los clientes y mantener la continuidad operativa.</p>
-</div>
-<div class="sect4">
-<h5 id="iv-a-seguridad-perimetral-y-mitigación-de-ataques"><a class="anchor" href="#iv-a-seguridad-perimetral-y-mitigación-de-ataques"></a>IV.A. Seguridad Perimetral y Mitigación de Ataques</h5>
-<div class="sect5">
-<h6 id="1-azure-ddos-protection-standard"><a class="anchor" href="#1-azure-ddos-protection-standard"></a>1. Azure DDoS Protection Standard</h6>
-<div class="paragraph">
-<p>Dado que la empresa retail está expuesta al tráfico público de Internet, la protección contra ataques de Denegación de Servicio Distribuido (DDoS) es obligatoria.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Costo Fijo:</strong> El nivel <strong>DDoS Protection Standard</strong> impone un cargo fijo de $2,944 por mes, que incluye protección para 100 recursos de IP pública.</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>La adopción de este plan de alta inversión tiene un beneficio adicional de optimización de costos. Cuando DDoS Network Protection está habilitado en la VNet, el Web Application Firewall (WAF) desplegado en Application Gateway se factura a la tarifa de Application Gateway Standard v2, en lugar de la tarifa más alta de WAF. Este descuento parcial compensa marginalmente el alto costo base del plan DDoS.</p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="2-azure-firewall-premium"><a class="anchor" href="#2-azure-firewall-premium"></a>2. Azure Firewall Premium</h6>
-<div class="paragraph">
-<p>Para garantizar la inspección de tráfico de salida y entrada más rigurosa, se requiere el nivel <strong>Premium</strong> de Azure Firewall, que ofrece capacidades avanzadas como inspección TLS y detección de intrusiones basada en inteligencia de amenazas.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Costo de Despliegue:</strong> $1.75 por hora por despliegue.</p>
-</li>
-<li>
-<p><strong>Dimensionamiento:</strong> Se requieren 2 despliegues en modo de Alta Disponibilidad (HA) para la región primaria.</p>
-</li>
-<li>
-<p><strong>Costo Anual de Despliegue:</strong> $1.75/hora times 730$ horas/mes 12$ meses  2 despliegues approx  30,660.00 anual, o $2,555.00$ mensual. Los costos de procesamiento de datos se añaden a esta tarifa, a $0.016 por GB procesado.</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"><a class="anchor" href="#iv-b-monitoreo-log-analytics-y-siem-microsoft-sentinel"></a>IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)</h4>
-<div class="paragraph">
-<p>La capacidad para monitorear, detectar y responder a amenazas en tiempo real es vital. Esto se logra mediante la plataforma SIEM nativa de Microsoft, Sentinel.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Volumen de Logs:</strong> Un sistema que procesa 10 millones de transacciones diarias, genera un tráfico masivo de logs de aplicación, base de datos y red. Un volumen conservador y realista para una operación de esta escala, que no escatima en la ingesta de logs de seguridad y operacionales, es de <strong>500 GB por día</strong>.</p>
-</li>
-<li>
-<p><strong>Nivel de Compromiso (Commitment Tier):</strong> Para gestionar este gran volumen de datos de manera predecible y costo-efectiva, se debe seleccionar un Nivel de Compromiso fijo en lugar del modelo <strong>Pay-As-You-Go</strong>.</p>
-</li>
-<li>
-<p><strong>Optimización del Costo de Logs:</strong> Si bien la ingesta de 500 GB/día representa un gasto significativo, el modelo de Nivel de Compromiso proporciona un ahorro sustancial, hasta el 60% en comparación con la tarifa PAYG.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Costo Diario (500 GB/día Commitment Tier): $\$ 492$ USD/día.</p>
-</li>
-<li>
-<p><strong>Costo Mensual Proyectado de Sentinel:</strong> $492/día times 30 días approx $14,760 USD/mes.</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Esta estrategia asegura que la seguridad y el monitoreo no se vean limitados por preocupaciones presupuestarias a corto plazo, ya que la ingesta masiva se convierte en un costo operativo fijo y altamente descontado.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 4. Tabla 4: Costo Proyectado de Microsoft Sentinel (SIEM)</caption>
-<colgroup>
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Servicio</th>
-<th class="tableblock halign-left valign-top">Nivel de Compromiso</th>
-<th class="tableblock halign-left valign-top">Costo Diario (USD)</th>
-<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
-<th class="tableblock halign-left valign-top">Ahorro Estimado vs. PAYG</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Sentinel (SIEM)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">500 GB por Día</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$492</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$14,760</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$60</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect2">
-<h3 id="v-modelo-financiero-consolidado-y-proyección-tco"><a class="anchor" href="#v-modelo-financiero-consolidado-y-proyección-tco"></a>V. Modelo Financiero Consolidado y Proyección TCO</h3>
-<div class="paragraph">
-<p>A continuación, se presenta una estimación del Costo Total de Propiedad (TCO) anual, basado en la tarifa de Pago por Uso (PAYG) y los niveles de servicio <strong>Premium</strong> y <strong>Aislado</strong> seleccionados, antes de la aplicación de descuentos por acuerdos de consumo y licencias.</p>
-</div>
-<div class="sect3">
-<h4 id="v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"><a class="anchor" href="#v-a-componentes-clave-de-infraestructura-y-niveles-de-servicio-seleccionados-costo-bruto"></a>V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)</h4>
-<div class="paragraph">
-<p>La estimación incluye los principales costos de cómputo y servicios 24/7/365 en una configuración de alta disponibilidad (HA).</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 5. Tabla 5: Estimación de Costo Operacional Anual Bruto (PAYG - Componentes Principales)</caption>
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Componente de Azure</th>
-<th class="tableblock halign-left valign-top">Nivel de Servicio Seleccionado</th>
-<th class="tableblock halign-left valign-top">Costo Mensual Estimado (USD)</th>
-<th class="tableblock halign-left valign-top">Costo Anual Estimado (USD)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">App Hosting Principal (Web/App)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">App Service Isolated v2 (4 I4v2 Instancias)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$13,128</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$157,536$</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Base de Datos OLTP</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure SQL Hyperscale (12 vCores HA)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$4,952</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$59,424</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Base de Datos NoSQL (Global)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Cosmos DB (10K RU/s, 4 Regiones)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$3,405</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$40,860$</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SIEM / Log Analytics</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Microsoft Sentinel (500 GB/Día Commitment)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$14,760</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$177,120$</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Seguridad Perimetral</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure Firewall Premium (2 Despliegues HA)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$2,555</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$30,660$</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Mitigación de DDoS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Azure DDoS Protection Standard</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$2,944</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$35,328</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Subtotal Infraestructura Base (24/7)</strong></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$58,563</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$702,756</strong></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Costos de Red, Almacenamiento, Backups, Egress, etc.</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">(Estimación Conservadora)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$41,437</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$500,000</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Soporte Empresarial (Unified Support - 8% TCO)</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$8,000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">$96,000$</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>TOTAL ANUAL (TCO Bruto Aproximado)</strong></p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$91,181</strong></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>$1,096,928</strong></p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>El gasto anual de infraestructura y servicios de soporte, operando con la máxima resiliencia y capacidad, se estima en $1.3 millones de USD en un escenario de Pago por Uso (PAYG) no optimizado.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>Criterios de aceptación</h3>
-<div class="paragraph">
-<p>Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite completar una solicitud de devolución en menos de tres minutos, con confirmación inmediata y visibilidad completa del estado del trámite en todo momento. La experiencia debe ser consistentemente excelente a través de todos los canales digitales.</p>
-</div>
-<div class="paragraph">
-<p>Para el personal de tienda, la solución debe demostrar su valor mediante la reducción significativa del tiempo de procesamiento por caso, el acceso inmediato a información relevante y la capacidad de resolver excepciones comunes sin escalamiento. La integración con los flujos de trabajo existentes debe ser fluida e intuitiva.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>Dependencias de Negocio</h3>
-<div class="sect3">
-<h4 id="eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"><a class="anchor" href="#eleccion-del-lenguaje-elixir-para-la-programacion-de-la-api"></a>Eleccion del lenguaje Elixir para la programacion de la API</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Status:</strong> Acepted</p>
-</li>
-<li>
-<p><strong>Fecha de creacion:</strong>  24/10/2025</p>
-</li>
-<li>
-<p><strong>Fecha ultima modificacion:</strong>  24/10/2025</p>
-</li>
-<li>
-<p><strong>Participantes:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>@PolloDiego159</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Decisores:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>@clsource</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Contexto:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>El sistema requiere procesar 10 millones de transacciones diarias con latencias consistentes menores a 200ms. La naturaleza concurrente de las solicitudes de devolución y la necesidad de alta disponibilidad exigen un lenguaje que maneje eficientemente la concurrencia masiva. El equipo actual tiene experiencia mixta en diferentes lenguajes y frameworks.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Lista de opciones y alternativas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Elixir:</strong> Es un lenguaje de programación funcional, concurrente, de propósito general que se ejecuta sobre la máquina virtual de Erlang. Elixir está escrito sobre Erlang y comparte las mismas abstracciones para desarrollar aplicaciones distribuidas y tolerantes de fallos.</p>
-</li>
-<li>
-<p><strong>Kotlin:</strong> Es un lenguaje de programación orientado a objetos multiplataforma, estáticamente tipado, de alto nivel y propósito general con inferencia de tipos.</p>
-</li>
-<li>
-<p><strong>Switf:</strong> Es un lenguaje de programación moderno y de código abierto creado por Apple para desarrollar aplicaciones en sus plataformas, como iOS, macOS, watchOS y tvOS. Se caracteriza por ser rápido, seguro, fácil de usar y por tener una sintaxis limpia y expresiva que mejora la experiencia del desarrollador en comparación con su antecesor, Objective-C.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Decisión</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>*Se eligio Elixir*</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>El principal motivo fue el facil uso de elixir y el uso con el framework Phoenix y Liveview</p>
-</li>
-<li>
-<p>El proceso de aprendizaje fue mas facil de entender desde el desarrollo con Elixir</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Observaciones y Notas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Fue bastante complicado entender al inicio el proyecto debido a que el equipo (yo) no entendia muy bien el lenguaje ademas de los nuevos conceptos que se aplicaron para el desarrollo de la API</p>
-</li>
-<li>
-<p>Se debe probar en un entorno mas demandante para el caso especifico de que en realidad deba soportar 10 millones de transacciones diarias</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Preguntas abiertas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>¿Volveria a desarrollar una API con elixir?:</strong> Despues de todo el trabajo es probable que no vuelva a desarrollar una API :c</p>
-</li>
-<li>
-<p><strong>¿Todas las funciones se implementaron?:</strong> No, particularmente se queria agregar un apartado de comentario al hacer la devolucion lo cual no fue posible porque cada que se intento agregar dicha funcion todo dejaba de funcionar, por lo que se opto por omitirlo.</p>
-</li>
-</ul>
-</div>
+<p>RF8: Cambiar diseños/temáticas de personajes.</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="eleccion-del-gestor-de-base-de-datos"><a class="anchor" href="#eleccion-del-gestor-de-base-de-datos"></a>Eleccion del gestor de base de datos</h4>
+<h4 id="ii-requisitos-no-funcionales"><a class="anchor" href="#ii-requisitos-no-funcionales"></a>II. Requisitos No Funcionales</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Status:</strong> Proposed</p>
+<p>RNF1: Ejecución multiplataforma (Android, iOS, Web).</p>
 </li>
 <li>
-<p><strong>Fecha de creacion:</strong>  24/10/2025</p>
+<p>RNF2: Interfaz amigable e infantil.</p>
 </li>
 <li>
-<p><strong>Fecha ultima modificacion:</strong>  24/10/2025</p>
+<p>RNF3: Respuesta inmediata (&lt;100 ms).</p>
 </li>
 <li>
-<p><strong>Participantes:</strong></p>
-<div class="ulist">
-<ul>
+<p>RNF4: Tamaño del juego &lt;5MB.</p>
+</li>
 <li>
-<p>@PolloDiego159</p>
+<p>RNF5: Código gestionado en GitHub bajo <strong>Trunk Based Development</strong>.</p>
+</li>
+<li>
+<p>RNF6: Documentación completa en Antora.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p><strong>Decisores:</strong></p>
+</div>
+<div class="sect3">
+<h4 id="iii-dependencias"><a class="anchor" href="#iii-dependencias"></a>III. Dependencias</h4>
 <div class="ulist">
 <ul>
 <li>
-<p>@clsource</p>
-</li>
-</ul>
-</div>
+<p>TIC-80 PRO para exportación móvil.</p>
 </li>
 <li>
-<p><strong>Contexto:</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>El sistema de devoluciones maneja datos transaccionales críticos que requieren consistencia ACID fuerte. Las operaciones incluyen procesamiento financiero (reembolsos), gestión de inventario y trazabilidad completa de cada devolución. Los requerimientos regulatorios exigen integridad absoluta de los datos financieros.</p>
-</li>
-</ul>
-</div>
+<p>Repositorio GitHub con GitHub Projects.</p>
 </li>
 <li>
-<p><strong>Lista de opciones y alternativas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>PostgreSQL:</strong> base de datos relacional open-source con fuerte compliance ACID y amplias capacidades.</p>
-</li>
-<li>
-<p><strong>Microsoft SQL Server:</strong> Es un sistema de gestión de base de datos relacional, desarrollado por la empresa Microsoft. El lenguaje de desarrollo utilizado es Transact-SQL, una implementación del estándar ANSI del lenguaje SQL, utilizado para manipular y recuperar datos, crear tablas y definir relaciones entre ellas.</p>
-</li>
-<li>
-<p><strong>Oracle Database:</strong> Es un sistema de gestión de base de datos de tipo objeto-relacional, desarrollado por Oracle Corporation, la empresa estadounidense de hardware y software. Este tipo de sistema mejora la gestión de grandes bases de datos y programación y también aumenta el nivel de seguridad.</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Decisión</strong></p>
-<div class="literalblock">
-<div class="content">
-<pre>*Se eligio Microsoft SQL Server*</pre>
-</div>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>El principal motivo fue que por temas de competencia de marcas era mejor contratar los servicios con Azure y, de esa forma y unificando todo el ecosistema, tambien contratar la nube de Microsoft</p>
-</li>
-<li>
-<p>Cuenta con herramientas de management excelentes demas de tener buen performance y estabilidad, ademas de un sistema de soporte enterprise</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Observaciones y Notas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p>Aunque en el proyecto actual no se use este sistema de base de datos se recomienda debido a la exigencias que requiere el negocio</p>
-</li>
-<li>
-<p>En el caso de que se quiera utilizar la nube de azure para implementar todo el proceso de la API resulta muy comodo manejar el mismo entorno, por lo que se espera que todo las demas depencias tambien actuen en un entorno de Microsoft</p>
-</li>
-</ul>
-</div>
-</li>
-<li>
-<p><strong>Preguntas abiertas</strong></p>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>¿Puede usarse el mismo modelo que se esta usando en la prueba?</strong> Al ser los dos sistemas SQL no deberia haber mayores diferencias al usar un entorno SQLite o la nube de Microsoft</p>
-</li>
-</ul>
-</div>
+<p>Equipo de sonido para música original.</p>
 </li>
 </ul>
 </div>
@@ -1352,21 +663,38 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </div>
 </div>
 <div class="sect1">
-<h2 id="estrategia-de-lanzamiento"><a class="anchor" href="#estrategia-de-lanzamiento"></a>ESTRATEGIA DE LANZAMIENTO</h2>
+<h2 id="arquitectura-detallada"><a class="anchor" href="#arquitectura-detallada"></a>ARQUITECTURA DETALLADA</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="plan-de-puesta-en-marcha-y-lanzamiento-go-live"><a class="anchor" href="#plan-de-puesta-en-marcha-y-lanzamiento-go-live"></a>Plan de Puesta en Marcha y Lanzamiento (Go-Live)</h3>
-<div class="paragraph">
-<p>Este plan detalla la estrategia de despliegue, la coordinación interdepartamental y la cronología general para la migración al nuevo sistema de retail basado en Azure, diseñado para manejar 10.000.000 de transacciones diarias.</p>
+<h3 id="componentes-principales"><a class="anchor" href="#componentes-principales"></a>Componentes Principales</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Core Game Engine (TIC-80 Lua)</strong></p>
+</li>
+<li>
+<p><strong>Módulo Apuestas</strong></p>
+</li>
+<li>
+<p><strong>Módulo Multiplicadores</strong></p>
+</li>
+<li>
+<p><strong>Módulo de Animación de Carrera</strong></p>
+</li>
+<li>
+<p><strong>Módulo de UI</strong></p>
+</li>
+<li>
+<p><strong>Módulo Sonido/Música</strong></p>
+</li>
+<li>
+<p><strong>Módulo de Exportación Multiplataforma</strong></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="1-estrategia-de-lanzamiento-release-strategy"><a class="anchor" href="#1-estrategia-de-lanzamiento-release-strategy"></a>1. Estrategia de Lanzamiento (Release Strategy)</h3>
-<div class="paragraph">
-<p>Se adoptará una estrategia de Lanzamiento Controlado por Fases (Canary Release), que permite medir el impacto de la nueva solución en un subconjunto reducido de usuarios o tiendas antes de un despliegue masivo. Esto minimiza el riesgo operativo, vital dada la alta carga transaccional (500 TPS pico).</p>
-</div>
-<div class="sect3">
-<h4 id="fases-de-despliegue"><a class="anchor" href="#fases-de-despliegue"></a>Fases de Despliegue</h4>
+<h3 id="roles-del-equipo-y-responsabilidades"><a class="anchor" href="#roles-del-equipo-y-responsabilidades"></a>Roles del Equipo y Responsabilidades</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 33.3333%;">
@@ -1375,124 +703,142 @@ Para las solicitudes que pasan la validación inicial, el sistema genera automá
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Fase</th>
-<th class="tableblock halign-left valign-top">Duración Estimada</th>
-<th class="tableblock halign-left valign-top">Descripción</th>
+<th class="tableblock halign-left valign-top">Nombre</th>
+<th class="tableblock halign-left valign-top">Rol</th>
+<th class="tableblock halign-left valign-top">Responsabilidades</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1. Beta Cerrada y Pruebas de Humo</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento a 1-3 ubicaciones piloto o un grupo de empleados seleccionados. El tráfico en vivo es menor al 1% del total. Se valida la estabilidad básica y la conectividad de la infraestructura Cloud de Azure.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Fabián</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gamedev 1 – Tech Lead</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arquitectura del juego, compilación Android, mecánicas principales</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2. Lanzamiento Canary (Tráfico Reducido)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Despliegue al 10% del tráfico total. Azure Front Door dirigirá el 10% de las peticiones a la nueva arquitectura. Se prueba el escalado automático de Azure Kubernetes Service (AKS) y la latencia real en Azure SQL Business Critical.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Juan</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Gamedev 2 – Software Engineer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Lógica UI, sistema de apuestas, compilación iOS</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3. Go-Live Segmentado</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Aumento gradual de la exposición (25%, 50%, 100%). La transición crítica al 100% debe realizarse durante una ventana de mantenimiento en hora de tráfico mínimo.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Bruno</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Música &amp; Arte</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Composición musical, efectos de sonido, sprites Tier A</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4. Estabilización y Desmantelamiento</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Monitoreo intensivo y estabilización. Retiro y archivado de la infraestructura de la versión anterior (Legacy) 3 meses después de alcanzar el 100% de adopción estable.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Javier</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Arte &amp; Web Build</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Animaciones, diseño adorable, compilación Web</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><strong>Jeremías</strong></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">EM – Gestión &amp; Documentación</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Antora Docs, planificación, control de versiones</p></td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="seguridad-calidad-y-pruebas"><a class="anchor" href="#seguridad-calidad-y-pruebas"></a>SEGURIDAD, CALIDAD Y PRUEBAS</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="seguridad"><a class="anchor" href="#seguridad"></a>Seguridad</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>No se manejan datos personales.</p>
+</li>
+<li>
+<p>No existen transacciones monetarias.</p>
+</li>
+<li>
+<p>Código abierto para auditorías del evento.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="testing"><a class="anchor" href="#testing"></a>Testing</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Pruebas unitarias en los módulos de lógica.</p>
+</li>
+<li>
+<p>Pruebas manuales de animación.</p>
+</li>
+<li>
+<p>QA multiplataforma en los tres entornos.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="validación-con-stakeholders"><a class="anchor" href="#validación-con-stakeholders"></a>Validación con Stakeholders</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Se realizan demos previas al evento.</p>
+</li>
+<li>
+<p>Se validan diseños visuales con la organización benéfica.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="criterios-de-aceptación"><a class="anchor" href="#criterios-de-aceptación"></a>CRITERIOS DE ACEPTACIÓN</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>El juego debe ejecutar correctamente en Android, iOS y Web.</p>
+</li>
+<li>
+<p>Los multiplicadores deben cambiar aleatoriamente en cada partida.</p>
+</li>
+<li>
+<p>El cálculo de ganancias/pérdidas debe ser 100% exacto.</p>
+</li>
+<li>
+<p>Todo el arte debe ser temático de mascotas y aprobado por la organización.</p>
+</li>
+<li>
+<p>El operador debe poder iniciar carrera en menos de 10 segundos.</p>
+</li>
+<li>
+<p>La documentación final debe estar en Antora.</p>
+</li>
+<li>
+<p>Debe existir un GitHub con estrategia <strong>Trunk Based Development</strong>.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="dependencias-de-negocio"><a class="anchor" href="#dependencias-de-negocio"></a>DEPENDENCIAS DE NEGOCIO</h2>
+<div class="sectionbody">
 <div class="sect3">
-<h4 id="comunicación-y-alineamiento"><a class="anchor" href="#comunicación-y-alineamiento"></a>Comunicación y Alineamiento</h4>
-<div class="paragraph">
-<p>Alineamiento Técnico: Establecer un Comité de Control de Cambios (CAB) que debe aprobar formalmente el avance entre las fases, basándose en métricas de rendimiento (TPS, Latencia) y errores.</p>
-</div>
-<div class="paragraph">
-<p>Manejo de Versiones: La solución Legacy permanecerá en modo de solo lectura durante la Fase 3, sirviendo como un roll-back de emergencia, antes de ser totalmente apagada.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="2-áreas-impactadas-para-coordinación"><a class="anchor" href="#2-áreas-impactadas-para-coordinación"></a>2. Áreas Impactadas para Coordinación</h3>
-<div class="paragraph">
-<p>El lanzamiento de este sistema centralizado requiere la coordinación transversal de varias áreas para asegurar la continuidad del negocio.</p>
-</div>
-<div class="paragraph">
-<p>Tecnología de la Información (TI) - Infraestructura:
-Rol: Configuración final de Azure Networking, WAF y Monitoreo (Application Insights).
-Continuidad Operacional: Garantizar el 'uptime' del 99.99% y la alerta proactiva ante fallas de latencia o TPS.</p>
-</div>
-<div class="paragraph">
-<p>Operaciones y Puntos de Venta (Retail):
-Rol: Prueba de flujos de trabajo en tiendas físicas (POS) y capacitación del personal.
-Continuidad Operacional: Asegurar la adopción exitosa y validar la velocidad transaccional a nivel de tienda.</p>
-</div>
-<div class="paragraph">
-<p>Finanzas y Contabilidad:
-Rol: Validación de la migración e integración de datos transaccionales y la precisión de los reportes en Azure Synapse.
-Continuidad Operacional: Conciliación de saldos entre el sistema Legacy y el nuevo Azure SQL DB.</p>
-</div>
-<div class="paragraph">
-<p>Seguridad de la Información y Cumplimiento:
-Rol: Auditoría final de seguridad y cumplimiento (PCI-DSS) sobre la arquitectura en la nube.
-Continuidad Operacional: Revisión de las políticas de WAF y la gestión de identidades (Azure AD).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="3-fechas-y-estimados-alto-nivel"><a class="anchor" href="#3-fechas-y-estimados-alto-nivel"></a>3. Fechas y Estimados (Alto Nivel)</h3>
-<div class="paragraph">
-<p>Esta tabla provee una estimación general del esfuerzo (medido en meses) necesario para completar las fases clave del proyecto. T<sub>0</sub> marca el inicio del desarrollo formal.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Hito Clave</th>
-<th class="tableblock halign-left valign-top">Estimación de Esfuerzo (Meses)</th>
-<th class="tableblock halign-left valign-top">Fecha de Entrega Estimada</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Preparación de Infraestructura y Migración de Datos Base</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Desarrollo de Microservicios Core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 7</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Pruebas de Rendimiento y Seguridad (UAT)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 8.5</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento Beta (Fase 1)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1 Mes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 9.5</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lanzamiento Canary (Fase 2) y Estabilización</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 11.5</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Go-Live 100% (Fase 3)</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.5 Meses</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T<sub>0</sub> + 13</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p><strong>ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO:</strong> 12 meses (desde el inicio del desarrollo).</p>
+<h4 id="lenguaje-y-herramientas"><a class="anchor" href="#lenguaje-y-herramientas"></a>Lenguaje y Herramientas</h4>
+<div class="ulist">
+<ul>
+<li>
+<p>TIC-80 (Lua) como base principal del motor.</p>
+</li>
+<li>
+<p>GitHub (repositorio + projects).</p>
+</li>
+<li>
+<p>Antora Docs para documentación.</p>
+</li>
+<li>
+<p>Herramientas de arte 2D (Aseprite o similar).</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
