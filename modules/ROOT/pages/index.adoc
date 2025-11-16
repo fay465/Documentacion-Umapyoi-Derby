@@ -1,627 +1,307 @@
-= Documentación API Gestión de Devoluciones Retail
-
+= Documentación Proyecto “Carrera Solidaria de Mascotas”
 :toc:
 :toclevels: 4
-
 
 == CONTEXTO
 
 === Problema del Negocio
 
 [role="lead"]
-*Problema Principal*: El proceso actual de devoluciones en la cadena de retail maneja:
+*Problema Principal*: Las organizaciones de rescate animal requieren nuevos mecanismos de recaudación que sean:
 
-* *Tiempo de procesamiento*: 3-5 días hábiles por devolución
-* *Costo operacional*: $15-20 USD por devolución manual  
-* *Tasa de error*: 12% en procesamiento manual
-* *Insatisfacción cliente*: 35% de clientes reportan mala experiencia en devoluciones
-* *Pérdida por fraudes*: 8% del total de devoluciones son fraudulentas no detectadas
+* *Atractivos* para público general  
+* *Fáciles de operar* durante eventos físicos  
+* *Bajos en costo tecnológico*  
+* *Transparentes* en la gestión de apuestas y premios  
+* *Rápidos de ejecutar* sin depender de infraestructura externa  
 
-*Necesidad crítica*: Automatización que reduzca costos operacionales y mejore la experiencia del cliente, manteniendo la capacidad de procesar 10M de transacciones diarias.
+Actualmente, muchos eventos benéficos carecen de actividades interactivas que atraigan al público más joven y generen experiencias memorables orientadas a donaciones.
+
+*Necesidad crítica*: Crear un videojuego divertido, temático y con mecánicas simples donde participantes puedan “apostar” fichas que posteriormente se canjean por premios del evento.
 
 == HIPÓTESIS Y SUPUESTOS
 
-=== Qué SÍ es el proyecto:
+=== Qué SÍ es el proyecto
 
-* *Sistema transaccional* de alta velocidad para gestión de devoluciones
-* *Motor de reglas* para validación automática de políticas (5 dias para la devolucion)
-* *Integrador* con sistemas de inventario, ventas y devoluciones
+* Un *videojuego arcade/simulación* desarrollado en TIC-80.  
+* Reproducción de una *carrera de personajes adorables* (perritos, gatitos y animales tiernos).  
+* Módulo completo de *gestión de apuestas* con fichas.  
+* Cálculo automático de *multiplicadores aleatorios (2 a 5)* por cada “palo” o corredor.  
+* Ejecución multiplataforma: *Android, iOS y Web*.  
+* Música y sonidos originales.  
+* Presentación profesional para stakeholders reales.  
+* Código versionado con *GitHub* y metodología *Trunk Based Development*.  
+* Documentación técnica en *Antora Docs*.
 
-=== Qué NO es el proyecto:
+=== Qué NO es el proyecto
 
-* ❌ No es un sistema de ventas POS
-* ❌ No es un ERP completo  
-* ❌ No maneja logística física
-* ❌ No reemplaza sistemas contables existentes
+* ❌ No es un sistema real de apuestas con dinero.  
+* ❌ No incluye transacciones financieras ni pagos digitales.  
+* ❌ No es un sistema móvil nativo (se empaqueta TIC-80).  
+* ❌ No incluye estadísticas avanzadas ni backend en la nube.  
+* ❌ No implementa inteligencia artificial para corredores.
 
-=== Supuestos técnicos validados:
+=== Supuestos técnicos validados
 
-. *Volumen*: 10'000.000 transacciones/día = ~115.7 transacciones/segundo (peak)
-. *Disponibilidad*: Requerimiento 99.99% = ~52 minutos downtime/año máximo
-. *Latencia*: <200ms para 95% de las transacciones
+. TIC-80 permite exportación funcional a Web, Android e iOS.  
+. El performance requerido es mínimo (simulación 2D con sprites).  
+. El couprier (operador humano) avanza la carrera manualmente presionando un botón.  
+. Los multiplicadores se generan aleatoriamente *en cada partida*.  
+. Las fichas ganadas se reportan en pantalla, el canje no es parte del software.
 
 == MÉTRICAS E IMPACTO
 
-=== KPIs de Negocio Críticos
+=== KPIs del Evento (Nivel Negocio)
 
-[cols="1,2,1,1", options="header"]
 |===
-| Categoría | KPI | Línea Base | Meta 6 meses
+| KPI | Línea Base | Meta
 
-| Eficiencia Operacional
-| Tiempo promedio procesamiento (horas)
-| 72-120
-| <24
+| Participación del público
+| Actividades tradicionales tienen baja interacción
+| > 60% de asistentes participan
 
-| Costo
-| Costo por devolución (USD)
-| $18
-| $7
+| Recaudación promedio por actividad
+| < USD $50
+| > USD $200 por sesión
 
-| Automatización
-| Tasa auto-aprobación (%)
-| 0%
-| 75%
+| Tiempo promedio por partida
+| No aplica
+| < 3 minutos
 
-| Calidad
-| Tasa error procesamiento (%)
-| 12%
-| 2%
-
-| Fraude
-| Efectividad detección fraudes (%)
-| 65%
-| 90%
+| Nivel de satisfacción
+| Sin medición previa
+| > 4.5/5
 |===
 
 === KPIs de Experiencia de Usuario
 
-[cols="1,2,1,1", options="header"]
 |===
-| KPI | Definición | Meta | Frecuencia
+| KPI | Meta | Frecuencia
 
-| CSAT Devoluciones
-| Satisfacción post-devolución (1-5)
-| 4.5/5
-| Diaria
+| Claridad en reglas de apuesta
+| 100% entendible sin instrucciones orales
+| Cada partida
 
-| Tasa Abandono
-| Solicitudes iniciadas no completadas (%)
-| <5%
-| Semanal
+| Tiempo para iniciar una carrera
+| < 10 segundos
+| Permanente
 
-| Tiempo Primera Respuesta
-| Minutos hasta primer contacto
-| <30 min
-| Diaria
+| Estabilidad multiplataforma
+| 99% funcionamiento sin fallas
+| Cada build
 
-| NPS Proceso
-| Net Promoter Score específico
-| +50
-| Mensual
+| Percepción estética
+| “Bonito / adorable”
+| Validado con stakeholders
 |===
 
-=== KPIs Técnicos de Performance
+=== KPIs Técnicos
 
-[cols="1,2,1,1", options="header"]
 |===
 | KPI | Objetivo | Alerta | Crítico
 
-| Latencia P95
-| <200ms
-| 250ms
-| 500ms
+| FPS del juego
+| 60 FPS
+| 45 FPS
+| 30 FPS
 
-| Disponibilidad
-| 99.99%
-| 99.9%
-| 99.5%
+| Tamaño archivo exportado
+| < 5 MB
+| 8 MB
+| 10 MB
 
-| Throughput Máximo
-| 150 trans/segundo
-| 120 trans/segundo
-| 100 trans/segundo
-
-| Tasa Error
-| <0.1%
-| 0.5%
-| 1%
-
-| Tiempo Respuesta BD
-| <50ms
-| 100ms
-| 200ms
-|===
-
-=== KPIs de Eficiencia del Sistema
-
-[cols="1,3,1"]
-|===
-| KPI | Propósito | Meta
-
-| Costo por Transacción
-| Eficiencia infraestructura
-| <$0.001
-
-| Utilización Recursos
-| Optimización capacidad
-| 65-75%
-
-| Tiempo Escalado
-| Segundos para escalar automático
-| <30s
-
-| Tasa Cache Hit
-| Efectividad cache Redis
-| >95%
+| Bugs por release
+| 0-2
+| 5
+| 10
 |===
 
 === Métricas de Adopción
 
-[cols="1,3,1"]
 |===
-| Métrica | Indicador de Evolución | Meta 3 meses
+| Métrica | Meta
 
-| Penetración Digital
-| % devoluciones por app vs tienda física
-| 60%
-
-| Uso Self-Service
-| Solicitudes completadas sin asistencia
-| 80%
-
-| Tasa Retención
-| Clientes que repiten proceso
-| 70%
-
-| Adopción por Tienda
-| % tiendas usando sistema activamente
-| 100%
+| Cantidad de partidas por evento | > 50
+| Usuarios recurrentes | > 40%
+| Personas que canjean premios | > 30%
+| Participación infantil | > 50%
 |===
 
 == USUARIOS Y CLIENTES
 
 === User Personas
 
-=== Persona 1: Cliente Frecuente - "María González"
+==== Persona 1: Operador/Couprier – “Ana la Voluntaria”
 
-*Perfil Demográfico*:
+*Edad*: 28  
+*Rol*: voluntaria del evento  
+*Uso del sistema*: controla el flujo de la carrera  
+*Necesidades*:
+- Interfaz simple, solo botones esenciales  
+- Poder explicar reglas rápidamente  
+- Tener visibilidad de las apuestas y multiplicadores  
 
-* Edad: 35 años
-* Ocupación: Ejecutiva en empresa tecnológica
-* Ubicación: Urbana, ciudad principal
-* Nivel Tecnológico: Alta competencia digital
-* Frecuencia Compras: 2-3 veces por semana
+*Escenario ideal:* “Puedo iniciar una carrera en menos de 10 segundos sin preocuparme por fallas.”
 
-*Contexto y Comportamiento*:
-María realiza la mayoría de sus compras online y valora enormemente su tiempo. Como madre trabajadora, necesita procesos eficientes que se adapten a su apretada agenda. Prefiere resolver problemas por sí misma usando su smartphone antes que contactar servicio al cliente.
+==== Persona 2: Participante del Evento – “Lucas (niño de 10 años)”
 
-*Horarios de Actividad*:
+*Intereses*: animales, colores, juegos rápidos  
+*Necesidades*:  
+- Personajes adorables  
+- Animaciones llamativas  
+- Reglas muy simples  
 
-* Mañanas (7:00-9:00): Revisión rápida en el transporte
-* Tardes (18:00-20:00): Compras y gestiones desde casa
-* Fines de semana: Compras familiares y planificación
-
-*Expectativas Clave*:
-
-* Procesos digitales sin necesidad de impresión o papeleo
-* Transparencia total en el estado de sus gestiones
-* Resolución en rapida
-* Opciones flexibles de reembolso o cambio
-* Comunicación proactiva sin tener que hacer seguimiento
-
-*Requerimientos*:
-* Tener que imprimir formularios o visitar tiendas físicas para trámites simples
-* Falta de visibilidad sobre el estado de sus devoluciones
-* Tiempos de respuesta lentos que afectan su planificación financiera
-* Diferentes procesos según el producto o categoría
-
-*Escenario de Uso Ideal*:
-"Quiero poder gestionar una devolución durante mi viaje en metro matutino, recibir confirmación inmediata y saber exactamente cuándo y cómo recibiré mi reembolso, todo desde mi teléfono sin tener que llamar a nadie"
-
-=== Persona 2: Supervisor de Tienda - "Carlos Rodríguez"
-
-
-*Perfil Demográfico*:
-
-* Edad: 42 años
-* Ocupación: Supervisor de operaciones en tienda flagship
-* Experiencia: 15 años en retail
-* Ubicación: Tienda principal en centro comercial
-* Dispositivo Principal: Tablet corporativa y terminal POS
-
-*Contexto y Responsabilidades*:
-Carlos gestiona un equipo de personas en la tienda de mayor volumen de la cadena. Su desempeño se mide por métricas operativas como tiempo de procesamiento, satisfacción del cliente y eficiencia del personal. Trabaja bajo presión constante para balancear la experiencia del cliente con los procedimientos operativos.
-
-*Flujo de Trabajo Diario*:
-
-* 8:00-10:00: Revisión métricas del día anterior y planificación
-* 10:00-14:00: Supervisión piso de ventas y resolución de incidencias
-* 14:00-16:00: Reuniones operativas y reportes
-* 16:00-18:00: Capacitación equipo y cierre operativo
-
-*Requerimientos*:
-
-* Visión en tiempo real del volumen de devoluciones pendientes
-* Herramientas para priorizar casos urgentes o de alto valor
-* Capacidad de tomar decisiones excepcionales con información completa
-* Reportes automáticos de desempeño de su equipo
-* Integración fluida con sistemas de inventario y caja
-
-*Problemas organizacionales*:
-
-* Sistemas desconectados que requieren ingresar la misma información múltiples veces
-* Falta de visibilidad sobre el historial completo del cliente
-* Procesos manuales que consumen tiempo valioso de atención al cliente
-* Dificultad para escalar problemas complejos a áreas especializadas
-* Limitada capacidad de análisis para identificar patrones o oportunidades de mejora
-
-*Escenario de Uso Ideal*:
-"Necesito tener la informacion instantáneamente del estado de todas las devoluciones en mi tienda, me alerte sobre casos que requieren mi atención específica y me permita resolver la mayoría de las situaciones con un par de clicks, manteniendo el flujo de la tienda"
+*Escenario ideal:* “Elijo un perrito, veo si gano y me emociono por el premio.”
 
 === Flujos de Negocio Críticos
 
-==== Flujo Principal de Devolución
+==== Flujo Principal: Apuesta → Carrera → Resultado
 
-*Inicio del Proceso*:
-El flujo se activa cuando un cliente solicita una devolución a través de cualquiera de los canales habilitados: aplicación móvil, sitio web o directamente en tienda física. El sistema captura automáticamente la información básica de la transacción original.
+1. El couprier anuncia inicio de partidas.  
+2. Participantes seleccionan un corredor (palo).  
+3. El juego muestra multiplicadores aleatorios (x2 a x5).  
+4. El operador ingresa fichas apostadas.  
+5. Se presiona *“Iniciar Carrera”*.  
+6. Los personajes avanzan cuadro a cuadro al ritmo del operador.  
+7. Se determina el ganador.  
+8. El sistema calcula *ganancia o pérdida*.  
+9. Se muestra pantalla de “Premios” o “Lo intentaste”.  
 
-*Validación Inicial y Crítica*:
-La primera y única regla automática aplicada actualmente es la validación del período de 5 días desde la fecha de compra. El sistema calcula exactamente el tiempo transcurrido y determina si la solicitud cumple con este requisito fundamental.
+==== Flujo Secundario: Elección de diseño/personajes
 
-*Escenarios de Validación:*
-
-* Aprobado automático: Si la solicitud está dentro del período de 5 días
-
-* Rechazo automático: Si ha transcurrido más de 5 días desde la compra
-
-* Escalación manual: Casos especiales que requieren supervisión humana
-
-*Proceso de Aprobación*:
-Para las solicitudes que pasan la validación inicial, el sistema genera automáticamente un código QR único que sirve como comprobante digital. Este código contiene toda la información necesaria para procesar la devolución en tienda.
+1. El diseñador prepara sprites temáticos de animales.  
+2. El operador selecciona set visual antes del evento.  
 
 == SOLUCIÓN TÉCNICA
 
 === Resumen de la solución
 
-La plataforma de gestión de devoluciones se concibe como un sistema unificado que transforma la experiencia del cliente y optimiza las operaciones internas del retail. La solución aborda las necesidades fundamentales mediante un proceso completamente digitalizado que elimina las dificultades actuales, proporcionando transparencia total y agilidad en cada etapa. Para el negocio, se establece una infraestructura escalable que reduce costos operativos mediante automatización inteligente y provee capacidades avanzadas de analítica para la toma de decisiones.
+El sistema es un *videojuego TIC-80* multiplataforma con:
 
-El alcance comprende el primer contacto para devoluciones, integrando de manera logica la fuente única de datos que contiene la informacion de clientes, ventas, productos y devoluciones.
+* Módulo de apuestas  
+* Módulo de multiplicadores  
+* Simulación visual de carrera  
+* Audio y música original  
+* Pantallas adaptadas a público familiar  
+* Animaciones simples y fluidas  
+* Exportación para Web, Android e iOS  
+
+Permite operación en eventos benéficos sin conexión a internet.
 
 === Nivel de Contexto
 
-image::real_C4.png[Diagrama de Contexto, width=800, allign=center]
+image::c4_context.png[Diagrama C4 - Contexto, width=800]
 
 === Nivel de Contenedores
 
-image::real_C4(2).png[Diagrama de Contenedores, width=800, allign=center]
+image::c4_containers.png[Diagrama C4 - Contenedores, width=800]
 
-=== Modelo Entidad-Relacion Base de Datos
+=== Modelo Entidad-Relación  
 
-image::ER.jpg[Modelo ER base de datos, width=800, allign=center]
+image::er_model.png[Diagrama ER, width=800]
 
-=== Requisitos funcionales, restricciones y dependencias
+(Este modelo es mínimo; incluye Apuesta, Multiplicador, Corredor, Resultado y Partida)
 
+=== Requisitos Funcionales, Restricciones y Dependencias
 
-==== I. Carga de Trabajo Crítica (10M Tx/Día)
+==== I. Requisitos Funcionales
 
-La gestión de 10 millones de transacciones diarias demanda una planificación rigurosa de la capacidad. El volumen transaccional en el sector minorista es inherentemente variable, con picos de demanda que superan con creces el promedio estadístico.
+* RF1: Permitir registrar apuestas por corredor.  
+* RF2: Mostrar multiplicador aleatorio por corredor.  
+* RF3: Iniciar carrera controlada por operador.  
+* RF4: Determinar ganador mediante avance aleatorio.  
+* RF5: Calcular ganancias o pérdidas.  
+* RF6: Mostrar resultados en pantalla final.  
+* RF7: Reproducir música y efectos de sonido.  
+* RF8: Cambiar diseños/temáticas de personajes.  
 
-*   *Rendimiento Promedio:* Un volumen diario de 10,000,000 de transacciones se traduce en un rendimiento promedio constante de aproximadamente 115.7 transacciones por segundo (TPS).
-*   *Capacidad de Pico:* El dimensionamiento de la arquitectura debe basarse en la capacidad de manejar picos sostenidos. Se estima que, durante eventos críticos como lanzamientos de productos, ofertas estacionales o el Black Friday, la demanda puede escalar entre 4 y 10 veces el promedio. Por lo tanto, la arquitectura se diseñará para un pico sostenido de *500 TPS*, manteniendo la capacidad elástica para manejar ráfagas de hasta *1,000 TPS* sin degradación del servicio.
-*   *Requerimientos de Datos:* En el contexto de bases de datos NoSQL como Azure Cosmos DB, estas 10 millones de operaciones diarias pueden requerir una línea base de aproximadamente 2,300 Request Units por segundo (RU/s), asumiendo un costo conservador de 20 RU por transacción de escritura/lectura. La capacidad de pico debe ascender a 125,000 RU/s, lo que justifica el uso de capacidades de escalamiento automático (Autoscale).
+==== II. Requisitos No Funcionales
 
-La siguiente tabla resume los requisitos de *throughput* identificados:
+* RNF1: Ejecución multiplataforma (Android, iOS, Web).  
+* RNF2: Interfaz amigable e infantil.  
+* RNF3: Respuesta inmediata (<100 ms).  
+* RNF4: Tamaño del juego <5MB.  
+* RNF5: Código gestionado en GitHub bajo *Trunk Based Development*.  
+* RNF6: Documentación completa en Antora.  
 
-.Tabla 1: Estimación de Requisitos de Throughput para 10 Millones de Transacciones Diarias
+==== III. Dependencias
 
-|===
-| Métrica | Volumen Diario (10M) | Rendimiento Promedio (TPS/RU/s) | Capacidad de Pico Estimada (TPS/RU/s)
+* TIC-80 PRO para exportación móvil.  
+* Repositorio GitHub con GitHub Projects.  
+* Equipo de sonido para música original.  
 
-| Transacciones OLTP (Promedio) | 10,000,000 | approx 115 TPS | 500 TPS (Mínimo, con factor de $4.3 \times$)
-| Requerimiento de BBDD (Reads/Writes) | 10,000,000 | approx 2,300  RU/s (Solo writes, 20 RU/transacción) | 125,000$ RU/s (Pico flexible con Autoscale)
-| Ingesta de Logs/Datos Analíticos | N/A | 5.78$ MB/s | 500 - 750 GB/día (Estimación Sentinel Enterprise)
-|===
+== ARQUITECTURA DETALLADA
 
+=== Componentes Principales
 
-==== II. Diseño Arquitectónico de Alta Disponibilidad y Marco de Cómputo
+* *Core Game Engine (TIC-80 Lua)*  
+* *Módulo Apuestas*  
+* *Módulo Multiplicadores*  
+* *Módulo de Animación de Carrera*  
+* *Módulo de UI*  
+* *Módulo Sonido/Música*  
+* *Módulo de Exportación Multiplataforma*  
 
-La plataforma se desplegará bajo un modelo de redundancia geográfica (HA/DR), utilizando Zonas de Disponibilidad (AZs) dentro de una región primaria y replicación activa-pasiva o activa-activa hacia una región secundaria. Este enfoque garantiza un SLA de tiempo de actividad superior.
-
-==== II.A. Capa de Aplicación (Compute and Hosting)
-
-La elección del servicio de cómputo para la lógica de negocio y la capa de presentación debe reflejar el compromiso con la máxima seguridad y rendimiento. Las dos opciones principales de Microsoft que cumplen con el criterio de alta inversión son Azure App Service Isolated v2 o Azure Kubernetes Service (AKS) Premium.
-
-===== Azure App Service Isolated v2 (Recomendado para Arquitectura PaaS Pura)
-
-La selección de App Service Isolated v2 se justifica por la necesidad de aislamiento de red y recursos dedicados. Este nivel proporciona entornos de servicio de aplicaciones dedicados y completamente aislados dentro de una red virtual de Azure (VNet), lo cual es crucial para requisitos regulatorios de seguridad y cumplimiento en el sector retail.
-
-Para gestionar picos de 500 a 1,000 TPS, es necesario un plan de servicio con instancias grandes que pueda escalar horizontalmente hasta el límite de 100 instancias ofrecido por el entorno Isolated. 
-
-*   *SKU Base:* Se recomienda el plan de servicio I4v2. Esta es una de las SKUs más potentes disponibles en la capa Isolated v2, con 16 Cores y 64 GB de RAM por instancia.
-*   *Dimensionamiento Inicial y Costo Base:* Para la configuración base de alta disponibilidad en la región primaria, se dimensionan 4 instancias activas. Asumiendo que la aplicación utiliza Windows Server (a menudo el caso para migraciones.NET), se utiliza la tarifa más alta de pago por uso (PAYG) para este cálculo inicial.
-** Costo de I4v2 (Windows, PAYG): $3,282.08$ por mes. 
-** *Costo de Cómputo Base:* $3,282.08/mes  4 instancias approx 13,128.32 por mes.
-
-===== Azure Kubernetes Service (AKS) Premium (Opción Alternativa para Contenedores)
-
-Si la estrategia de desarrollo se centra en microservicios y contenedores, AKS es la opción de misión crítica. Para cumplir con la alta disponibilidad y la capacidad de escala hasta 5,000 nodos, se requiere el nivel *Standard Tier*. Sin embargo, dada la directriz de "no escatimar", se recomienda el *Premium Tier* por sus beneficios de soporte a largo plazo (LTS).
-
-*   *Costo del Plano de Control (Control Plane):* El Premium Tier se factura a $\$ 0.60$ por *cluster* por hora. 
-** Costo Mensual del Control Plane (Premium): $0.60/hora times 730 horas/mes approx 438.00 USD por *cluster*.
-*   *Costo Real del Cómputo:* El costo dominante en AKS es el de los Nodos de Agente (VMs) que ejecutan los contenedores, que deberían ser dimensionados de forma similar a los recursos I4v2 (VMs D-series o similares).
-
-.Tabla 2: Detalle de Costos de Cómputo (App Tier)
+=== Roles del Equipo y Responsabilidades
 
 |===
-| Componente | SKU / Nivel de Servicio | Especificaciones Base | Costo Mensual PAYG (USD) | Base
+| Nombre | Rol | Responsabilidades
 
-| App Hosting Principal (PaaS) | App Service Isolated v2 | I4v2 (16 Cores, 64 GB RAM) | $3,282.08 | 4 Instancias Mínimas
-| Control Plane Contenedores (Opción Alt.) | AKS Premium Tier | SLA y LTS | $438.00 | 1 Cluster
-| Carga/Balanceo Global | Azure Front Door / Traffic Manager | Basado en tráfico y reglas | Varía (No cotizado) | N/A
+| *Fabián*
+| Gamedev 1 – Tech Lead
+| Arquitectura del juego, compilación Android, mecánicas principales
+
+| *Juan*
+| Gamedev 2 – Software Engineer
+| Lógica UI, sistema de apuestas, compilación iOS
+
+| *Bruno*
+| Música & Arte
+| Composición musical, efectos de sonido, sprites Tier A
+
+| *Javier*
+| Arte & Web Build
+| Animaciones, diseño adorable, compilación Web
+
+| *Jeremías*
+| EM – Gestión & Documentación
+| Antora Docs, planificación, control de versiones
 |===
 
-=== III. Especificación Detallada de Componentes PaaS de Misión Crítica
+== SEGURIDAD, CALIDAD Y PRUEBAS
 
-La arquitectura de alta inversión exige soluciones de datos que puedan crecer linealmente con la carga transaccional masiva.
+=== Seguridad
 
-==== III.A. Capa de Datos Transaccionales (OLTP Core)
+* No se manejan datos personales.  
+* No existen transacciones monetarias.  
+* Código abierto para auditorías del evento.  
 
-El núcleo del negocio retail (pedidos, pagos, inventario) requiere una base de datos relacional que garantice la consistencia ACID.
+=== Testing
 
-===== 1. Azure SQL Database Hyperscale
+* Pruebas unitarias en los módulos de lógica.  
+* Pruebas manuales de animación.  
+* QA multiplataforma en los tres entornos.  
 
-Azure SQL Database Hyperscale es la elección de misión crítica para esta escala. Su principal ventaja es la separación de cómputo y almacenamiento, lo que permite un escalamiento de almacenamiento de hasta 100 TB sin un aumento proporcional de los recursos de cómputo, y sin afectar la latencia transaccional.
+=== Validación con Stakeholders
 
-*   *Dimensionamiento de Cómputo:* Para un volumen de 500+ TPS sostenido, se requiere un alto compromiso de vCores, típicamente utilizando la serie Standard (Gen 5). Un punto de partida conservador, basado en el requerimiento de alto rendimiento, es 12 vCores.
-** Costo de Cómputo (12 vCores): $\$ 3.3916$ por hora. 
-** Costo Mensual (12 vCores, Solo Principal): $3.3916/hora times 730 horas/mes approx 2,475.80 USD/mes.
-*   *Alta Disponibilidad:* Para garantizar el SLA, se requiere la configuración de réplicas secundarias de alta disponibilidad (HA). Esto efectivamente duplica el costo de cómputo.
-** *Costo Mensual Total OLTP (2 Réplicas HA):* $2,475.80 times 2 approx 4,951.60$ USD/mes (solo cómputo).
+* Se realizan demos previas al evento.  
+* Se validan diseños visuales con la organización benéfica.  
 
-Una consideración financiera importante es que el almacenamiento de bases de datos en Hyperscale es escalable y el costo de *backup* está incluido inicialmente hasta el tamaño máximo de los datos. Esto significa que el principal factor de costo recurrente es el componente de vCores, lo que dirige la estrategia de optimización financiera hacia los beneficios de licencia (como Azure Hybrid Benefit, discutido en la Sección VII).
+== CRITERIOS DE ACEPTACIÓN
 
-===== 2. Azure Cosmos DB (NoSQL y Baja Latencia Global)
+* El juego debe ejecutar correctamente en Android, iOS y Web.  
+* Los multiplicadores deben cambiar aleatoriamente en cada partida.  
+* El cálculo de ganancias/pérdidas debe ser 100% exacto.  
+* Todo el arte debe ser temático de mascotas y aprobado por la organización.  
+* El operador debe poder iniciar carrera en menos de 10 segundos.  
+* La documentación final debe estar en Antora.  
+* Debe existir un GitHub con estrategia *Trunk Based Development*.
 
-Azure Cosmos DB es fundamental para cargas de trabajo de retail que requieren latencia ultrabaja y escalamiento global para datos no relacionales (ej. perfiles de usuario, carritos de compra, catálogo de productos). La alta inversión en este servicio se justifica por su capacidad de ofrecer disponibilidad inigualable y replicación de escritura multi-región.
+== DEPENDENCIAS DE NEGOCIO
 
-*   *Dimensionamiento de Throughput:* Para soportar la línea base de 10 millones de operaciones de escritura diarias y absorber picos, se dimensiona un *throughput* de *10,000 RU/s* utilizando el modelo *Autoscale Provisioned*. El uso de Autoscale es preferible al *Standard Provisioned* porque permite que la capacidad elástica absorba los picos de tráfico de retail de manera eficiente, optimizando el costo operativo al tiempo que garantiza el rendimiento.
-*   *Configuración de Alta Inversión:* Se recomienda la replicación en 4 regiones (Región principal + 3 regiones secundarias) para maximizar la redundancia geográfica (DR) y la latencia de lectura global.
-*   *Costo Estimado (4 Regiones):* Basado en el ejemplo de replicación de 10K RU/s y 4 TB de almacenamiento distribuido (1 TB principal, 3 TB secundarios), el costo mensual de *throughput* y almacenamiento es de aproximadamente $3,404.80$ USD.
+==== Lenguaje y Herramientas
 
-.Tabla 3: Costo de BBDD OLTP y NoSQL de Hiperescala
-
-|===
-| Base de Datos | SKU / Servicio | Configuración Principal | Costo Mensual Estimado (USD)
-
-| OLTP Relacional | Azure SQL Hyperscale (Gen5) | 12 vCores (Compute HA, 2 Réplicas) | $ 4,951.60
-| NoSQL / Global | Azure Cosmos DB Autoscale | 10K RU/s (4 Regiones, 4 TB Storage) | $ 3,404.80
-| *Subtotal Datos* | | | *$8,356.40$*
-|===
-
-==== IV. Marco Integral de Seguridad y Observabilidad de Nivel Empresarial
-
-La directriz de no escatimar en necesidades se aplica rigurosamente a la seguridad y la observabilidad, componentes críticos para proteger los datos de los clientes y mantener la continuidad operativa.
-
-===== IV.A. Seguridad Perimetral y Mitigación de Ataques
-
-====== 1. Azure DDoS Protection Standard
-
-Dado que la empresa retail está expuesta al tráfico público de Internet, la protección contra ataques de Denegación de Servicio Distribuido (DDoS) es obligatoria.
-
-*   *Costo Fijo:* El nivel *DDoS Protection Standard* impone un cargo fijo de $2,944 por mes, que incluye protección para 100 recursos de IP pública.
-
-La adopción de este plan de alta inversión tiene un beneficio adicional de optimización de costos. Cuando DDoS Network Protection está habilitado en la VNet, el Web Application Firewall (WAF) desplegado en Application Gateway se factura a la tarifa de Application Gateway Standard v2, en lugar de la tarifa más alta de WAF. Este descuento parcial compensa marginalmente el alto costo base del plan DDoS.
-
-====== 2. Azure Firewall Premium
-
-Para garantizar la inspección de tráfico de salida y entrada más rigurosa, se requiere el nivel *Premium* de Azure Firewall, que ofrece capacidades avanzadas como inspección TLS y detección de intrusiones basada en inteligencia de amenazas. 
-
-*   *Costo de Despliegue:* $1.75 por hora por despliegue. 
-*   *Dimensionamiento:* Se requieren 2 despliegues en modo de Alta Disponibilidad (HA) para la región primaria.
-*   *Costo Anual de Despliegue:* $1.75/hora times 730$ horas/mes 12$ meses  2 despliegues approx  30,660.00 anual, o $2,555.00$ mensual. Los costos de procesamiento de datos se añaden a esta tarifa, a $0.016 por GB procesado.
-
-==== IV.B. Monitoreo, Log Analytics y SIEM (Microsoft Sentinel)
-
-La capacidad para monitorear, detectar y responder a amenazas en tiempo real es vital. Esto se logra mediante la plataforma SIEM nativa de Microsoft, Sentinel.
-
-*   *Volumen de Logs:* Un sistema que procesa 10 millones de transacciones diarias, genera un tráfico masivo de logs de aplicación, base de datos y red. Un volumen conservador y realista para una operación de esta escala, que no escatima en la ingesta de logs de seguridad y operacionales, es de *500 GB por día*.
-*   *Nivel de Compromiso (Commitment Tier):* Para gestionar este gran volumen de datos de manera predecible y costo-efectiva, se debe seleccionar un Nivel de Compromiso fijo en lugar del modelo *Pay-As-You-Go*. 
-*   *Optimización del Costo de Logs:* Si bien la ingesta de 500 GB/día representa un gasto significativo, el modelo de Nivel de Compromiso proporciona un ahorro sustancial, hasta el 60% en comparación con la tarifa PAYG.
-** Costo Diario (500 GB/día Commitment Tier): $\$ 492$ USD/día.
-** *Costo Mensual Proyectado de Sentinel:* $492/día times 30 días approx $14,760 USD/mes.
-
-Esta estrategia asegura que la seguridad y el monitoreo no se vean limitados por preocupaciones presupuestarias a corto plazo, ya que la ingesta masiva se convierte en un costo operativo fijo y altamente descontado.
-
-.Tabla 4: Costo Proyectado de Microsoft Sentinel (SIEM)
-
-|===
-| Servicio | Nivel de Compromiso | Costo Diario (USD) | Costo Mensual Estimado (USD) | Ahorro Estimado vs. PAYG
-
-| Microsoft Sentinel (SIEM) | 500 GB por Día | $492 | $14,760 | $60
-|===
-
-=== V. Modelo Financiero Consolidado y Proyección TCO
-
-A continuación, se presenta una estimación del Costo Total de Propiedad (TCO) anual, basado en la tarifa de Pago por Uso (PAYG) y los niveles de servicio *Premium* y *Aislado* seleccionados, antes de la aplicación de descuentos por acuerdos de consumo y licencias.
-
-==== V.A. Componentes Clave de Infraestructura y Niveles de Servicio Seleccionados (Costo Bruto)
-
-La estimación incluye los principales costos de cómputo y servicios 24/7/365 en una configuración de alta disponibilidad (HA).
-
-.Tabla 5: Estimación de Costo Operacional Anual Bruto (PAYG - Componentes Principales)
-
-|===
-| Componente de Azure | Nivel de Servicio Seleccionado | Costo Mensual Estimado (USD) | Costo Anual Estimado (USD)
-
-| App Hosting Principal (Web/App) | App Service Isolated v2 (4 I4v2 Instancias) | $13,128 | $157,536$
-| Base de Datos OLTP | Azure SQL Hyperscale (12 vCores HA) | $4,952 | $59,424
-| Base de Datos NoSQL (Global) | Azure Cosmos DB (10K RU/s, 4 Regiones) | $3,405 | $40,860$
-| SIEM / Log Analytics | Microsoft Sentinel (500 GB/Día Commitment) | $14,760 | $177,120$
-| Seguridad Perimetral | Azure Firewall Premium (2 Despliegues HA) | $2,555 | $30,660$
-| Mitigación de DDoS | Azure DDoS Protection Standard | $2,944 | $35,328
-| *Subtotal Infraestructura Base (24/7)* | | *$58,563* | *$702,756*
-| Costos de Red, Almacenamiento, Backups, Egress, etc. | (Estimación Conservadora) | $41,437 | $500,000
-| Soporte Empresarial (Unified Support - 8% TCO) | | $8,000 | $96,000$
-| *TOTAL ANUAL (TCO Bruto Aproximado)* | | *$91,181* | *$1,096,928*
-|===
-
-El gasto anual de infraestructura y servicios de soporte, operando con la máxima resiliencia y capacidad, se estima en $1.3 millones de USD en un escenario de Pago por Uso (PAYG) no optimizado.
-
-
-
-=== Criterios de aceptación
-
-Desde la perspectiva del cliente, el sistema se considera exitoso cuando permite completar una solicitud de devolución en menos de tres minutos, con confirmación inmediata y visibilidad completa del estado del trámite en todo momento. La experiencia debe ser consistentemente excelente a través de todos los canales digitales.
-
-Para el personal de tienda, la solución debe demostrar su valor mediante la reducción significativa del tiempo de procesamiento por caso, el acceso inmediato a información relevante y la capacidad de resolver excepciones comunes sin escalamiento. La integración con los flujos de trabajo existentes debe ser fluida e intuitiva.
-
-=== Dependencias de Negocio
-
-==== Eleccion del lenguaje Elixir para la programacion de la API
-
-* *Status:* Acepted
-* *Fecha de creacion:*  24/10/2025
-* *Fecha ultima modificacion:*  24/10/2025
-* *Participantes:*
-** @PolloDiego159
-* *Decisores:*
-** @clsource
-* *Contexto:*
-** El sistema requiere procesar 10 millones de transacciones diarias con latencias consistentes menores a 200ms. La naturaleza concurrente de las solicitudes de devolución y la necesidad de alta disponibilidad exigen un lenguaje que maneje eficientemente la concurrencia masiva. El equipo actual tiene experiencia mixta en diferentes lenguajes y frameworks.
-* *Lista de opciones y alternativas*
-** *Elixir:* Es un lenguaje de programación funcional, concurrente, de propósito general que se ejecuta sobre la máquina virtual de Erlang. Elixir está escrito sobre Erlang y comparte las mismas abstracciones para desarrollar aplicaciones distribuidas y tolerantes de fallos.
-** *Kotlin:* Es un lenguaje de programación orientado a objetos multiplataforma, estáticamente tipado, de alto nivel y propósito general con inferencia de tipos.
-** *Switf:* Es un lenguaje de programación moderno y de código abierto creado por Apple para desarrollar aplicaciones en sus plataformas, como iOS, macOS, watchOS y tvOS. Se caracteriza por ser rápido, seguro, fácil de usar y por tener una sintaxis limpia y expresiva que mejora la experiencia del desarrollador en comparación con su antecesor, Objective-C. 
-* *Decisión* 
-
-    *Se eligio Elixir*
-
-** El principal motivo fue el facil uso de elixir y el uso con el framework Phoenix y Liveview
-** El proceso de aprendizaje fue mas facil de entender desde el desarrollo con Elixir
-* *Observaciones y Notas*
-** Fue bastante complicado entender al inicio el proyecto debido a que el equipo (yo) no entendia muy bien el lenguaje ademas de los nuevos conceptos que se aplicaron para el desarrollo de la API
-** Se debe probar en un entorno mas demandante para el caso especifico de que en realidad deba soportar 10 millones de transacciones diarias
-* *Preguntas abiertas*
-** *¿Volveria a desarrollar una API con elixir?:* Despues de todo el trabajo es probable que no vuelva a desarrollar una API :c
-** *¿Todas las funciones se implementaron?:* No, particularmente se queria agregar un apartado de comentario al hacer la devolucion lo cual no fue posible porque cada que se intento agregar dicha funcion todo dejaba de funcionar, por lo que se opto por omitirlo.
-
-==== Eleccion del gestor de base de datos
-
-* *Status:* Proposed
-* *Fecha de creacion:*  24/10/2025
-* *Fecha ultima modificacion:*  24/10/2025
-* *Participantes:*
-** @PolloDiego159
-* *Decisores:*
-** @clsource
-* *Contexto:*
-** El sistema de devoluciones maneja datos transaccionales críticos que requieren consistencia ACID fuerte. Las operaciones incluyen procesamiento financiero (reembolsos), gestión de inventario y trazabilidad completa de cada devolución. Los requerimientos regulatorios exigen integridad absoluta de los datos financieros.
-* *Lista de opciones y alternativas*
-** *PostgreSQL:* base de datos relacional open-source con fuerte compliance ACID y amplias capacidades.
-** *Microsoft SQL Server:* Es un sistema de gestión de base de datos relacional, desarrollado por la empresa Microsoft. El lenguaje de desarrollo utilizado es Transact-SQL, una implementación del estándar ANSI del lenguaje SQL, utilizado para manipular y recuperar datos, crear tablas y definir relaciones entre ellas.
-** *Oracle Database:* Es un sistema de gestión de base de datos de tipo objeto-relacional, desarrollado por Oracle Corporation, la empresa estadounidense de hardware y software. Este tipo de sistema mejora la gestión de grandes bases de datos y programación y también aumenta el nivel de seguridad.
-* *Decisión* 
-
-    *Se eligio Microsoft SQL Server*
-
-** El principal motivo fue que por temas de competencia de marcas era mejor contratar los servicios con Azure y, de esa forma y unificando todo el ecosistema, tambien contratar la nube de Microsoft
-** Cuenta con herramientas de management excelentes demas de tener buen performance y estabilidad, ademas de un sistema de soporte enterprise
-* *Observaciones y Notas*
-** Aunque en el proyecto actual no se use este sistema de base de datos se recomienda debido a la exigencias que requiere el negocio
-** En el caso de que se quiera utilizar la nube de azure para implementar todo el proceso de la API resulta muy comodo manejar el mismo entorno, por lo que se espera que todo las demas depencias tambien actuen en un entorno de Microsoft
-* *Preguntas abiertas*
-** *¿Puede usarse el mismo modelo que se esta usando en la prueba?* Al ser los dos sistemas SQL no deberia haber mayores diferencias al usar un entorno SQLite o la nube de Microsoft
-
-
-== ESTRATEGIA DE LANZAMIENTO
-
-=== Plan de Puesta en Marcha y Lanzamiento (Go-Live)
-
-Este plan detalla la estrategia de despliegue, la coordinación interdepartamental y la cronología general para la migración al nuevo sistema de retail basado en Azure, diseñado para manejar 10.000.000 de transacciones diarias.
-
-=== 1. Estrategia de Lanzamiento (Release Strategy)
-
-Se adoptará una estrategia de Lanzamiento Controlado por Fases (Canary Release), que permite medir el impacto de la nueva solución en un subconjunto reducido de usuarios o tiendas antes de un despliegue masivo. Esto minimiza el riesgo operativo, vital dada la alta carga transaccional (500 TPS pico).
-
-==== Fases de Despliegue
-
-|===
-| Fase | Duración Estimada | Descripción
-
-| 1. Beta Cerrada y Pruebas de Humo
-| 1 Mes
-| Lanzamiento a 1-3 ubicaciones piloto o un grupo de empleados seleccionados. El tráfico en vivo es menor al 1% del total. Se valida la estabilidad básica y la conectividad de la infraestructura Cloud de Azure.
-
-| 2. Lanzamiento Canary (Tráfico Reducido)
-| 2 Meses
-| Despliegue al 10% del tráfico total. Azure Front Door dirigirá el 10% de las peticiones a la nueva arquitectura. Se prueba el escalado automático de Azure Kubernetes Service (AKS) y la latencia real en Azure SQL Business Critical.
-
-| 3. Go-Live Segmentado
-| 1.5 Meses
-| Aumento gradual de la exposición (25%, 50%, 100%). La transición crítica al 100% debe realizarse durante una ventana de mantenimiento en hora de tráfico mínimo.
-
-| 4. Estabilización y Desmantelamiento
-| 3 Meses
-| Monitoreo intensivo y estabilización. Retiro y archivado de la infraestructura de la versión anterior (Legacy) 3 meses después de alcanzar el 100% de adopción estable.
-|===
-
-==== Comunicación y Alineamiento
-
-Alineamiento Técnico: Establecer un Comité de Control de Cambios (CAB) que debe aprobar formalmente el avance entre las fases, basándose en métricas de rendimiento (TPS, Latencia) y errores.
-
-Manejo de Versiones: La solución Legacy permanecerá en modo de solo lectura durante la Fase 3, sirviendo como un roll-back de emergencia, antes de ser totalmente apagada.
-
-=== 2. Áreas Impactadas para Coordinación
-
-El lanzamiento de este sistema centralizado requiere la coordinación transversal de varias áreas para asegurar la continuidad del negocio.
-
-Tecnología de la Información (TI) - Infraestructura:
-Rol: Configuración final de Azure Networking, WAF y Monitoreo (Application Insights).
-Continuidad Operacional: Garantizar el 'uptime' del 99.99% y la alerta proactiva ante fallas de latencia o TPS.
-
-Operaciones y Puntos de Venta (Retail):
-Rol: Prueba de flujos de trabajo en tiendas físicas (POS) y capacitación del personal.
-Continuidad Operacional: Asegurar la adopción exitosa y validar la velocidad transaccional a nivel de tienda.
-
-Finanzas y Contabilidad:
-Rol: Validación de la migración e integración de datos transaccionales y la precisión de los reportes en Azure Synapse.
-Continuidad Operacional: Conciliación de saldos entre el sistema Legacy y el nuevo Azure SQL DB.
-
-Seguridad de la Información y Cumplimiento:
-Rol: Auditoría final de seguridad y cumplimiento (PCI-DSS) sobre la arquitectura en la nube.
-Continuidad Operacional: Revisión de las políticas de WAF y la gestión de identidades (Azure AD).
-
-=== 3. Fechas y Estimados (Alto Nivel)
-
-Esta tabla provee una estimación general del esfuerzo (medido en meses) necesario para completar las fases clave del proyecto. T~0~ marca el inicio del desarrollo formal.
-
-|===
-| Hito Clave | Estimación de Esfuerzo (Meses) | Fecha de Entrega Estimada
-
-| Preparación de Infraestructura y Migración de Datos Base
-| 1 Mes
-| T~0~ + 1
-
-| Desarrollo de Microservicios Core
-| 6 Meses
-| T~0~ + 7
-
-| Pruebas de Rendimiento y Seguridad (UAT)
-| 1.5 Meses
-| T~0~ + 8.5
-
-| Lanzamiento Beta (Fase 1)
-| 1 Mes
-| T~0~ + 9.5
-
-| Lanzamiento Canary (Fase 2) y Estabilización
-| 2 Meses
-| T~0~ + 11.5
-
-| Go-Live 100% (Fase 3)
-| 1.5 Meses
-| T~0~ + 13
-|===
-
-*ESFUERZO TOTAL ESTIMADO DE DESARROLLO Y LANZAMIENTO:* 12 meses (desde el inicio del desarrollo).
+* TIC-80 (Lua) como base principal del motor.  
+* GitHub (repositorio + projects).  
+* Antora Docs para documentación.  
+* Herramientas de arte 2D (Aseprite o similar).  
