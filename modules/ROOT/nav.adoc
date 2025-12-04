@@ -1,1 +1,1 @@
-* ref:totu.adoc[]
+* xref:totu.adoc[]

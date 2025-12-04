@@ -1,6 +1,4 @@
 = Documentación Proyecto “Carrera Solidaria de Mascotas”
-:toc:
-:toclevels: 4
 
 == CONTEXTO
 
