@@ -183,9 +183,8 @@ image::er_model.png[Diagrama ER, width=800]
 
 === Componentes Principales
 
-* *Core Game Engine (TIC-80 Lua)*  
-* *Módulo Apuestas*  
-* *Módulo Multiplicadores*  
+* *Core Game Engine (TIC-80)*  
+* *Módulo Apuestas*   
 * *Módulo de Animación de Carrera*  
 * *Módulo de UI*  
 * *Módulo Sonido/Música*  
@@ -241,16 +240,14 @@ image::er_model.png[Diagrama ER, width=800]
 * El juego debe ejecutar correctamente en Android, iOS y Web.  
 * Los multiplicadores deben cambiar aleatoriamente en cada partida.  
 * El cálculo de ganancias/pérdidas debe ser 100% exacto.  
-* Todo el arte debe ser temático de mascotas y aprobado por la organización.  
-* El operador debe poder iniciar carrera en menos de 10 segundos.  
+* Todo el arte debe ser temático de mascotas y aprobado por la organización.   
 * La documentación final debe estar en Antora.  
-* Debe existir un GitHub con estrategia *Trunk Based Development*.
 
 == DEPENDENCIAS DE NEGOCIO
 
 ==== Lenguaje y Herramientas
 
-* TIC-80 (Lua) como base principal del motor.  
-* GitHub (repositorio + projects).  
+* TIC-80 (Javascript) como base principal del motor.  
+* GitHub (repositorio).  
 * Antora Docs para documentación.  
-* Herramientas de arte 2D (Aseprite o similar).  
+* Herramientas de arte 2D.  

@@ -58,7 +58,22 @@
 <div class="nav-container" data-component="ROOT" data-version="">
   <aside class="nav">
     <div class="panels">
-<div class="nav-panel-explore is-active" data-panel="explore">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <button class="nav-menu-toggle" aria-label="Toggle expand/collapse all" style="display: none"></button>
+    <h3 class="title"><a href="index.html">Documentación API Gestión de Devoluciones Retail</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <span class="nav-text">ref:totu.adoc[]</span>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
   <div class="context">
     <span class="title">Documentación API Gestión de Devoluciones Retail</span>
     <span class="version"></span>
@@ -77,6 +92,10 @@
 <button class="nav-toggle"></button>
   <a href="index.html" class="home-link is-current"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Documentación API Gestión de Devoluciones Retail</a></li>
+    <li><a href="index.html">Documentación Proyecto “Carrera Solidaria de Mascotas”</a></li>
+  </ul>
 </nav>
 <div class="edit-this-page"><a href="file:///antora/./modules/ROOT/pages/index.adoc">Edit this Page</a></div>
 </div>
@@ -105,22 +124,19 @@
 <ul class="sectlevel2">
 <li><a href="#kpis-del-evento-nivel-negocio">KPIs del Evento (Nivel Negocio)</a></li>
 <li><a href="#kpis-de-experiencia-de-usuario">KPIs de Experiencia de Usuario</a></li>
-<li><a href="#kpis-técnicos">KPIs Técnicos</a></li>
-<li><a href="#métricas-de-adopción">Métricas de Adopción</a></li>
 </ul>
 </li>
 <li><a href="#usuarios-y-clientes">USUARIOS Y CLIENTES</a>
 <ul class="sectlevel2">
 <li><a href="#user-personas">User Personas</a>
 <ul class="sectlevel3">
-<li><a href="#persona-1-operadorcouprier-ana-la-voluntaria">Persona 1: Operador/Couprier – “Ana la Voluntaria”</a></li>
 <li><a href="#persona-2-participante-del-evento-lucas-niño-de-10-años">Persona 2: Participante del Evento – “Lucas (niño de 10 años)”</a></li>
 </ul>
 </li>
 <li><a href="#flujos-de-negocio-críticos">Flujos de Negocio Críticos</a>
 <ul class="sectlevel3">
 <li><a href="#flujo-principal-apuesta-carrera-resultado">Flujo Principal: Apuesta → Carrera → Resultado</a></li>
-<li><a href="#flujo-secundario-elección-de-diseñopersonajes">Flujo Secundario: Elección de diseño/personajes</a></li>
+<li><a href="#flujo-secundario-elección-de-diseñopersonajes">Flujo Secundario: Elección de diseño/personajes<strong>*</strong></a></li>
 </ul>
 </li>
 </ul>
@@ -222,15 +238,6 @@
 <li>
 <p>Música y sonidos originales.</p>
 </li>
-<li>
-<p>Presentación profesional para stakeholders reales.</p>
-</li>
-<li>
-<p>Código versionado con <strong>GitHub</strong> y metodología <strong>Trunk Based Development</strong>.</p>
-</li>
-<li>
-<p>Documentación técnica en <strong>Antora Docs</strong>.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -250,9 +257,6 @@
 <li>
 <p>❌ No incluye estadísticas avanzadas ni backend en la nube.</p>
 </li>
-<li>
-<p>❌ No implementa inteligencia artificial para corredores.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -264,16 +268,13 @@
 <p>TIC-80 permite exportación funcional a Web, Android e iOS.</p>
 </li>
 <li>
-<p>El performance requerido es mínimo (simulación 2D con sprites).</p>
-</li>
-<li>
-<p>El couprier (operador humano) avanza la carrera manualmente presionando un botón.</p>
+<p>El performance requerido es mínimo unicamente con sprites 2D.</p>
 </li>
 <li>
 <p>Los multiplicadores se generan aleatoriamente <strong>en cada partida</strong>.</p>
 </li>
 <li>
-<p>Las fichas ganadas se reportan en pantalla, el canje no es parte del software.</p>
+<p>Las fichas ganadas se reportan en pantalla.</p>
 </li>
 </ol>
 </div>
@@ -351,84 +352,12 @@
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Estabilidad multiplataforma</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">99% funcionamiento sin fallas</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cada build</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Cada plataforma</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Percepción estética</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">“Bonito / adorable”</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Validado con stakeholders</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="kpis-técnicos"><a class="anchor" href="#kpis-técnicos"></a>KPIs Técnicos</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-<col style="width: 25%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">KPI</th>
-<th class="tableblock halign-left valign-top">Objetivo</th>
-<th class="tableblock halign-left valign-top">Alerta</th>
-<th class="tableblock halign-left valign-top">Crítico</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">FPS del juego</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">60 FPS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">45 FPS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">30 FPS</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Tamaño archivo exportado</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&lt; 5 MB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8 MB</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10 MB</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bugs por release</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0-2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="métricas-de-adopción"><a class="anchor" href="#métricas-de-adopción"></a>Métricas de Adopción</h3>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Métrica</th>
-<th class="tableblock halign-left valign-top">Meta</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Cantidad de partidas por evento</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 50</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Usuarios recurrentes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 40%</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Personas que canjean premios</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 30%</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Participación infantil</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt; 50%</p></td>
 </tr>
 </tbody>
 </table>
@@ -441,25 +370,12 @@
 <div class="sect2">
 <h3 id="user-personas"><a class="anchor" href="#user-personas"></a>User Personas</h3>
 <div class="sect3">
-<h4 id="persona-1-operadorcouprier-ana-la-voluntaria"><a class="anchor" href="#persona-1-operadorcouprier-ana-la-voluntaria"></a>Persona 1: Operador/Couprier – “Ana la Voluntaria”</h4>
-<div class="paragraph">
-<p><strong>Edad</strong>: 28
-<strong>Rol</strong>: voluntaria del evento
-<strong>Uso del sistema</strong>: controla el flujo de la carrera
-<strong>Necesidades</strong>:
-- Interfaz simple, solo botones esenciales
-- Poder explicar reglas rápidamente
-- Tener visibilidad de las apuestas y multiplicadores</p>
-</div>
-<div class="paragraph">
-<p><strong>Escenario ideal:</strong> “Puedo iniciar una carrera en menos de 10 segundos sin preocuparme por fallas.”</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="persona-2-participante-del-evento-lucas-niño-de-10-años"><a class="anchor" href="#persona-2-participante-del-evento-lucas-niño-de-10-años"></a>Persona 2: Participante del Evento – “Lucas (niño de 10 años)”</h4>
 <div class="paragraph">
-<p><strong>Intereses</strong>: animales, colores, juegos rápidos
-<strong>Necesidades</strong>:
+<p><strong>Intereses</strong>: animales, colores, juegos rápidos</p>
+</div>
+<div class="paragraph">
+<p><strong>Necesidades</strong>:
 - Personajes adorables
 - Animaciones llamativas
 - Reglas muy simples</p>
@@ -476,22 +392,22 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>El couprier anuncia inicio de partidas.</p>
+<p>El participante anuncia inicio de partidas.</p>
 </li>
 <li>
-<p>Participantes seleccionan un corredor (palo).</p>
+<p>Participantes seleccionan un corredor (palo)<strong>*</strong>*.</p>
 </li>
 <li>
-<p>El juego muestra multiplicadores aleatorios (x2 a x5).</p>
+<p>El juego muestra multiplicadores aleatorios (x2 a x5)<strong>*</strong>*.</p>
 </li>
 <li>
-<p>El operador ingresa fichas apostadas.</p>
+<p>El juego ingresa fichas apostadas.</p>
 </li>
 <li>
 <p>Se presiona <strong>“Iniciar Carrera”</strong>.</p>
 </li>
 <li>
-<p>Los personajes avanzan cuadro a cuadro al ritmo del operador.</p>
+<p>Los personajes avanzan cuadro a cuadro automaticamente.</p>
 </li>
 <li>
 <p>Se determina el ganador.</p>
@@ -500,13 +416,13 @@
 <p>El sistema calcula <strong>ganancia o pérdida</strong>.</p>
 </li>
 <li>
-<p>Se muestra pantalla de “Premios” o “Lo intentaste”.</p>
+<p>Se muestra pantalla de “Premios” o “Lo intentaste”<strong>*</strong>.</p>
 </li>
 </ol>
 </div>
 </div>
 <div class="sect3">
-<h4 id="flujo-secundario-elección-de-diseñopersonajes"><a class="anchor" href="#flujo-secundario-elección-de-diseñopersonajes"></a>Flujo Secundario: Elección de diseño/personajes</h4>
+<h4 id="flujo-secundario-elección-de-diseñopersonajes"><a class="anchor" href="#flujo-secundario-elección-de-diseñopersonajes"></a>Flujo Secundario: Elección de diseño/personajes<strong>*</strong></h4>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -533,9 +449,6 @@
 <ul>
 <li>
 <p>Módulo de apuestas</p>
-</li>
-<li>
-<p>Módulo de multiplicadores</p>
 </li>
 <li>
 <p>Simulación visual de carrera</p>
@@ -598,7 +511,7 @@
 <p>RF2: Mostrar multiplicador aleatorio por corredor.</p>
 </li>
 <li>
-<p>RF3: Iniciar carrera controlada por operador.</p>
+<p>RF3: Iniciar carrera.</p>
 </li>
 <li>
 <p>RF4: Determinar ganador mediante avance aleatorio.</p>
@@ -634,12 +547,6 @@
 <li>
 <p>RNF4: Tamaño del juego &lt;5MB.</p>
 </li>
-<li>
-<p>RNF5: Código gestionado en GitHub bajo <strong>Trunk Based Development</strong>.</p>
-</li>
-<li>
-<p>RNF6: Documentación completa en Antora.</p>
-</li>
 </ul>
 </div>
 </div>
@@ -648,10 +555,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p>TIC-80 PRO para exportación móvil.</p>
+<p>TIC-80 para exportación.</p>
 </li>
 <li>
-<p>Repositorio GitHub con GitHub Projects.</p>
+<p>Repositorio GitHub.</p>
 </li>
 <li>
 <p>Equipo de sonido para música original.</p>
@@ -670,13 +577,10 @@
 <div class="ulist">
 <ul>
 <li>
-<p><strong>Core Game Engine (TIC-80 Lua)</strong></p>
+<p><strong>Core Game Engine (TIC-80)</strong></p>
 </li>
 <li>
 <p><strong>Módulo Apuestas</strong></p>
-</li>
-<li>
-<p><strong>Módulo Multiplicadores</strong></p>
 </li>
 <li>
 <p><strong>Módulo de Animación de Carrera</strong></p>
@@ -807,13 +711,7 @@
 <p>Todo el arte debe ser temático de mascotas y aprobado por la organización.</p>
 </li>
 <li>
-<p>El operador debe poder iniciar carrera en menos de 10 segundos.</p>
-</li>
-<li>
 <p>La documentación final debe estar en Antora.</p>
-</li>
-<li>
-<p>Debe existir un GitHub con estrategia <strong>Trunk Based Development</strong>.</p>
 </li>
 </ul>
 </div>
@@ -827,16 +725,16 @@
 <div class="ulist">
 <ul>
 <li>
-<p>TIC-80 (Lua) como base principal del motor.</p>
+<p>TIC-80 (Javascript) como base principal del motor.</p>
 </li>
 <li>
-<p>GitHub (repositorio + projects).</p>
+<p>GitHub (repositorio).</p>
 </li>
 <li>
 <p>Antora Docs para documentación.</p>
 </li>
 <li>
-<p>Herramientas de arte 2D (Aseprite o similar).</p>
+<p>Herramientas de arte 2D.</p>
 </li>
 </ul>
 </div>
