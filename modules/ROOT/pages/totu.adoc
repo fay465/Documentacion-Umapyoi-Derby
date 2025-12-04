@@ -1,6 +1,6 @@
 = 🏇 Manual del Umapyoi Derby - ¡La Guía Definitiva!
 :author: Tu Juego Favorito
-:revnumber: 1.0
+:revnumber: 2.0
 :revdate: 2025-12-04
 :toc: left
 :toclevels: 3
@@ -10,20 +10,22 @@
 
 ¿Hola, amiguito? ¡Bienvenido al increíble mundo del **Umapyoi Derby**! Este es el juego más emocionante donde tú eres el **entrenador de caballos de carreras**. ¿Estás listo para convertirte en una leyenda? ¡Porque aquí vamos a tener la aventura de nuestras vidas!
 
-En este juego, no solo verás caballos corriendo (que ya es genial), sino que tú tendrás que **elegir cuál es el mejor caballo**, **entrenarlos**, **apostar dinero** y **¡GANAR BIG!** 💰
+En este juego, no solo verás caballos corriendo (que ya es genial), sino que tú tendrás que **elegir cuál es el mejor caballo**, **apostar dinero en el que creas que ganará** y **¡ESPERAR A VER QUE PASA!** 💰
 
 === ¿De qué trata el juego?
 
 Imagina que eres el gerente del **hipódromo más increíble del mundo**. Tu trabajo es:
 
-* 🐴 Conocer a cada caballo y sus características
-* 💪 Entrenarlos para que sean más fuertes
-* 💵 Apostar tu dinero en las carreras
+* 🐴 Elegir en qué caballo quieres apostar
+* 💵 Decidir cuánto dinero quieres arriesgar
+* 🍀 ¡Esperar la suerte y ver si ganas!
 * 🏆 ¡Convertirte en el campeón de carreras!
 
-Es como ser un superhéroe, pero en lugar de salvar el mundo, ¡salvas... espera, ganas dinero! 🎊
+Es como ser un superhéroe, pero en lugar de salvar el mundo, ¡apuestas dinero y esperas que la suerte te sonría! 🎊
 
 == Pantalla Principal - Tu Centro de Control 🎮
+
+**[REFERENCIA IMAGEN 1]**
 
 === La Primera Vez Que Abres el Juego
 
@@ -34,7 +36,7 @@ Cuando inicias el juego, verás una pantalla hermosa con:
 
 .Descripción de la Interfaz
 ====
-Piensa en esto como tu **billetera de caballos**. Comienzas con **1000 monedas**, y aquí es donde puedes apostar toda tu riqueza para ganar más dinero. ¡O perderlo todo! 😅
+Piensa en esto como tu **billetera de caballos**. Comienzas con **1000 monedas**, y aquí es donde apuestas tu riqueza en tus caballos favoritos para ganar más dinero. ¡O perderlo todo! 😅
 ====
 
 === Los Cuatro Caballos Espectaculares
@@ -43,50 +45,52 @@ En la pantalla principal verás **CUATRO CABALLOS HERMOSOS** representados por s
 
 [cols="1,2,2"]
 |===
-| Caballo | Símbolo | Velocidad
+| Caballo | Símbolo | Descripción
 
 | 🗣️ **Picas**
 | Una pica (♠)
-| ⭐⭐⭐ Muy rápido
+| El caballo de Picas, ¡fuerte y resistente!
 
 | ❤️ **Corazones**
 | Un corazón (♥)
-| ⭐⭐⭐⭐ El más rápido
+| El caballo de Corazones, ¡lleno de pasión!
 
 | 💎 **Diamantes**
 | Un diamante (♦)
-| ⭐⭐ Lento
+| El caballo de Diamantes, ¡brillante y hermoso!
 
 | 🍀 **Tréboles**
 | Un trébol (♣)
-| ⭐⭐⭐⭐⭐ ¡¡RÁPIDO COMO UN RAYO!!
+| El caballo de Tréboles, ¡el más afortunado!
 |===
 
 === Los Valores de Apuesta - ¡Lo Más Importante!
 
 Debajo de cada caballo hay un **número mágico**:
 
-* **100** - Pequeñita apuesta (¡arriesgado pero seguro!)
+* **100** - Pequeñita apuesta (¡poco riesgo!)
 * **500** - Apuesta mediana (¡ni tan arriesgada!)
-* **1000** - Apuesta grande (¡¡MOLTO PELIGROSO!!)
-* **5000** - ¡¡LA APUESTA DEL SIGLO!! (¡solo hazlo si estás MUY SEGURO!)
+* **1000** - Apuesta grande (¡¡PELIGROSA!!)
+* **5000** - ¡¡LA APUESTA DEL SIGLO!! (¡¡MEGA RIESGO!!)
 
 .¿Qué significan estos números?
 ====
-Cada número es **cuántas monedas quieres apostar** en un caballo específico. Si apuestas 100 monedas en el caballo de Corazones y gana... ¡obtienes muchísimas más monedas! 💰💰💰
+Cada número es **cuántas monedas quieres apostar** en un caballo específico. Si apuestas 100 monedas en el caballo de Corazones y gana... ¡el juego te dará una cantidad sorpresa de monedas! 💰💰💰
 
 Si pierdes... ¡adiós monedas! 😢
 ====
 
 == ¿Cómo Apostar? 🎲
 
-=== Paso 1: Elige Tu Caballo
+**[REFERENCIA IMAGEN 2 - Pantalla con banco actualizado]**
+
+=== Paso 1: Elige Tu Caballo Favorito
 
 Mira los cuatro caballos bonitos en la pantalla. Cada uno tiene su propio naipe de juego. Pregúntate:
 
 * ¿Cuál es mi favorito? 🤔
-* ¿Cuál parece el más rápido? 
 * ¿Cuál tiene la mejor vibra hoy?
+* ¿Cuál creo que va a ganar?
 
 === Paso 2: Elige Tu Cantidad de Apuesta
 
@@ -95,62 +99,70 @@ Ahora decide **cuántas monedas quieres apostar**. Aquí viene lo emocionante:
 * **Apuesta pequeña (100)** = Poco riesgo, pero ganas poco
 * **Apuesta grande (5000)** = ¡¡MUCHO RIESGO, PERO MUCHAS GANANCIAS!!
 
+.Importante: El Multiplicador es Aleatorio
+====
+Aquí viene la parte más emocionante: **cuando apuestas, el juego elige de forma ALEATORIA cuánto dinero vas a ganar o perder**. 
+
+No importa cuán rápido sea el caballo o qué tan bueno sea su aspecto. ¡Es pura SUERTE! 🍀
+
+El multiplicador del resultado es completamente sorpresa, así que... ¡¡PREPÁRATE PARA LA EMOCIÓN!!
+====
+
 === Paso 3: Haz Clic en el Botón "Apostar"
 
 Cuando estés seguro de tu elección, presiona el botón **APOSTAR** (abajo a la izquierda). 
 
-*¡Ahora espera a que salga el resultado!*
+*¡Ahora espera a que salga el resultado aleatorio!*
 
 == La Pantalla de Resultados 🏁
 
+**[REFERENCIA IMAGEN 2 - Pantalla con mensaje de resultado]**
+
 === Cuando Apuestas...
 
-Después de hacer tu apuesta, la pantalla cambiar. Verás:
+Después de hacer tu apuesta, la pantalla cambia. Verás:
 
 * **Tu banco ahora muestra una cantidad diferente** (esperemos que más grande 🤞)
-* Un mensaje especial que dice si **GANASTE o PERDISTE**
+* Un mensaje especial que te dice si **GANASTE o PERDISTE**
 
 .Si GANAS 🎉
 ====
-¡¡¡FELICIDADES!!! Tu caballo corrió más rápido que el viento y ¡CRUZÓ LA META EN PRIMER LUGAR! Tu dinero se multiplica y verás el banco con más monedas. 
+¡¡¡FELICIDADES!!! El multiplicador aleatorio fue a tu favor y ¡¡GANASTE!! Tu dinero se multiplica de forma sorpresiva y verás el banco con más monedas. 
 
-Ejemplo: Si apostaste 100 y ganas, ¡podrías tener 1500 o más!
+¿Cuánto ganaste? ¡Eso depende del multiplicador secreto que eligió el juego! 
+
+Ejemplo: Si apostaste 100, podrías ganar 200, 500, 1000 o ¡¡MUCHO MÁS!!
 ====
 
 .Si PIERDES 😢
 ====
-Oh no... tu caballo se tropezó, se cansó o simplemente decidió tomar un descanso. Perdiste tus monedas. Pero ¡no te rindas! Todavía tienes más dinero para seguir intentando.
+Oh no... la suerte no te sonrió esta vez. El multiplicador aleatorio decidió que no era tu día. Perdiste tus monedas. Pero ¡no te rindas! Todavía tienes más dinero para seguir intentando.
 
 Tu banco bajará. Ejemplo: De 1000 → 900
 ====
 
 == La Pantalla de Selección de Caballos 🐴🏆
 
+**[REFERENCIA IMAGEN 3 - Pantalla de hipódromo con caballos]**
+
 === ¿Qué es Esto?
 
-Después de algunas apuestas, verás una pantalla **MÁS EMOCIONANTE AÚN**. Esta es la **Pantalla de Carreras**. Aquí verás:
+Después de algunas apuestas, verás una pantalla **MÁS EMOCIONANTE AÚN**. Esta es la **Pantalla de Hipódromo**. Aquí verás:
 
 * **Cuatro caballos de diferentes colores** corriendo en líneas horizontales
-* Una **pista de carreras verde**
-* **Números a la derecha** (como ♦x4, ♥x5, etc.)
+* Una **pista de carreras verde** con cercas blancas
+* **Números a la derecha** 
 
-=== Los Números Importantes
+=== Los Caballos en la Pista
 
-Esos números a la derecha significa **cuántos puntos de velocidad tiene cada caballo**:
+Verás cuatro lindos caballos de distintos colores:
 
-[cols="1,3"]
-|===
-| Número | Qué Significa
+* Un caballo gris/blanco
+* Un caballo rojo/marrón oscuro
+* Un caballo dorado/amarillo
+* Un caballo azul claro
 
-| x4
-| Este caballo tiene 4 unidades de velocidad
-
-| x5
-| Este caballo es más rápido, con 5 unidades
-
-| x2
-| Este caballo es lentísimo, apenas 2 unidades
-|===
+¡Cada uno es hermoso a su manera! 🐴🐴🐴🐴
 
 === Los Botones Mágicos en la Parte Inferior
 
@@ -161,7 +173,7 @@ En esta pantalla ves tres botones súper importantes:
 | Botón | Función
 
 | **FLIP**
-| ¡Voltea un naipe! Esto te da pistas sobre qué pasará en la carrera
+| ¡Voltea un naipe! Es solo para diversión, no afecta el juego
 
 | **FLIP AUTO: OFF**
 | Esto hace que el juego voltee naipes automáticamente (cuando lo prendas, dice "ON")
@@ -170,106 +182,124 @@ En esta pantalla ves tres botones súper importantes:
 | Regresa a la pantalla principal si cambias de opinión
 |===
 
-=== ¿Cómo Funcionan los FLIPS? 🃏
+=== ¿Qué es Esto Realmente?
 
-Cuando haces FLIP (presionas el botón), se voltea un **naipe misterioso**. Este naipe te da pistas sobre:
+Esta pantalla es principalmente para que disfrutes viendo a tus caballos. Los botones de FLIP te permiten voltear naipes por diversión, pero recuerda: **¡el resultado de la carrera ya fue decidido de forma aleatoria!**
 
-* Qué caballo podría ganar
-* Cuál podría ser el más lento
-* ¡Es como magia, pero con matemáticas! 🎩✨
-
-*Consejo de Campeón: Usa los FLIPS para tomar decisiones mejores antes de apostar.*
+Es como una ceremonia emocionante antes de revelar tu destino. 🎭✨
 
 == La Pantalla de Victoria - ¡ERES UN CAMPEÓN! 🏆
 
+**[REFERENCIA IMAGEN 4 - Pantalla de ganador]**
+
 === Cuando Ganas BIG 💵
 
-Después de una apuesta grande que SALE BIEN, verás la **Pantalla de Campeón**. Esta pantalla dice:
+Después de una apuesta que resulta ganadora, verás la **Pantalla de Campeón**. Esta pantalla muestra:
 
-* **BANCO 1800 BEST 2000**
-* **GANADOR**
-* Un corazón rojo y una silueta de alguien saltando de alegría
+* **BANCO 1800 BEST 2000** (o números diferentes según tus ganancias)
+* **GANADOR** en grandes letras
+* Un corazón rojo y confeti de alegría
 
 .¿Qué Significa?
 ====
-* **BANCO 1800** = Ese es tu dinero actual
+* **BANCO 1800** = Ese es tu dinero actual (¡¡miralo crecer!!)
 * **BEST 2000** = Ese es el MÁXIMO que has ganado en este juego
 * **GANADOR** = ¡¡TÚ ERES UN CAMPEÓN!!
 ====
+
+=== ¿Por Qué Gané Tanto?
+
+Recuerda: **el multiplicador es completamente aleatorio**. El juego decidió que hoy era TU DÍA y te recompensó generosamente. ¡¡Qué suerte tienes!! 🍀
 
 === Los Botones de la Gloria
 
 En esta pantalla ves dos botones:
 
-* **SEGUIR** = Continúa jugando para ganar más dinero
-* **RETIRARSE** = Toma tus ganancias y sal del juego como un campeón
+* **SEGUIR** = Continúa jugando para ganar más dinero (¡¡la codicia es peligrosa!!)
+* **RETIRARSE** = Toma tus ganancias y sal del juego como un campeón verdadero
 
-*Consejo de Campeón: A veces es mejor RETIRARSE cuando has ganado mucho. ¡Es mejor terminar como ganador que perder todo!*
+*Consejo de Campeón: A veces es mejor RETIRARSE cuando has ganado mucho. ¡Es mejor terminar como ganador que perder todo después!*
 
-== La Pantalla de Selección - El Equipo Completo 🐴🐴🐴🐴
+== La Pantalla de Selección Final - El Equipo Completo 🐴🐴🐴🐴
+
+**[REFERENCIA IMAGEN 5 - Pantalla de selección de caballos]**
 
 === ¿Qué Es Esta Pantalla?
 
-Esta es una pantalla especial donde puedes **VER A TODOS TUS CABALLOS** y **ELEGIR CUÁL USAR** para cada carrera. Es como el vestuario de un superhéroe, pero con caballos.
+Esta es una pantalla especial donde puedes **VER A TODOS TUS CABALLOS** y **PREPARARTE PARA LA ACCIÓN**. Es como el momento antes de que comience el gran espectáculo.
 
 === Los Caballos en Fila
 
-Verás **cuatro caballos bonitos** en líneas horizontales:
+Verás **cuatro caballos coloridos** en líneas horizontales:
 
 * Un caballo gris claro
 * Un caballo rojo/marrón oscuro
 * Un caballo dorado/amarillo
 * Un caballo azul claro
 
-=== Sus Características
+¡Cada uno es único y hermoso! 🌈
+
+=== Sus Características Visuales
 
 Cada caballo muestra:
 
-* **Su color especial** (cada uno es único)
-* **Su velocidad** (algunos corren más rápido que otros)
-* **Sus habilidades** (algunos saltan más alto, otros tienen más resistencia)
+* **Su color especial** (cada uno tiene su propia identidad)
+* **Su posición en la pista**
+* **Su número de identificación**
 
-.¿Cuál Elegir?
+.¿Por Qué Ver Esta Pantalla?
 ====
-Esto depende de:
-* ¿Quieres ir super rápido? → Elige el caballo más rápido
-* ¿Quieres resistencia? → Elige el que tenga mejor resistencia
-* ¿Quieres un equilibrio? → Elige uno del medio
-
-Es como elegir entre pizzas: cada una tiene su propio sabor especial. 🍕🐴
+Aunque el resultado será aleatorio, esta pantalla te permite:
+* Admirar a tus caballos favoritos
+* Decidir en cuál vas a apostar
+* Sentir la emoción ANTES de que ocurra la magia
 ====
 
 === Los Naipes en la Parte Inferior
 
-Verás **ocho naipes cuadrados** que se pueden "voltear". Estos son como tus **cartas de suerte**. Cada uno podría tener una pista sobre qué pasará en la carrera.
+Verás **ocho naipes cuadrados** listos para ser volteados. Estos son como tus **cartas de suerte**. Puedes voltearlos para divertirte, pero recuerda: **¡el resultado ya fue decidido antes!**
 
-*Usa los botones FLIP para voltearlos y obtener información secreta.*
+Es como abrir regalos en tu cumpleaños. Sabes que adentro hay algo, pero ¡no sabes qué hasta que lo abras!
 
-== Consejos de Campeón para Ganar 🏆
+[cols="1,3"]
+|===
+| Botón | Función
+
+| **FLIP**
+| Voltea un naipe misterioso (¡solo por diversión!)
+
+| **FLIP AUTO: OFF**
+| Voltea naipes automáticamente si lo prendas
+
+| **VOLVER**
+| Regresa a apostar si no has resultado ganador
+|===
+
+== Consejos de Campeón para Disfrutar 🏆
 
 === 1. Empieza Pequeño 👶
 
-No apuestes todo tu dinero en la primera carrera. Comienza con apuestas pequeñas (100 o 500) para aprender cómo funciona el juego.
+No apuestes todo tu dinero en la primera carrera. Comienza con apuestas pequeñas (100 o 500) para disfrutar del juego más tiempo.
 
-=== 2. Observa los Caballos 👀
+=== 2. Recuerda Que Es Pura Suerte 🍀
 
-Cada caballo tiene características diferentes. Algunos son más rápidos, otros tienen más resistencia. ¡Aprende quién es quién!
+No importa qué tan bonito sea un caballo o cuál pienses que es más rápido. **El resultado es completamente aleatorio**. ¡Es el juego de la suerte!
 
-=== 3. Usa los FLIPS Sabiamente 🃏
+=== 3. Disfruta la Emoción 🎉
 
-Los FLIPS te dan pistas. Mientras más FLIPS hagas, más información tendrás. Pero cuidado, ¡a veces la suerte engaña!
+Lo mejor del juego es la **incertidumbre**. No sabes qué va a pasar hasta que suceda. ¡Esa es la magia!
 
 === 4. Mantén un Poco de Dinero 💰
 
-Nunca apuestes TODO lo que tienes en una sola carrera. Guarda siempre algo para intentarlo de nuevo.
+Nunca apuestes TODO lo que tienes en una sola carrera. Guarda siempre algo para intentarlo de nuevo y seguir disfrutando.
 
-=== 5. ¡Diviértete! 🎉
+=== 5. ¡Diviértete Antes Que Nada! 🎊
 
-Lo más importante es que disfrutes. Si pierdes dinero, ¡no importa! Es solo un juego. Lo importante es pasar un buen rato.
+Lo más importante es que disfrutes. Si pierdes dinero, ¡no importa! Es solo un juego. Lo importante es pasar un buen rato con la emoción y la incertidumbre.
 
 === 6. Sabe Cuándo Retirarse 🚪
 
-Si has ganado MUCHO dinero, a veces es buena idea retirarse como campeón. Es mejor irse a casa con ganancias que perderlo todo después.
+Si has ganado MUCHO dinero, a veces es buena idea retirarse como campeón. Es mejor irse a casa con ganancias que perderlo todo después. La suerte puede cambiar en cualquier momento.
 
 == Glosario de Palabras Mágicas 📖
 
@@ -283,55 +313,66 @@ Si has ganado MUCHO dinero, a veces es buena idea retirarse como campeón. Es me
 | **Banco**
 | Todo el dinero que tienes en este momento
 
+| **Multiplicador Aleatorio**
+| La cantidad sorpresa que ganas o pierdes (¡decidida por la suerte!)
+
 | **FLIP**
-| Voltear un naipe para obtener información
+| Voltear un naipe para la diversión (no afecta el resultado)
 
 | **Ganador**
-| ¡¡Tú, cuando tu caballo llega primero!!
+| ¡¡Tú, cuando la suerte te sonríe!!
 
 | **Carrera**
-| La competencia entre caballos
-
-| **Velocidad**
-| Qué tan rápido corre un caballo
+| La competencia de caballos
 
 | **Suerte**
-| A veces ganas, a veces pierdes, ¡es el juego!
+| ¡Lo más importante del juego! A veces ganas, a veces pierdes
+
+| **Retirarse**
+| Salir del juego con tus ganancias
 |===
 
 == Preguntas Frecuentes - FAQ 🤔
 
 === ¿Puedo Perder Todo Mi Dinero?
 
-Sí, es posible. Pero no te preocupes, ¡es solo un juego! Siempre puedes intentar de nuevo.
+Sí, es posible. Pero no te preocupes, ¡es solo un juego! Siempre puedes intentar de nuevo. Además, los caballos no van a desaparecer. 😄
 
-=== ¿Cuál es el Caballo Más Rápido?
+=== ¿Hay un Caballo Más Rápido Que Los Otros?
 
-Depende de cada carrera, pero generalmente, el caballo con el **número más alto de velocidad** (como x5) es más rápido.
+No realmente. En este juego, **todos los caballos tienen la misma oportunidad de ganar**. Lo que importa es la pura suerte, no la velocidad del caballo.
+
+=== ¿Cómo Se Decide Si Gano O Pierdo?
+
+**Es completamente aleatorio**. El juego decide de forma sorpresiva si ganas o pierdes, y por cuánto. ¡Cada apuesta es un misterio!
 
 === ¿Qué Hago Si No Tengo Dinero?
 
-Si pierdes todo tu dinero, el juego debería permitirte empezar de nuevo. ¡Inténtalo una vez más!
+Si pierdes todo tu dinero, el juego debería permitirte empezar de nuevo. ¡Inténtalo una vez más! A veces la segunda oportunidad es la mejor.
 
 === ¿Hay un Truco para Ganar Siempre?
 
-No hay un truco, ¡pero hay estrategia! Observa los patrones, usa los FLIPS, y toma decisiones inteligentes.
+No hay un truco, ¡porque es pura suerte! El juego es diseñado para ser **completamente aleatorio**. Lo único que puedes hacer es disfrutar la incertidumbre y esperar que la suerte te sonría.
 
 === ¿Cuánto Dinero Puedo Ganar?
 
-¡Mucho! Cuanto más arriesgues y más aciertes, más ganarás. Algunos jugadores han llegado a ganar más de 5000 monedas. 💰
+¡Mucho! Depende del multiplicador aleatorio que te toque. Algunos jugadores han ganado el doble, el triple o ¡¡mucho más!! Es como una lotería en cada apuesta. 🎰
+
+=== ¿Los Botones de FLIP Cambian El Resultado?
+
+No. Los botones de FLIP son solo para diversión. El resultado de tu apuesta ya fue decidido de forma aleatoria, así que voltear naipes no cambia nada. ¡Solo disfruta el espectáculo! 🎭
 
 == ¡A Jugar Se Ha Dicho! 🎊
 
-Ahora que sabes cómo funcionan las carreras, ¡es hora de sumergirte en la acción! Recuerda:
+Ahora que sabes cómo funciona este juego de pura suerte, ¡es hora de sumergirte en la acción! Recuerda:
 
-* 🐴 Elige tus caballos con cuidado
-* 🎲 Apuesta con estrategia
-* 💰 Controla tu dinero
-* 🏆 ¡Diviértete y SÉ UN CAMPEÓN!
+* 🐴 Elige el caballo que te guste
+* 💰 Apuesta la cantidad que quieras
+* 🍀 ¡¡Espera la suerte!!
+* 🏆 ¡Diviértete sin importar el resultado!
 
 *¡Que comience la carrera! 🏁*
 
 ---
 
-**Nota Final:** Este juego es pura diversión y emoción. Si estás jugando, recuerda que es importante jugar responsablemente y nunca apostar más de lo que puedas perder. ¡Ahora sí, a ganar! 🎉🐴🏁
+**Nota Final:** Este juego es pura diversión y emoción basada en la suerte. No hay estrategia, no hay truco, solo **suerte, caballos hermosos y la incertidumbre emocionante**. ¡Ahora sí, a apostar y disfrutar! 🎉🐴🏁
