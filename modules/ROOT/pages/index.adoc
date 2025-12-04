@@ -92,7 +92,7 @@ Actualmente, muchos eventos benéficos carecen de actividades interactivas que a
 
 === User Personas
 
-==== Persona 2: Participante del Evento – “Lucas (niño de 10 años)”
+==== Persona 1: Participante del Evento – “Lucas (niño de 10 años)”
 
 *Intereses*: animales, colores, juegos rápidos  
 
@@ -136,20 +136,6 @@ El sistema es un *videojuego TIC-80* multiplataforma con:
 * Exportación para Web, Android e iOS  
 
 Permite operación en eventos benéficos sin conexión a internet.
-
-=== Nivel de Contexto
-
-image::c4_context.png[Diagrama C4 - Contexto, width=800]
-
-=== Nivel de Contenedores
-
-image::c4_containers.png[Diagrama C4 - Contenedores, width=800]
-
-=== Modelo Entidad-Relación  
-
-image::er_model.png[Diagrama ER, width=800]
-
-(Este modelo es mínimo; incluye Apuesta, Multiplicador, Corredor, Resultado y Partida)
 
 === Requisitos Funcionales, Restricciones y Dependencias
 
